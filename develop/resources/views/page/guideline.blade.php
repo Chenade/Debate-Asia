@@ -15,13 +15,7 @@
         </div>
 
         <div class="d-flex flex-wrap align-items-center ">
-            <div id="scroller" style="height: 100%; width: 500px; overflow: auto;">
-                <iframe height="100%" id="iframe" scrolling="no" width="100%" id="iframe" src="/pdf/guidelines.pdf#toolbar=0&embedded=true" ></iframe>
-            </div>
-            <!-- <iframe 
-                    src="/pdf/guidelines.pdf#toolbar=0&embedded=true    "
-                    width="100%" height="500px">
-            </iframe> -->
+            <embed src="/pdf/guidelines.pdf#toolbar=0" type="application/pdf" width="100%" height="500px" />. 
         </div>
 
         <div style="margin-top:20px;"></div>
@@ -31,5 +25,25 @@
    
 @stop
 @section('end_script')
+<script>
+// <style>
+// html, body {height:100%; overflow:hidden}
+// body {overflow:auto; -webkit-overflow-scrolling:touch}
+// </style>
+    // $(document).ready(function() {
+    //     $('body').css('height', '100%');
+    //     $('html').css('height', '100%');
+    //     $('body').css('overflow', 'hidden');
+    //     $('html').css('overflow', 'hidden');
+
+    //     $('body').css('overflow', 'auto');
+    //     $('body').css('-webkit-overflow-scrolling', '-webkit-overflow-scrolling');
+
+    //     $('.language').on('click', function () {
+    //         var val = $(this).attr('id');
+    //         window.location.href = '/language/' + val;
+    //     });
+    // });    
+</script>
     <!-- <script src="js/general.min.js?v={{Config::get('app.version')}}"></script> -->
 @stop
