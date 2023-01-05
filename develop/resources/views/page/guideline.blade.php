@@ -9,14 +9,14 @@
 
         <div class="col-12">
             <div class="section-heading text-center">
-                <h6 class="tag">Guideline</h6>
+                <h6 class="tag">Guidelines</h6>
                 <h2>{{trans('dictionary.competition')}}{{trans('dictionary.borcher')}}</h2>
             </div>
         </div>
 
         <div class="d-flex flex-wrap align-items-center ">
             <iframe 
-                    src="/pdf/guidelines.pdf#toolbar=0"
+                    src="/pdf/guidelines.pdf#toolbar=0&embedded=true    "
                     width="100%" height="500px">
             </iframe>
         </div>

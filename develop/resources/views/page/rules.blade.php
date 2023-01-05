@@ -16,7 +16,7 @@
 
         <div class="d-flex flex-wrap align-items-center ">
             <iframe 
-                    src="/pdf/rules.pdf"
+                    src="/pdf/rules.pdf#toolbar=0&embedded=true"
                     width="100%" height="450px">
             </iframe>
         </div>
