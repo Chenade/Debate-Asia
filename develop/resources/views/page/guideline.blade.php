@@ -15,10 +15,13 @@
         </div>
 
         <div class="d-flex flex-wrap align-items-center ">
-            <iframe 
+            <div id="scroller" style="height: 100%; width: 500px; overflow: auto;">
+                <iframe height="100%" id="iframe" scrolling="no" width="100%" id="iframe" src="/pdf/guidelines.pdf#toolbar=0&embedded=true" ></iframe>
+            </div>
+            <!-- <iframe 
                     src="/pdf/guidelines.pdf#toolbar=0&embedded=true    "
                     width="100%" height="500px">
-            </iframe>
+            </iframe> -->
         </div>
 
         <div style="margin-top:20px;"></div>
