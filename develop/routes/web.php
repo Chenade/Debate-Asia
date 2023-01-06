@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
 	Route::get('/login', 		function () { return view('page.login');});
-	Route::get('/', 			function () { return view('page.management.news');});
+	Route::get('/', 			function () { return view('page.management.users');});
 	Route::get('/news', 		function () { return view('page.management.news');});
 	Route::get('/banner', 		function () { return view('page.management.banner');});
 	Route::get('/ads', 			function () { return view('page.management.ads');});

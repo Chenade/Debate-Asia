@@ -17,6 +17,7 @@ use App\Models\PostImage;
 use App\Models\Admin;
 use App\Models\Teams;
 use App\Models\Promo;
+use App\Models\users;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,45 +30,6 @@ use App\Models\Promo;
 |
 */
 
-
-function get_category($type){
-    
-    if ($type == "news")
-        $content = 1;
-    else if ($type == "banner")
-        $content = 2;
-    else if ($type == "ads")
-        $content = 3;
-    else if ($type == "n8")
-        $content = 4;
-    else if ($type == "course")
-        $content = 6;
-    else if ($type == "peter")
-        $content = 7;
-    else if ($type == "media")
-        $content = 8;
-    return $content;
-}
-
-function get_content($type, $id){
-    
-    if ($type == "news")
-        $content = NEWS::getElementById($id);
-    else if ($type == "banner")
-        $content = BANNER::getElementById($id);
-    else if ($type == "ads")
-        $content = ADS::getElementById($id);
-    else if ($type == "n8")
-        $content = N8::getElementById($id);
-    else if ($type == "course")
-        $content = COURSE::get();
-    else if ($type == "peter")
-        $content = PETER::get();
-    else if ($type == "media")
-        $content = MEDIA::get();
-    return $content;
-}
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -76,10 +38,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('admin')->group(function () {
     Route::post('/signup', function(){
         $input = request() -> all();
-        $required = array('account', 'password', 'username');
+        $required = array('account', 'password', 'authority');
         if (count(array_intersect_key(array_flip($required), $input)) != count($required))
             return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $token = ADMIN::store($input);
+        $token = users::store($input);
         return response() -> json(['success' => True, 'message' => $token], 200);
     });
 
@@ -88,11 +50,11 @@ Route::prefix('admin')->group(function () {
         $required = array('account', 'password');
         if (count(array_intersect_key(array_flip($required), $input)) != count($required))
             return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);
-        $id = ADMIN::getlogin($input);
+        $id = users::getlogin($input);
         if(!$id)
             return  response() -> json(['success' => False, 'message' => 'Wrong account or password'], 403);
-        $content = ADMIN::find($id);
-        $token = ADMIN::genToken($input['account']);
+        $content = users::find($id);
+        $token = users::genToken($input['account']);
         $content->token = $token;
         $content->timestamps = true;
         $content->save();
@@ -100,11 +62,11 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::post('/ct', function(){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
+        // $input = request() -> all();
+        // $token = ADMIN::checkToken($input);
+        // if(!$token)
+        //     return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        return response() -> json(['success' => True, 'message' => '', 'token' => ''], 200);
     });
 
 });
@@ -154,7 +116,7 @@ Route::prefix('image')->group(function () {
     });
 });
 
-Route::prefix('news')->group(function () {
+Route::prefix('users')->group(function () {
     Route::get('/index',function (){
         $row = NEWS::getindexList();
         foreach ($row as &$value) {
@@ -176,14 +138,15 @@ Route::prefix('news')->group(function () {
     });
 
     Route::get('/adminlist',function (){
-        $row = NEWS::getList();
+        $row = USERS::getList();
         foreach ($row as &$value) {
-            $value->content = str_replace("'", '"', trim($value->content, "\\\""));
-            $value->content = json_decode($value->content, true);
-            $value->start_at = '<span class="date-convert">' . $value->start_at . '</span>';
-            $value->end_at = '<span class="date-convert">' . $value->end_at . '</span>';
-            $value->operate = '<button type="button" class="btn btn-info edit-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-gears"></i></button>';
-            $value->operate .= '<button type="button" class="btn btn-danger delete-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-trash-can"></i></button>';
+            $value->school = $value->school_cn . $value->school_zh;
+            $value->name = $value->name_cn . $value->name_zh;
+            // $value->content = json_decode($value->content, true);
+            // $value->start_at = '<span class="date-convert">' . $value->start_at . '</span>';
+            // $value->end_at = '<span class="date-convert">' . $value->end_at . '</span>';
+            // $value->operate = '<button type="button" class="btn btn-info edit-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-gears"></i></button>';
+            // $value->operate .= '<button type="button" class="btn btn-danger delete-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-trash-can"></i></button>';
         }
         return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
     });

@@ -3,7 +3,7 @@
 <html>
 <head>
     @include('includes.head')
-    <title>亞洲思辨教育學會</title>
+    <title>亚洲思辨写作对抗赛</title>
     <link rel="icon" href="/img/logo.ico">
     
 </head>
@@ -16,7 +16,7 @@
     </div>
     <div class="main-page">
         @yield('content')
-    </div>
+    </div>  
 </main>
 
 <!-- Modal -->
@@ -59,7 +59,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-user-alt"></i></div>
                                 </div>
-                                <input type="text" class="form-control" id="user" placeholder="{{trans('account.id')}}">
+                                <input type="text" class="form-control" id="user" placeholder="account">
                             </div>
                         </div>
                         <div class="col-auto">
@@ -67,7 +67,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text"><i class="fas fa-key"></i></div>
                                 </div>
-                                <input type="password" class="form-control" id="password" placeholder="{{trans('account.password')}}" autocomplete="off">
+                                <input type="password" class="form-control" id="password" placeholder="password" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -75,9 +75,9 @@
             </div>
             <hr>
             <div class="col-12">
-                <p style="margin: 0;">*请于比赛10分钟前进入场次房间，避免错过比赛</p>
-                <p style="margin: 0;">*帐号与密码不得自行更改，如忘记登入资讯，请私讯官方微信，我们将再次提供帐号与密码</p>
-                <p style="margin: 0;">*主办单位保留所有有关比赛规则的解釋权利</p>
+                <p style="margin: 0;">＊请于比赛10分钟前进入场次房间，避免错过比赛。</p>
+                <p style="margin: 0;">＊帐号与密码不得自行更改，如忘记登入资讯，请私讯官方微信，主办单位将再次提供帐号与密码。</p>
+                <p style="margin: 0;">＊主办单位保留所有有关比赛规则的解释权利。</p>
             </div>
         </div>
         <div class="modal-footer">
@@ -95,6 +95,30 @@
         $('.language').on('click', function () {
             var val = $(this).attr('id');
             window.location.href = '/language/' + val;
+        });
+
+        $('#login').on('click', function () {
+            // window.localStorage['uuid'] || guid();
+            var btn = $('#login');
+            // btn.button('loading');
+            var data = {
+                'account': $('#user').val(),
+                'password': $('#password').val(),
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/admin/login',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(data),
+                success: function (res) {
+                    document.cookie = "Authorization="+res.message;
+                    window.location.href = '/admin';
+                }, error: function (err) {
+                    console.log(err);
+                    $.growl.error({message: err.message})
+                }
+            });
         });
     });
 

@@ -3,7 +3,7 @@
 <html>
 <head>
     @include('includes.head')
-    <title>Pete's Poker World</title>
+    <title>亚洲思辨写作对抗赛</title>
     <link rel="icon" href="/img/logo.ico">
 </head>
 <body>
