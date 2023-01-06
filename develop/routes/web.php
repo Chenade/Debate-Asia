@@ -35,5 +35,5 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/', 				function () { return view('page.index');});
-Route::get('/guideline', 		function () { return view('page.guideline');});
+// Route::get('/guideline', 		function () { return view('page.guideline');});
 Route::get('/rules', 			function () { return view('page.rules');});

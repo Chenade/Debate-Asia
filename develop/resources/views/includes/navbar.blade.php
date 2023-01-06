@@ -14,11 +14,11 @@
             <ul class="collapse navbar-collapse" id="navbarNavDropdown" style="margin: 0;">
                 <ul class="navbar-nav w-100">
                     <div class="ml-auto"></div>
-                    <li class="nav-item" style="margin: 0 1.5em;font-size:0.9em;">
+                    <!-- <li class="nav-item" style="margin: 0 1.5em;font-size:0.9em;">
                         <a class="nav-link" href="/guideline" style="">
                             <i class="fa-solid fa-book-open"></i>&emsp;{{trans('dictionary.competition')}}{{trans('dictionary.borcher')}}
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item" style="margin: 0 1.5em;font-size:0.9em;">
                         <a class="nav-link" href="/rules" style="">
                             <i class="fa-solid fa-scale-balanced"></i>&emsp;{{trans('dictionary.competition')}}{{trans('dictionary.rule')}}
