@@ -1,7 +1,7 @@
 @include('includes.language')
 @extends('layouts.default', ['page_header' =>'About','page_parent' =>'Home','page_parent_path' =>'/','page_path' =>'', 'page_banner' =>'sub_banner.png'])
 @section('content')
-    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; min-height: 1000px; object-fit: fill;opacity: 0.3;">
+    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; min-height: 1200px; object-fit: fill;opacity: 0.3;">
     <div class="col-12 d-flex justify-content-center" style="margin-top:80px; position: absolute; top: 0;left: 0;">
         <!-- body -->
         <div class="container">
@@ -40,10 +40,9 @@
                         <br>
                         【反驳】环节 —— 选手可随时点阅回顾双方的立论稿。若反驳内容已完成并确定无误后，可以点击【提前交卷】等待系统提示【稿件已成功上传】后方可离开比赛页面结束比赛；若在系统宣布稿件成功上传前已关闭视窗，可能会导致文稿无法完整上传，影响比赛结果。
                         比赛结束后，系统将自动为您提交⽂稿，在此之前请勿关闭比赛视窗。
-
                         <br>
-                        <p>注1：所有有关比赛规则及赛果，主办方保留最终诠释权。</p>
-                        <p>注2：选手在比赛过程中遇到任何问题请点击右上方【即时咨询】扫二维码微信赛会，或透过【反映问题】留言给主办方。</p>
+                        <p>注1：所有有关比赛规则及赛果，主办方保留最终诠释权。<br>
+                        注2：选手在比赛过程中遇到任何问题请点击右上方【即时咨询】扫二维码微信赛会，或透过【反映问题】留言给主办方。</p>
                 </p>
             </div>
         </div>
