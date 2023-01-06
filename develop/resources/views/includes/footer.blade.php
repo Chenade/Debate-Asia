@@ -1,4 +1,4 @@
-<footer class="footer-area">
+<footer class="footer-area" style="max-height: 90px">
     <div class="container">
         <div class="col d-flex">
             <div class="mr-auto">
