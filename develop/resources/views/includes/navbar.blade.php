@@ -1,7 +1,7 @@
 @include('includes.language')
 <header class="fixed-top">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent!important;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent!important;">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <div class="" style="font-size: 0.9em"><img src="/img/logo.jpg" style="margin-bottom: 0px; height: 30px;"/>

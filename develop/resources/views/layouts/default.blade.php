@@ -9,31 +9,11 @@
 </head>
 <body style="">
 @include('includes.navbar')
-<main role="main" style="margin-top: 50px;">
+<main role="main" style="margin-top: 50px; height: 90vh">
     <div class="col" style="margin-bottom: 15px;display: none">
         <h2>{{$page_header}}</h2>
         <div class="border-bottom"></div>
     </div>
-
-    <!-- <div id="breadcrumb" class="breadcrumb-area bg-img"> -->
-    <!-- <div id="breadcrumb" class="breadcrumb-area bg-img" style="background-image: url(/img/{{$page_banner}});">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcrumb-content text-center">
-                        <h2 class="page-title">{{$page_header}}</h2>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="{{$page_parent_path}}">{{$page_parent}}</a></li>
-                                <li class="breadcrumb-item active breadcrumb-item-active" aria-current="page">{{$page_path}}</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="main-page">
         @yield('content')
     </div>
@@ -111,7 +91,7 @@
 @include('includes.footer')
 <script>
     $(document).ready(function() {
-        $('body').css('overflow', 'hidden');
+        // $('body').css('overflow', 'hidden');
         $('.language').on('click', function () {
             var val = $(this).attr('id');
             window.location.href = '/language/' + val;
