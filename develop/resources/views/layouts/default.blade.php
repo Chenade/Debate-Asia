@@ -113,7 +113,9 @@
                 data: JSON.stringify(data),
                 success: function (res) {
                     document.cookie = "Authorization="+res.message;
-                    window.location.href = '/admin';
+                    document.cookie = "Role=" + res.auth;
+                    if (res.auth == 7)
+                        window.location.href = '/admin';
                 }, error: function (err) {
                     console.log(err);
                     $.growl.error({message: err.message})

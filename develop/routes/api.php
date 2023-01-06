@@ -58,7 +58,7 @@ Route::prefix('admin')->group(function () {
         $content->token = $token;
         $content->timestamps = true;
         $content->save();
-        return response() -> json(['success' => True, 'message' => $token], 200);
+        return response() -> json(['success' => True, 'message' => $token, 'auth' => $content->authority], 200);
     });
 
     Route::post('/ct', function(){
