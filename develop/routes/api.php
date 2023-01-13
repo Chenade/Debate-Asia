@@ -140,23 +140,32 @@ Route::prefix('users')->group(function () {
     Route::get('/adminlist',function (){
         $row = USERS::getList();
         foreach ($row as &$value) {
-            $value->school = $value->school_cn . $value->school_zh;
-            $value->name = $value->name_cn . $value->name_zh;
-            // $value->content = json_decode($value->content, true);
-            // $value->start_at = '<span class="date-convert">' . $value->start_at . '</span>';
+            $value->school = $value->school_cn . ' (' . $value->school_zh . ')';
+            $value->name = $value->name_cn . ' (' . $value->name_zh . ')';
+            switch ($value->authority) {
+                case 1:
+                    $value->authority = '選手';
+                    break;
+                case 2:
+                    $value->authority = '裁判';
+                    break;
+                case 7:
+                    $value->authority = '工作人員';
+                    break;
+            }
             // $value->end_at = '<span class="date-convert">' . $value->end_at . '</span>';
-            // $value->operate = '<button type="button" class="btn btn-info edit-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-gears"></i></button>';
+            $value->operate = '<button type="button" class="btn btn-info edit-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-gears"></i></button>';
             // $value->operate .= '<button type="button" class="btn btn-danger delete-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-trash-can"></i></button>';
         }
         return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
     });
 
     Route::get('/{id}',function ($id){
-        $content = NEWS::getElementById($id);
+        $content = USERS::getElementById($id);
         if (!$content)
             return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        $content[0]->images = PostImage::getList(1, $id);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
+        // $content[0]->images = PostImage::getList(1, $id);
+        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
     });
     
     Route::post('/create',function (){
@@ -176,7 +185,7 @@ Route::prefix('users')->group(function () {
         $token = ADMIN::checkToken($input);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $content = NEWS::updateById($id, $input);
+        $content = USERS::updateById($id, $input);
         if (!$content)
             return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
         return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);

@@ -4,7 +4,7 @@
 
     <section id="manage_member">
             
-        <table id="usersTable" class="display" style="width:100%">
+        <table id="usersTable" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>#</th>

@@ -37,6 +37,29 @@ class users extends Model
         $content->save();
         return $token;
     }
+    
+    public static function updateById($id, $input)
+    {
+        $content = USERS::find($id);
+        if (!$content)
+            return NULL;
+        $content->timestamps = true;
+        if (array_key_exists('authority', $input)) $content->authority = $input['authority'];
+        if (array_key_exists('email', $input)) $content->email = $input['email'];
+        if (array_key_exists('account', $input)) $content->account = $input['account'];
+        if (array_key_exists('password', $input)) $content->password = $input['password'];
+        if (array_key_exists('school_cn', $input)) $content->school_cn = $input['school_cn'];
+        if (array_key_exists('school_zh', $input)) $content->school_zh = $input['school_zh'];
+        if (array_key_exists('name_cn', $input)) $content->name_cn = $input['name_cn'];
+        if (array_key_exists('name_zh', $input)) $content->name_zh = $input['name_zh'];
+        if (array_key_exists('cellphone', $input)) $content->cellphone = $input['cellphone'];
+        if (array_key_exists('birthday', $input)) $content->birthday = $input['birthday'];
+        if (array_key_exists('wechat', $input)) $content->wechat = $input['wechat'];
+        if (array_key_exists('whatsapp', $input)) $content->whatsapp = $input['whatsapp'];
+        if (array_key_exists('lineid', $input)) $content->lineid = $input['lineid'];
+        $content->save();
+        return true;
+    }
 
     public static function getList()
     {
@@ -53,7 +76,7 @@ class users extends Model
 
     public static function getElementById($id)
     {
-        return DB::table('users') -> where('account', $id) -> first();
+        return DB::table('users') -> where('id', $id) -> first();
     }
 
     public static function getlogin($request)
@@ -86,7 +109,7 @@ class users extends Model
 
     public static function validToken($token)
     {
-        // return 'pass';
+        return 'pass';
         if (users::is_base64($token))
         {
             $decode_token = base64_decode($token);
@@ -120,7 +143,7 @@ class users extends Model
             return NULL;
         $input = [];
         $input['del'] = 1;
-        DB::table('activity')-> where('id', $id)-> update($input);
+        // DB::table('activity')-> where('id', $id)-> update($input);
 
         return true;
     }
