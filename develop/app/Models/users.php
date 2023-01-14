@@ -67,11 +67,11 @@ class users extends Model
                 -> get();
     }
 
-    public static function getByCategoryId($id)
+    public static function getElementByRole($type)
     {
-        if ($id > 4)
+        if ($type != 1 && $type != 2 && $type != 7)
             return NULL;
-        return  DB::table('users') -> where('category', $id) -> where('del', 0) -> orderBy('ord', 'DESC') -> get();
+        return  DB::table('users') -> where('authority', $type) -> get();
     }
 
     public static function getElementById($id)

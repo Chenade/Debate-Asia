@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->integer('type')->default(21);
             $table->string('school_cn', 100)->nullable();
             $table->string('school_zh', 100)->nullable();
-            $table->string('name_cn', 50);
-            $table->string('name_zh', 50);
+            $table->string('name_cn', 50)->nullable();
+            $table->string('name_zh', 50)->nullable();
             $table->string('account', 50);
             $table->string('password', 100);
             $table->string('cellphone', 20);

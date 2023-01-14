@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.whatsapp')}}:</label>
+                                <label class="col-form-label">Whatsapp:</label>
                                 <input type="text" class="form-control" id="edit_whatsapp"  >
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                     <div class="d-flex flex-wrap">
                         <div class="col-6">
                             <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.linid')}}:</label>
+                                <label class="col-form-label">Line:</label>
                                 <input type="text" class="form-control" id="edit_linid">
                             </div>
                         </div>
