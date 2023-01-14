@@ -160,6 +160,7 @@
                             
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-success pair-btn">{{trans('dictionary.pairs')}}</button>
                     <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
                     <button type="button" class="btn btn-danger delete-btn" data-action="delete" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">{{trans('dictionary.delete')}}</button>
                 </div>

@@ -40,6 +40,7 @@ class sessions extends Model
                     -> where('role', '<=', '2')
                     -> where('cid', $cid) 
                     -> orderBy('roomid', 'ASC') 
+                    -> orderBy('role', 'ASC') 
                     -> get();
         else
             return DB::table('session')
@@ -81,6 +82,15 @@ class sessions extends Model
         if (array_key_exists('t_read', $input)) $content->t_read = $input['t_read'];
         if (array_key_exists('t_debate', $input)) $content->t_debate = $input['t_debate'];
         $content->save();
+        return true;
+    }
+    
+    public static function pairsRoom($cid, $mid, $room, $role)
+    {
+        DB::table('session')
+            -> where('cid', $cid)
+            -> where('mid', $mid)
+            -> update(['roomid' => $room, 'role' => $role]);
         return true;
     }
 }

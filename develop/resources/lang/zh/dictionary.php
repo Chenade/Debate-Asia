@@ -12,6 +12,7 @@ return array(
     'account' => '帳戶',
     'manage' => '管理',
     'add' => '新增',
+    'pairs' => '隨機分配場次',
 
     'info' => '資訊',
     'authority' => '權限',

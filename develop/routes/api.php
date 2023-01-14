@@ -267,11 +267,22 @@ Route::prefix('sessions')->group(function () {
             $row = SESSIONS::getListbyCID(1, $cid);
         else
             $row = SESSIONS::getListbyCID(3, $cid);
-        foreach ($row as &$value) {
-            // $value->date = '<span class="date-convert">' . $value->date . '</span>';
-            // $value->end_at = '<span class="date-convert">' . $value->end_at . '</span>';
-            // $value->operate = '<button type="button" class="btn btn-info edit-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-gears"></i></button>';
-            // $value->operate .= '<button type="button" class="btn btn-danger delete-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-trash-can"></i></button>';
+        foreach ($row as $value)
+        {
+            switch ($value->role) {
+                case 1:
+                    $value->role = '正方';
+                    break;
+                case 2:
+                    $value->role = '反方';
+                    break;
+                case 3:
+                    $value->role = '裁判';
+                    break;
+                default:
+                    $value->role = '未指定';
+                    break;
+            }
         }
         return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
     });
@@ -297,15 +308,21 @@ Route::prefix('sessions')->group(function () {
         return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
     });
     
-    Route::put('/{id}',function ($id){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $content = COMPETITION::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
+    Route::post('/pairs/{id}', function($cid){
+        $lst = array();
+        $row = SESSIONS::getListbyCID(1, $cid);
+        foreach ($row as &$value) {
+            array_push($lst, $value->mid);
+        }
+        shuffle($lst);
+        $room = 1;
+        $count = 1;
+        foreach ($lst as &$mid) {
+            $row = SESSIONS::pairsRoom($cid, $mid, $room, ($count % 2) + 1);
+            if ($count % 2 == 0) $room += 1;
+            $count += 1;
+        }
+        return response() -> json(['success' => True, 'message' => '', 'token' => 'token'], 200);
     });
     
     // Route::delete('/{id}/{token}',function ($id, $token){
