@@ -325,6 +325,12 @@ Route::prefix('sessions')->group(function () {
         }
         return response() -> json(['success' => True, 'message' => '', 'token' => 'token'], 200);
     }); 
+
+    Route::get('/rooms/{id}/status',function ($id){
+        $content = SESSIONS::getSessionStatus($id);
+        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
+    });
+
 });
 
 Route::prefix('articles')->group(function () {
