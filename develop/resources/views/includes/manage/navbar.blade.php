@@ -15,7 +15,7 @@
                     <div class="ml-auto"></div>
                     <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin" data-admin="news">{{trans('dictionary.account')}}{{trans('dictionary.manage')}}</a></li>
                     <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin/competition" data-admin="natural_8">{{trans('dictionary.competition')}}{{trans('dictionary.manage')}}</a></li>
-                    <!-- <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin/article" data-admin="course">{{trans('dictionary.course_intro')}}</a></li> -->
+                    <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin/session" data-admin="course">{{trans('dictionary.competition')}}{{trans('dictionary.monitor')}}</a></li>
                 </ul>
             </ul>
         </div>

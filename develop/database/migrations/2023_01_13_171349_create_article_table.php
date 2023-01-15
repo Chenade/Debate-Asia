@@ -17,7 +17,7 @@ class CreateArticleTable extends Migration
             $table->id();
             $table->integer('sid');
             $table->integer('type')->default(1);
-            $table->string('content')->nullable();
+            $table->json('content')->nullable();
             $table->integer('status')->default(0);
             $table->integer('avg_score')->default(0);
             $table->timestamps();

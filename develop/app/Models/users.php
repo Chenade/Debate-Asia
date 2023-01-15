@@ -74,6 +74,15 @@ class users extends Model
         return  DB::table('users') -> where('authority', $type) -> get();
     }
 
+    
+    public static function getElementBySId($id)
+    {
+        return DB::table('users')
+                        -> where('id', $id)
+                        -> select ('id', 'name_cn', 'school_cn')
+                        -> first();
+    }
+
     public static function getElementById($id)
     {
         return DB::table('users') -> where('id', $id) -> first();

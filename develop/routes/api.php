@@ -9,6 +9,7 @@ use App\Models\users;
 use App\Models\competition;
 use App\Models\sessions;
 use App\Models\judges;
+use App\Models\articles;
 
 /*
 |--------------------------------------------------------------------------
@@ -271,16 +272,16 @@ Route::prefix('sessions')->group(function () {
         {
             switch ($value->role) {
                 case 1:
-                    $value->role = '正方';
+                    $value->roles = '正方';
                     break;
                 case 2:
-                    $value->role = '反方';
+                    $value->roles = '反方';
                     break;
                 case 3:
-                    $value->role = '裁判';
+                    $value->roles = '裁判';
                     break;
                 default:
-                    $value->role = '未指定';
+                    $value->roles = '未指定';
                     break;
             }
         }
@@ -323,17 +324,49 @@ Route::prefix('sessions')->group(function () {
             $count += 1;
         }
         return response() -> json(['success' => True, 'message' => '', 'token' => 'token'], 200);
+    }); 
+});
+
+Route::prefix('articles')->group(function () {
+    Route::get('/adminlist/{said}/{sbid}',function ($said, $sbid){
+        $row['candidates']['a'] = SESSIONS::getElementById($said);
+        $row['candidates']['b'] = SESSIONS::getElementById($sbid);
+        $row['a'] = ARTICLES::getArticlebySID($said);
+        $row['b'] = ARTICLES::getArticlebySID($sbid);
+        return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
     });
     
-    // Route::delete('/{id}/{token}',function ($id, $token){
-    //     $token = ADMIN::validToken($token);
-    //     if(!$token)
-    //         return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-    //     $row = ADS::deleteById($id);
-    //     if (!$row)
-    //         return response() -> json(['success' => False, 'message' => 'Banner not found.'], 200);
-    //     return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    // });
+    Route::put('/admin/update',function (){
+        $input = request() -> all();
+        $token = ADMIN::checkToken($input);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $content = ARTICLES::updateById($input['a'][0]['id'], $input['a'][0]);
+        if ($content) $content = ARTICLES::updateById($input['a'][1]['id'], $input['a'][1]);
+        if ($content) $content = ARTICLES::updateById($input['b'][0]['id'], $input['b'][0]);
+        if ($content) $content = ARTICLES::updateById($input['b'][1]['id'], $input['b'][1]);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
+        return response() -> json(['success' => True, 'message' => $input, 'token' => $token], 200);
+    });
+
+    Route::get('/{id}',function ($id){
+        $content = SESSIONS::getElementById($id);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
+        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
+    });
+    
+    Route::put('/{id}',function ($id){
+        $input = request() -> all();
+        $token = ADMIN::checkToken($input);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $content = ARTICLES::updateById($id, $input);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
+        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
+    });
 });
 
 

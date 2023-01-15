@@ -2,33 +2,128 @@
 @extends('layouts.manage', ['page_header' =>'比賽管理'])
 @section('content')
 
-    <section id="manage_competition">
-            
-        <table id="competitionTable" class="display nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Tag</th>
-                    <th>Title</th>
-                    <th>Datetime</th>
-                    <th>Candidate</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Tag</th>
-                    <th>Title</th>
-                    <th>Datetime</th>
-                    <th>Candidate</th>
-                </tr>
-            </tfoot>
-        </table>
-
+    <section id="manage_session">
+        <div class="container">
+            <div class="col-12"><h5 style="margin-bottom: 5px;">比賽組別：</h5></div>
+            <div class="col-12 d-flex flex-wrap">
+                <select class="selectpicker col-12" id="select_competition" title="Choose one of the following...">
+                    <option value="1">[test_tag] test_title</option>
+                </select>
+            </div>
+            <hr>
+            <div class="col-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col-3">正方名稱</th>
+                        <th scope="col">畫面</th>
+                        <th scope="col">狀態</th>
+                        <th scope="col"></th>
+                        <th scope="col">狀態</th>
+                        <th scope="col">畫面</th>
+                        <th scope="col-3">反方名稱</th>
+                        </tr>
+                    </thead>
+                    <tbody id="session_list">
+        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col-3">正方名稱</th>
+                        <th scope="col">畫面</th>
+                        <th scope="col">狀態</th>
+                        <th scope="col"></th>
+                        <th scope="col">狀態</th>
+                        <th scope="col">畫面</th>
+                        <th scope="col-3">反方名稱</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </section>
 
-    <div class="modal fade" id="competition_modal" role="dialog">
+    
+    <div class="modal fade" id="article_modal" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id="md-method">查看</span>選手狀態 </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#article_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.article')}}</a>
+                    </li>
+                    <!-- <li class="nav-item com-detail">
+                        <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
+                    </li> -->
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="article_tab">
+                        <div class="d-flex flex-wrap">
+                            <div class="col-12 col-lg-4" style="padding: 30px;">
+                                <div><img src="" width=250 height=150 alt="camera"/></div>
+                                <h6>正方名稱：<span id="a_name"></span></h6>
+                                <h6>正方學校：<span id="a_school"></span></h6>
+                                <h6>正方狀態：<span id="a_status"></span></h6>
+                                <h6>最後更新時間：<span id="a_updated_at"></span></h6>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{trans('dictionary.pos')}}{{trans('dictionary.argument')}}:</label>
+                                        <textarea rows="8" cols="15" id="a_1"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{trans('dictionary.pos')}}{{trans('dictionary.rebuttal')}}:</label>
+                                        <textarea rows="8" cols="15" id="a_2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex flex-wrap">
+                        <div class="col-12 col-lg-4" style="padding: 30px;">
+                                <div><img src="" width=250 height=150 alt="camera"/></div>
+                                <h6>反方名稱：<span id="b_name"></span></h6>
+                                <h6>反方學校：<span id="b_school"></span></h6>
+                                <h6>反方狀態：<span id="b_status"></span></h6>
+                                <h6>最後更新時間：<span id="b_updated_at"></span></h6>
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.argument')}}:</label>
+                                        <textarea rows="8" cols="15" id="b_1"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.rebuttal')}}:</label>
+                                        <textarea rows="8" cols="15" id="b_2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="session_modal" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -39,7 +134,7 @@
                     
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
+                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.session')}}{{trans('dictionary.info')}}</a>
                     </li>
                     <li class="nav-item com-detail">
                         <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
@@ -65,8 +160,8 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.competition')}}{{trans('dictionary.time')}}:</label>
-                                <input type="text" class="form-control" id="datetimepicker_competition_time" placeholder="{{trans('dictionary.birthday')}}">
+                                <label class="col-form-label">{{trans('dictionary.session')}}{{trans('dictionary.time')}}:</label>
+                                <input type="text" class="form-control" id="datetimepicker_session_time" placeholder="{{trans('dictionary.birthday')}}">
                             </div>
                         </div>
                         <div class="d-flex flex-wrap">
@@ -128,7 +223,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="col-form-label">{{trans('dictionary.add')}}{{trans('dictionary.judge')}}:</label>
-                                <select class="selectpicker col-12" data-size="5"  data-live-search="true" id="select_judges" title="Choose one of the following...">
+                                <select class="selectpicker col-12" data-size="5"  data-live-search="true" id="select_judges"  title="Choose one of the following...">
                                     <option data-subtext="School" value="1">Name</option>
                                 </select>
                             </div>
@@ -195,7 +290,7 @@
     <script src="/js/lib/jquery.ui.touch-punch.min.js"></script>
     <script src="/lib/bootstrap/js/bootbox.min.js"></script>
     <script src="/js/general.min.js"></script>
-    <script src="/js/manage/competition.min.js"></script>
+    <script src="/js/manage/session.min.js"></script>
     
 
 @stop

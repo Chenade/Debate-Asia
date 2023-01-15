@@ -24,14 +24,7 @@ Route::prefix('admin')->group(function () {
 	// Route::get('/login', 		function () { return view('page.login');});
 	Route::get('/', 			function () { return view('page.management.users');});
 	Route::get('/competition', 	function () { return view('page.management.competition');});
-	Route::get('/banner', 		function () { return view('page.management.banner');});
-	Route::get('/ads', 			function () { return view('page.management.ads');});
-	Route::get('/natural_8', 	function () { return view('page.management.natural_8');});
-	Route::get('/course', 		function () { return view('page.management.course');});
-	Route::get('/peter', 		function () { return view('page.management.peter');});
-	Route::get('/media', 		function () { return view('page.management.media');});
-	// Route::get('/faq', 		function () { return view('page.management.faq'); });
-	// Route::get('/logout', 	function () { return view('page.management.faq'); });
+	Route::get('/session', 		function () { return view('page.management.session');});
 });
 
 Route::get('/', 				function () { return view('page.index');});

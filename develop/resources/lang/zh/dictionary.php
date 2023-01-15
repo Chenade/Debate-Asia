@@ -11,6 +11,7 @@ return array(
     
     'account' => '帳戶',
     'manage' => '管理',
+    'monitor' => '監控',
     'add' => '新增',
     'pairs' => '隨機分配場次',
 
@@ -31,5 +32,10 @@ return array(
     't_write' => '立論時間',
     't_read' => '閱讀時間',
     't_debate' => '駁論時間',
-    'info' => '資訊',
+    
+    'article' => '文稿',
+    'pos' => '正方',
+    'neg' => '反方',
+    'argument' => '立論',
+    'rebuttal' => '反駁',
 );

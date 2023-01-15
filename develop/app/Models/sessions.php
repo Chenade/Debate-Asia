@@ -39,6 +39,8 @@ class sessions extends Model
             return DB::table('session')
                     -> where('role', '<=', '2')
                     -> where('cid', $cid) 
+                    -> leftJoin('users', 'session.mid', '=', 'users.id')
+                    -> select('session.*', 'users.name_cn', 'users.school_cn')
                     -> orderBy('roomid', 'ASC') 
                     -> orderBy('role', 'ASC') 
                     -> get();
@@ -52,9 +54,12 @@ class sessions extends Model
 
     public static function getElementById($id)
     {
-        return DB::table('session') 
-                -> where('id', $id) 
-                -> get();
+        $row = DB::table('session')
+                -> where('id', $id)
+                -> select ('id', 'status', 'updated_at', 'mid')
+                -> first();
+        $row->user = USERS::getElementBySId($row->mid);
+        return $row;
     }
 
     public static function deleteById($id)
