@@ -375,58 +375,23 @@ Route::prefix('articles')->group(function () {
     });
 });
 
-
 Route::prefix('judges')->group(function () {
     Route::get('/list/{cid}',function ($cid){
         $row = JUDGES::getListbyCID($cid);
-        foreach ($row as &$value) {
-            // $value->date = '<span class="date-convert">' . $value->date . '</span>';
-            // $value->end_at = '<span class="date-convert">' . $value->end_at . '</span>';
-            // $value->operate = '<button type="button" class="btn btn-info edit-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-gears"></i></button>';
-            // $value->operate .= '<button type="button" class="btn btn-danger delete-btn" style="margin:0" data-id="'.$value->id.'"><i class="far fa-solid fa-trash-can"></i></button>';
-        }
         return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
     });
 
-    Route::get('/{id}',function ($id){
-        $content = SESSIONS::getElementById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
-    });
-    
-    Route::post('/create',function (){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
+});
+
+Route::prefix('candidates')->group(function () {
+    Route::get('/list/{id}/{token}',function ($id, $token){
+        $token = $token = ADMIN::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $required = array('mid', 'cid');
-        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
-            return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $row = JUDGES::store($input);
+        $row = USERS::getEventListByUser($id);
         if (!$row)
-            return response() -> json(['success' => False, 'message' => 'Member already joined', 'token' => $token], 400);
-        return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
+            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
+        return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
     });
-    
-    Route::put('/{id}',function ($id){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $content = COMPETITION::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
-    
-    // Route::delete('/{id}/{token}',function ($id, $token){
-    //     $token = ADMIN::validToken($token);
-    //     if(!$token)
-    //         return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-    //     $row = ADS::deleteById($id);
-    //     if (!$row)
-    //         return response() -> json(['success' => False, 'message' => 'Banner not found.'], 200);
-    //     return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    // });
+
 });
