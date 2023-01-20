@@ -2,6 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Yangchi K.">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/lib/fontawesome-free-6.1.1-web/css/all.min.css">
@@ -28,7 +29,7 @@
 <script src="/lib/jquery/jquery.lazyload.min.js"></script>
 <script src="/lib/jquery/jquery.growl.min.js"></script>
 <script src="/lib/jquery/jquery-ui.min.js"></script>
-{{--<script src="/lib/moment.min.js"></script>--}}
-{{--<script src="/lib/moment-timezone.min.js"></script>--}}
+<script src="/lib/moment.min.js"></script>
+<script src="/lib/moment-timezone.min.js"></script>
 <script src="/lib/wow.min.js"></script>
 <script src="/lib/owl-carousel/owl.carousel.js"></script>
