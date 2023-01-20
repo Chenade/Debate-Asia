@@ -15,5 +15,5 @@
 @stop
 @section('end_script')
     <script src="js/general.min.js?v={{Config::get('app.version')}}"></script>
-    <script src="js/pindex.min.js?v={{Config::get('app.version')}}"></script>
+    <script src="js/index.min.js?v={{Config::get('app.version')}}"></script>
 @stop

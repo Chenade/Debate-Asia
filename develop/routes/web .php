@@ -30,3 +30,11 @@ Route::prefix('admin')->group(function () {
 Route::get('/', 				function () { return view('page.index');});
 // Route::get('/guideline', 		function () { return view('page.guideline');});
 Route::get('/rules', 			function () { return view('page.rules');});
+
+
+Route::prefix('candidate')->group(function () {
+	// Route::get('/login', 		function () { return view('page.login');});
+	Route::get('/{mid}', 				function () { return view('page.candidate');});
+	Route::get('/{mid}/session/{sid}', 	function () { return view('page.session');});
+	Route::get('/session', 				function () { return view('page.management.session');});
+});
