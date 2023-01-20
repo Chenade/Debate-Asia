@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\sessions;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -74,7 +75,7 @@ class users extends Model
         return  DB::table('users') -> where('authority', $type) -> get();
     }
 
-    
+
     public static function getElementBySId($id)
     {
         return DB::table('users')
@@ -85,7 +86,32 @@ class users extends Model
 
     public static function getElementById($id)
     {
-        return DB::table('users') -> where('id', $id) -> first();
+        $row = DB::table('users') 
+                    -> where('id', $id) 
+                    -> first();
+        return ($row);
+    }
+    
+    public static function getEventListByUser($id)
+    {
+        $lst = DB::table('users') 
+                    -> where('id', $id) 
+                    -> first();
+        if ($lst)
+        {
+            unset ($lst->password);
+            unset ($lst->authority);
+            unset ($lst->created_at);
+            unset ($lst->updated_at);
+            $lst->competition = SESSIONS::getListByUser($id);
+            foreach ($lst->competition as $row)
+            {
+                if ($row->status < 3)
+                    unset ($row->title);
+                    unset ($row->role);
+            }
+        }
+        return ($lst);
     }
 
     public static function getlogin($request)
