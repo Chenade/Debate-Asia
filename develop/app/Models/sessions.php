@@ -49,7 +49,7 @@ class sessions extends Model
 
     public static function updateById($id, $input)
     {
-        $content = session::find($id);
+        $content = sessions::find($id);
         if (!$content)
             return NULL;
         $content->timestamps = true;
@@ -105,30 +105,35 @@ class sessions extends Model
     {
         $row = DB::table('session')
                 -> where('roomid', $rid)
+                -> leftJoin('users', 'session.cid', '=', 'users.id')
+                -> select ('session.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
                 -> get();
+        
         $content = [];
-        $content['a'] = $row[0]->status;
-        $content['b'] = $row[1]->status;
-        if ($content['a'] == $content['b'])
+        $content['usr'] = $row;
+        $content['usr'][0]->status = $row[0]->status;
+        $content['usr'][1]->status = $row[1]->status;
+        $content['status'] = ($content['usr'][0]->status < $content['usr'][1]->status) ? $content['usr'][0]->status : $content['usr'][1]->status;
+        // if ($content['a'] == $content['b'])
         {
-            $content['status'] = $content['a'];
             switch ($content['status'])    {
                 // // submit rebuttal
-                // case 3: 
-                //     $content['articles'] = '';
-                // submit argument
-                case 2: 
+                //3: reading time end, start to write for rebuttal
+                case 3: 
                     $articles = ARTICLES::getArticlebySID($row[0]->id);
-                    $content['articles']['a'] = $articles[0]->content;
+                    $content['usr'][0]->debate = $articles[1];
                     $articles = ARTICLES::getArticlebySID($row[1]->id);
-                    $content['articles']['b'] = $articles[0]->content;
-                // reveal question
+                    $content['usr'][1]->debate = $articles[1];
+                //2: submit argument, reading time
+                case 2: 
+                //1: finished video, reveal question, start to write for argument
                 case 1: 
                     $content['competition'] = COMPETITION::getElementById($row[0]->cid);
-                //competition start
-                default: 
-                    $content['video'][0] = 'https://v.youku.com/v_show/id_XNTkzMzUwMTYyNA==.html';
-                    $content['video'][1] = 'https://www.bilibili.com/video/BV1UR4y127UU/';
+                    $articles = ARTICLES::getArticlebySID($row[0]->id);
+                    $content['usr'][0]->article = $articles[0];
+                    $articles = ARTICLES::getArticlebySID($row[1]->id);
+                    $content['usr'][1]->article = $articles[0];
+                //0: competition start
             }
         }
         return ($content);

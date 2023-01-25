@@ -331,6 +331,18 @@ Route::prefix('sessions')->group(function () {
         return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
     });
 
+    
+    Route::put('/{id}',function ($id){
+        $input = request() -> all();
+        $token = ADMIN::checkToken($input);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $content = SESSIONS::updateById($id, $input);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Sessions not found.'], 404);
+        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
+    });
+
 });
 
 Route::prefix('articles')->group(function () {
@@ -371,7 +383,7 @@ Route::prefix('articles')->group(function () {
         $content = ARTICLES::updateById($id, $input);
         if (!$content)
             return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
+        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
     });
 });
 
