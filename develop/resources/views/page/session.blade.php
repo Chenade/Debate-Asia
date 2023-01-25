@@ -42,10 +42,10 @@
                 <div class="col-6" style="background-color: rgba(255,255,255,0.6)">
                     <ul class="nav nav-tabs">
                         <li class="nav-item" id="b_article_tab" style="display: none;">
-                            <a class="nav-link" id="_b_article_tab" data-toggle="tab" href="#b_article">{{trans('dictionary.candidate')}}{{trans('dictionary.article')}}</a>
+                            <a class="nav-link" id="_b_article_tab" data-toggle="tab" href="#b_article">{{trans('dictionary.op')}}{{trans('dictionary.argument')}}</a>
                         </li>
                         <li class="nav-item" id="a_article_tab" style="display: none;">
-                            <a class="nav-link" id="_a_article_tab" data-toggle="tab" href="#a_article">{{trans('dictionary.candidate')}}{{trans('dictionary.argument')}}</a>
+                            <a class="nav-link" id="_a_article_tab" data-toggle="tab" href="#a_article">{{trans('dictionary.me')}}{{trans('dictionary.argument')}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>

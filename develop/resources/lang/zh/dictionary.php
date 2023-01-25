@@ -34,6 +34,8 @@ return array(
     't_debate' => '駁論時間',
     
     'article' => '文稿',
+    'op' => '對手',
+    'me' => '我方',
     'pos' => '正方',
     'neg' => '反方',
     'argument' => '立論',
