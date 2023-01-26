@@ -2,6 +2,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Yangchi K.">
+<meta name="_lang" content="<?php echo session()->has('setLocale') ? session('setLocale') : env('DEFAULT_LANGUAGE', 'cn')?>">
+
 <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
@@ -33,3 +35,4 @@
 <script src="/lib/moment-timezone.min.js"></script>
 <script src="/lib/wow.min.js"></script>
 <script src="/lib/owl-carousel/owl.carousel.js"></script>
+<script src="/js/language.min.js"></script>

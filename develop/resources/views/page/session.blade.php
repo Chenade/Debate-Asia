@@ -11,8 +11,10 @@
                 <h4 id="a_name" class="mt-3 mb-1"></h4>
                 <h5 id="a_school" class="mt-1"></h5>
             </div>
-            <div class="col-12 col-sm-12 col-lg-4" style="background-color: black">
-                <span style="color: white;" id="remainTime"></span>
+            <div class="col-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-around" style="background-color: black">
+                <h3 style="color: white;" id="tag" class="mt-3 mb-1"></h3>
+                <div class="col-2"><hr></div>
+                <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>環節，剩餘時間：<span id="remainTime"></span>分鐘</h4>
             </div>
             <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
                 <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">反方：</span></p>

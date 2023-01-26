@@ -3,7 +3,7 @@
 <html>
 <head>
     @include('includes.head')
-    <title>亚洲思辨写作对抗赛</title>
+    <title>{{trans('dictionary.debateTournment')}}</title>
     <link rel="icon" href="/img/logo.ico">
     
 </head>
@@ -75,9 +75,9 @@
             </div>
             <hr>
             <div class="col-12">
-                <p style="margin: 0;">＊请于比赛10分钟前进入场次房间，避免错过比赛。</p>
-                <p style="margin: 0;">＊帐号与密码不得自行更改，如忘记登入资讯，请私讯官方微信，主办单位将再次提供帐号与密码。</p>
-                <p style="margin: 0;">＊主办单位保留所有有关比赛规则的解释权利。</p>
+                <p style="margin: 0;">＊ {{trans('rules.rlogin1')}}</p>
+                <p style="margin: 0;">＊ {{trans('rules.rlogin2')}}</p>
+                <p style="margin: 0;">＊ {{trans('rules.rlogin3')}}</p>
             </div>
         </div>
         <div class="modal-footer">
@@ -91,7 +91,6 @@
 @include('includes.footer')
 <script>
     $(document).ready(function() {
-        // $('body').css('overflow', 'hidden');
         $('.language').on('click', function () {
             var val = $(this).attr('id');
             window.location.href = '/language/' + val;
@@ -108,14 +107,12 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/api/admin/login',
+                url: '/api/users/login',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(data),
                 success: function (res) {
-                    document.cookie = "Authorization="+res.message;
-                    document.cookie = "Role=" + res.auth;
-                    if (res.auth == 7)
-                        window.location.href = '/admin';
+                    document.cookie = "Authorization=" + res.message;
+                    window.location.href = res.url;
                 }, error: function (err) {
                     console.log(err);
                     $.growl.error({message: err.message})

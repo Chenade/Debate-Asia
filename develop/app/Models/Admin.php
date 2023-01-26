@@ -55,7 +55,6 @@ class Admin extends Model
 
     public static function checkToken($request)
     {
-        return 'pass';
         if(!array_key_exists('token', $request))
             return NULL;
         $token = $request['token'];
@@ -64,31 +63,50 @@ class Admin extends Model
 
     public static function genToken($username)
     {
-        $token = $username . '_' . base64_encode(time() . env("APP_TOKEN", "interwellness"));
+        $row = DB::table('users')->where('account', $username)->first();
+        $token = $row->authority . '_' . $username . '_' . base64_encode(time() . env("APP_TOKEN", "debateAsia"));
         $token = base64_encode($token);
         return $token;
     }
 
-    public static function validToken($token)
+    
+    public static function getauth($token)
     {
-        return 'pass';
         if (ADMIN::is_base64($token))
         {
             $decode_token = base64_decode($token);
             if ($decode_token)
             {
                 $decode_token = explode("_", base64_decode($token));
-                if (count($decode_token) == 2)
+                if (count($decode_token) == 3)
                 {
-                    $acc = $decode_token[0];
-                    $decode_token = base64_decode($decode_token[1]);
-                    if(strpos($decode_token, env("APP_TOKEN", "interwellness")))
+                    $auth = $decode_token[0];
+                    return ($auth);
+                }
+            }
+        }
+        return NULL;        
+    }
+
+    public static function validToken($token)
+    {
+        if (ADMIN::is_base64($token))
+        {
+            $decode_token = base64_decode($token);
+            if ($decode_token)
+            {
+                $decode_token = explode("_", base64_decode($token));
+                if (count($decode_token) == 3)
+                {
+                    $acc = $decode_token[1];
+                    $auth = $decode_token[0];
+                    $decode_token = base64_decode($decode_token[2]);
+                    if(strpos($decode_token, env("APP_TOKEN", "debateAsia")))
                     {
                         $expired = time() - substr($decode_token, 0, 10);
-                        if ($expired < 3600)
+                        if ($auth == 7 && $expired < 3600)
                         {
                             $token = ADMIN::genToken($acc);
-                            DB::table('admin')-> where('account', $acc)-> update(['token' => $token]);
                             return $token;
                         }
                     }

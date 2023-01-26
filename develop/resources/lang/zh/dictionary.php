@@ -1,13 +1,25 @@
 <?php
 
 return array(
+    'cn' => '简体',
+    'zh' => '繁體',
+    
+    'DebateAsia' => '亞洲思辨教育學會',
+    'debateTournment' => '亞洲思辨寫作對抗賽',
+    'solgan1' => '用中文思辨，用寫作看世界',
+    'solgan2' => '掃碼聯系主辦方，加入比賽資訊微信群',
+
+    'future' => '未來',
+    'past' => '過去',
     'competition' => '比賽',
     'rule' => '規則',
     'borcher' => '簡章',
     'livechat' => '即時諮詢',
     'candidate' => '選手',
     'judge' => '裁判',
+    'panel' => '專區',
     'login' => '登入帳戶',
+    'logout' => '登出帳戶',
     
     'account' => '帳戶',
     'manage' => '管理',

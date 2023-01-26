@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\users;
 use App\Models\competition;
+use App\Models\articles;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -53,7 +54,13 @@ class sessions extends Model
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        if (array_key_exists('status', $input)) $content->status = $input['status'];
+        if (array_key_exists('status', $input)){
+            $content->status = $input['status'];
+            if ($input['status'] == 1)
+            {
+                ARTICLES::initArticle($id);
+            }
+        }
         if (array_key_exists('tag', $input)) $content->tag = $input['tag'];
         if (array_key_exists('title', $input)) $content->title = $input['title'];
         if (array_key_exists('date', $input)) $content->date = $input['date'];
@@ -105,7 +112,7 @@ class sessions extends Model
     {
         $row = DB::table('session')
                 -> where('roomid', $rid)
-                -> leftJoin('users', 'session.cid', '=', 'users.id')
+                -> leftJoin('users', 'session.mid', '=', 'users.id')
                 -> select ('session.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
                 -> get();
         

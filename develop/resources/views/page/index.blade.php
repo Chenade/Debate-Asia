@@ -6,10 +6,10 @@
         <!-- body -->
         <div class="d-flex justify-content-center align-items-center flex-column">
             <img src="/img/indextitle.png" />
-            <h1 style="font-weight:700; margin: 0; color: rgba(150, 0, 0, 1);">亚洲思辨写作对抗赛</h1>
-            <p style="margin-top: 15px;">用中文思辨，用写作看世界</p>
+            <h1 style="font-weight:700; margin: 0; color: rgba(150, 0, 0, 1);">{{trans('dictionary.debateTournment')}}</h1>
+            <p style="margin-top: 15px;">{{trans('dictionary.solgan1')}}</p>
             <img src="/img/qrcode_wechat.png" style="height: 120px;" />
-            <p style="margin-top: 15px;">扫码联系主办方，加入比赛资讯微信群</p>
+            <p style="margin-top: 15px;">{{trans('dictionary.solgan2')}}</p>
         </div>
     </div>
 @stop
