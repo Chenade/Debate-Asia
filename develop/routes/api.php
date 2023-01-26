@@ -109,6 +109,17 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('users')->group(function () {
+    
+    Route::get('/token',function (Request $request){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $val = USERS::getId($token);
+        return response() -> json(['success' => True, 'id' => $val, 'token' => $token], 200);
+    });
+
     Route::post('/login', function(){
         $input = request() -> all();
         $required = array('account', 'password');
@@ -118,7 +129,7 @@ Route::prefix('users')->group(function () {
         if(!$id)
             return  response() -> json(['success' => False, 'message' => 'Wrong account or password'], 403);
         $content = users::find($id);
-        $token = ADMIN::genToken($input['account']);
+        $token = USERS::genToken($input['account']);
         $content->token = $token;
         $content->timestamps = true;
         $content->save();
@@ -126,7 +137,7 @@ Route::prefix('users')->group(function () {
         if ($content->authority == 7)
             $url = '/admin';
         else if ($content->authority == 1)
-            $url = '/candidate/' . $content->id;
+            $url = '/candidate';
         return response() -> json(['success' => True, 'message' => $token, 'url' => $url], 200);
     });
 
@@ -298,6 +309,7 @@ Route::prefix('sessions')->group(function () {
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
         $content = SESSIONS::getSessionStatus($id);
+        $content['mid'] = USERS::getId($token);
         return response() -> json(['success' => True, 'data' => $content, 'token' => $token], 200);
     });
     
@@ -357,13 +369,13 @@ Route::prefix('articles')->group(function () {
 
 // token done
 Route::prefix('candidates')->group(function () {
-    Route::get('/list/{id}',function (Request $request, $id){
+    Route::get('/list',function (Request $request){
         $token = $request->header('token');
         $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
-        $row = USERS::getEventListByUser($id);
+        $row = USERS::getEventListByUser(USERS::getId($token));
         if (!$row)
             return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
         return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
@@ -411,7 +423,6 @@ Route::prefix('image')->group(function () {
         $image = PostImage::getList($category, $id);
         return response() -> json(['success' => True, 'message' => '', 'data' => $image], 200);
     });
-
 
     Route::delete('/{id}/{token}', function ($id, $token) {
         $token = ADMIN::validToken($token);

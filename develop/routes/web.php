@@ -37,7 +37,7 @@ Route::get('/rules', 			function () { return view('page.rules');});
 
 
 Route::prefix('candidate')->group(function () {
-	Route::get('/{mid}', 				function () { return view('page.candidate');});
-	Route::get('/{mid}/session/{sid}', 	function () { return view('page.session');});
-	Route::get('/session', 				function () { return view('page.management.session');});
+	Route::get('/', 				function () { return view('page.candidate');});
+	Route::get('/session/{sid}', 	function () { return view('page.session');});
+	// Route::get('/session', 				function () { return view('page.management.session');});
 });

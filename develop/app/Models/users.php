@@ -137,12 +137,11 @@ class users extends Model
     public static function genToken($username)
     {
         $row = DB::table('users')->where('account', $username)->first();
-        $token = $row->authority . '_' . $username . '_' . base64_encode(time() . env("APP_TOKEN", "debateAsia"));
+        $token = $row->authority . '_' . base64_encode($row->account) . '_' . base64_encode(time() . env("APP_TOKEN", "debateAsia"));
         $token = base64_encode($token);
         return $token;
     }
 
-    
     public static function getauth($token)
     {
         if (USERS::is_base64($token))
@@ -161,6 +160,25 @@ class users extends Model
         return NULL;        
     }
 
+    public static function getId($token)
+    {
+        if (USERS::is_base64($token))
+        {
+            $decode_token = base64_decode($token);
+            if ($decode_token)
+            {
+                $decode_token = explode("_", base64_decode($token));
+                if (count($decode_token) == 3)
+                {
+                    $acc = base64_decode($decode_token[1]);
+                    $row = DB::table('users')->where('account', $acc)->first();
+                    return ($row->id);
+                }
+            }
+        }
+        return NULL;        
+    }
+
     public static function validToken($token)
     {
         if (USERS::is_base64($token))
@@ -171,7 +189,7 @@ class users extends Model
                 $decode_token = explode("_", base64_decode($token));
                 if (count($decode_token) == 3)
                 {
-                    $acc = $decode_token[1];
+                    $acc = base64_decode($decode_token[1]);
                     $auth = $decode_token[0];
                     $decode_token = base64_decode($decode_token[2]);
                     if(strpos($decode_token, env("APP_TOKEN", "debateAsia")))
