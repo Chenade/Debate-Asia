@@ -21,10 +21,12 @@ return array(
     'login' => '登入帳戶',
     'logout' => '登出帳戶',
     
+    'admin' => '管理員',
     'account' => '帳戶',
     'manage' => '管理',
     'monitor' => '監控',
     'add' => '新增',
+    'save' => '儲存',
     'pairs' => '隨機分配場次',
 
     'info' => '資訊',

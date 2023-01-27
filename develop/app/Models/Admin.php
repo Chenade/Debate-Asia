@@ -64,7 +64,8 @@ class Admin extends Model
     public static function genToken($username)
     {
         $row = DB::table('users')->where('account', $username)->first();
-        $token = $row->authority . '_' . $username . '_' . base64_encode(time() . env("APP_TOKEN", "debateAsia"));
+        $token = $row->authority . '_' . base64_encode($row->account) . '_' . base64_encode(time() . env("APP_TOKEN", "debateAsia"));
+
         $token = base64_encode($token);
         return $token;
     }
@@ -98,7 +99,7 @@ class Admin extends Model
                 $decode_token = explode("_", base64_decode($token));
                 if (count($decode_token) == 3)
                 {
-                    $acc = $decode_token[1];
+                    $acc = base64_decode($decode_token[1]);
                     $auth = $decode_token[0];
                     $decode_token = base64_decode($decode_token[2]);
                     if(strpos($decode_token, env("APP_TOKEN", "debateAsia")))

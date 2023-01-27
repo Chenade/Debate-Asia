@@ -8,7 +8,7 @@ return array(
     'debateTournment' => '亚洲思辨写作对抗赛',
     'solgan1' => '用中文思辨，用写作看世界',
     'solgan2' => '扫码联系主办方，加入比赛资讯微信群',
-    
+
     'future' => '未来',
     'past' => '过去',
     'competition' => '比赛',
@@ -21,10 +21,12 @@ return array(
     'login' => '登入帐户',
     'logout' => '登出帐户',
     
+    'admin' => '管理员',
     'account' => '帐户',
     'manage' => '管理',
     'monitor' => '监控',
     'add' => '新增',
+    'save' => '储存',
     'pairs' => '随机分配场次',
 
     'info' => '资讯',
