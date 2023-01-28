@@ -33,8 +33,8 @@ class users extends Model
         $content->wechat = $request['wechat'];
         $content->whatsapp = $request['whatsapp'];
         $content->lineid = $request['lineid'];
-        $token = users::genToken($request['account']);
-        $content->token = $token;
+        // $token = users::genToken($request['account']);
+        // $content->token = $token;
         $content->save();
         return $token;
     }
