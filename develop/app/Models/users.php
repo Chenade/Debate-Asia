@@ -34,7 +34,7 @@ class users extends Model
         $content->whatsapp = $request['whatsapp'];
         $content->lineid = $request['lineid'];
         // $token = users::genToken($request['account']);
-        // $content->token = $token;
+        $content->token = "";
         $content->save();
         return $token;
     }
