@@ -7,17 +7,17 @@
         <div class="col-12 d-flex flex-wrap justify-content-around" style="height: 200px;">
             <div class="col-12 col-sm-6  col-lg-2" style="background-color: white"></div>
             <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
-                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">正方：</span></p>
+                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">{{trans('dictionary.pos')}}：</span></p>
                 <h4 id="a_name" class="mt-3 mb-1"></h4>
                 <h5 id="a_school" class="mt-1"></h5>
             </div>
             <div class="col-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-around" style="background-color: black">
                 <h3 style="color: white;" id="tag" class="mt-3 mb-1"></h3>
                 <div class="col-2"><hr></div>
-                <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>環節，剩餘時間：<span id="remainTime"></span>分鐘</h4>
+                <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>{{trans('dictionary.section')}}，{{trans('dictionary.t_remain')}}：<span id="remainTime"></span>{{trans('dictionary.mins')}}</h4>
             </div>
             <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
-                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">反方：</span></p>
+                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">{{trans('dictionary.neg')}}：</span></p>
                 <h4 id="b_name" class="mt-3 mb-1"></h4>
                 <h5 id="b_school" class="mt-1"></h5>
             </div>
@@ -59,7 +59,7 @@
                                 <textarea disabled
                                     id = "b_article_content"
                                     rows="15" class="col-12 mt-3" 
-                                    style="font-size: medium; resize: none; background-color: gray">
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5">
                                 </textarea>
                             <!-- </div> -->
                         </div>
@@ -68,17 +68,17 @@
                                 <textarea disabled
                                     id = "a_article_content"
                                     rows="15" class="col-12 mt-3" 
-                                    style="font-size: medium; resize: none; background-color: gray">
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5">
                                 </textarea>
                             <!-- </div> -->
                         </div>
                         <div class="tab-pane active" id="info_tab">
                             <div class="col-12">
-                                <h3>辯題：<br><span id="title"></span></h3>
+                                <h3>{{trans('dictionary.title')}}：<br><span id="title"></span></h3>
                                 <hr>
-                                <h5 style="margin: 5px 0;">立論時間：<span class="t_write"></span>分鐘</h4>
-                                <h5 style="margin: 5px 0;">閱讀時間：<span class="t_read"></span>分鐘</h4>
-                                <h5 style="margin: 5px 0;">駁論時間：<span class="t_debate"></span>分鐘</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.title')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
                             </div>
                         </div>
                     </div>

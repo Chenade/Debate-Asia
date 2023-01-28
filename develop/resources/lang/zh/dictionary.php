@@ -43,9 +43,11 @@ return array(
     'title' => '辯題',
     'time' => '時間',
     'mins' => '分鐘',
+    'section' => '環節',
     't_write' => '立論時間',
     't_read' => '閱讀時間',
     't_debate' => '駁論時間',
+    't_remain' => '駁論時間',
     
     'article' => '文稿',
     'op' => '對手',

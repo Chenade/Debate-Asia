@@ -43,9 +43,11 @@ return array(
     'title' => '辩题',
     'time' => '时间',
     'mins' => '分钟',
+    'section' => '环节',
     't_write' => '立论时间',
     't_read' => '阅读时间',
     't_debate' => '驳论时间',
+    't_remain' => '驳论时间',
     
     'article' => '文稿',
     'op' => '对手',
