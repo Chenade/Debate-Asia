@@ -36,7 +36,7 @@ class users extends Model
         // $token = users::genToken($request['account']);
         $content->token = "";
         $content->save();
-        return $token;
+        return "";
     }
     
     public static function updateById($id, $input)
