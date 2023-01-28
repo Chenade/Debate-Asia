@@ -25,7 +25,10 @@ class sessions extends Model
 
     public static function store($request)
     {
-        $user = DB::table('session')-> where('mid', $request['mid']) -> first();
+        $user = DB::table('session')
+            -> where('mid', $request['mid']) 
+            -> where('cid', $request['cid']) 
+            -> first();
         if ($user)
             return (NULL);
         $content = new sessions;

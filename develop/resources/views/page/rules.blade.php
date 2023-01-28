@@ -39,8 +39,10 @@
                     <br>
                     {{trans('rules.r82')}}
                     <br>
-                    <p>{{trans('rules.ps1')}}<br>
-                    {{trans('rules.ps1')}}</p>
+                    <p>
+                        {{trans('rules.ps1')}}<br>
+                        {{trans('rules.ps2')}}
+                    </p>
 
             </div>
         </div>
