@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function () {
         $required = array('account', 'password', 'authority');
         if (count(array_intersect_key(array_flip($required), $input)) != count($required))
             return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $token = users::store($input);
+        $token2 = users::store($input);
         return response() -> json(['success' => True, 'message' => $token], 200);
     });
 
