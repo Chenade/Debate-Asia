@@ -45,7 +45,7 @@
                         </a>
                     </li>
                     <li class="nav-item nav-auth" id="nav_logout" style="margin: 0 1.5em; font-size:0.9em; display:none;">
-                        <a class="nav-link" href="/logout" style="">
+                        <a class="nav-link" id="logout" style="">
                             <i class="fa-solid fa-right-from-bracket"></i>&emsp;{{trans('dictionary.logout')}}
                         </a>
                     </li>
