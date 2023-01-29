@@ -4,7 +4,7 @@
 
     <section id="manage_session">
         <div class="container">
-            <div class="col-12"><h5 style="margin-bottom: 5px;">比賽組別：</h5></div>
+            <div class="col-12"><h5 style="margin-bottom: 5px;">{{trans('dictionary.select')}}{{trans('dictionary.round')}}：</h5></div>
             <div class="col-12 d-flex flex-wrap">
                 <select class="selectpicker col-12" id="select_competition" title="Choose one of the following...">
                     <option value="1">[test_tag] test_title</option>
@@ -68,10 +68,10 @@
                         <div class="d-flex flex-wrap">
                             <div class="col-12 col-lg-4" style="padding: 30px;">
                                 <div><img src="" width=250 height=150 alt="camera"/></div>
-                                <h6>正方名稱：<span id="a_name"></span></h6>
-                                <h6>正方學校：<span id="a_school"></span></h6>
-                                <h6>正方狀態：<span id="a_status"></span></h6>
-                                <h6>最後更新時間：<span id="a_updated_at"></span></h6>
+                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.name')}}：<span id="a_name"></span></h6>
+                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.school')}}：<span id="a_school"></span></h6>
+                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.status')}}：<span id="a_status"></span></h6>
+                                <h6>{{trans('dictionary.lastUpdate')}}{{trans('dictionary.time')}}：<span id="a_updated_at"></span></h6>
                             </div>
                             <div class="col-12 col-lg-8">
                                 <div class="col-12">
@@ -92,10 +92,10 @@
                         <div class="d-flex flex-wrap">
                         <div class="col-12 col-lg-4" style="padding: 30px;">
                                 <div><img src="" width=250 height=150 alt="camera"/></div>
-                                <h6>反方名稱：<span id="b_name"></span></h6>
-                                <h6>反方學校：<span id="b_school"></span></h6>
-                                <h6>反方狀態：<span id="b_status"></span></h6>
-                                <h6>最後更新時間：<span id="b_updated_at"></span></h6>
+                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.name')}}：<span id="b_name"></span></h6>
+                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.school')}}：<span id="b_school"></span></h6>
+                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.status')}}：<span id="b_status"></span></h6>
+                                <h6>{{trans('dictionary.lastUpdate')}}{{trans('dictionary.time')}}：<span id="b_updated_at"></span></h6>
                             </div>
                             <div class="col-12 col-lg-8">
                                 <div class="col-12">

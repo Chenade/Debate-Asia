@@ -11,6 +11,7 @@ return array(
 
     'future' => '未來',
     'past' => '過去',
+    'round' => '場次',
     'competition' => '比賽',
     'rule' => '規則',
     'borcher' => '簡章',
@@ -26,10 +27,14 @@ return array(
     'manage' => '管理',
     'monitor' => '監控',
     'add' => '新增',
+    'select' => '選擇',
     'save' => '儲存',
     'pairs' => '隨機分配場次',
 
     'info' => '資訊',
+    'name' => '名稱',
+    'school' => '學校',
+    'status' => '狀態',
     'authority' => '權限',
     'email' => '電子郵件',
     'password' => '密碼',
@@ -48,6 +53,7 @@ return array(
     't_read' => '閱讀時間',
     't_debate' => '駁論時間',
     't_remain' => '剩餘時間',
+    'lastUpdate' => '最後更新',
     
     'article' => '文稿',
     'op' => '對手',

@@ -32,14 +32,14 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><span id="md-method">新增</span>比賽組別 </h4>
+                    <h4 class="modal-title"><span id="md-method">新增</span>{{trans('dictionary.round')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
+                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.round')}}{{trans('dictionary.info')}}</a>
                     </li>
                     <li class="nav-item com-detail">
                         <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
@@ -53,7 +53,7 @@
                     <div class="tab-pane active" id="info_tab">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.tag')}}:</label>
+                                <label class="col-form-label">{{trans('dictionary.round')}}{{trans('dictionary.name')}}:</label>
                                 <input type="text" class="form-control" id="edit_tag">
                             </div>
                         </div>

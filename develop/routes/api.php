@@ -343,7 +343,7 @@ Route::prefix('articles')->group(function () {
         if ($content) $content = ARTICLES::updateById($input['b'][0]['id'], $input['b'][0]);
         if ($content) $content = ARTICLES::updateById($input['b'][1]['id'], $input['b'][1]);
         if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
+            return response() -> json(['success' => False, 'message' => 'AArticle not found.'], 404);
         return response() -> json(['success' => True, 'message' => $input, 'token' => $token], 200);
     });
 

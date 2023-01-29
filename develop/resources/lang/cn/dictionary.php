@@ -11,6 +11,7 @@ return array(
 
     'future' => '未来',
     'past' => '过去',
+    'round' => '场次',
     'competition' => '比赛',
     'rule' => '规则',
     'borcher' => '简章',
@@ -25,11 +26,15 @@ return array(
     'account' => '帐户',
     'manage' => '管理',
     'monitor' => '监控',
+    'select' => '选择',
     'add' => '新增',
     'save' => '储存',
     'pairs' => '随机分配场次',
 
     'info' => '资讯',
+    'name' => '名称',
+    'school' => '学校',
+    'status' => '状态',
     'authority' => '权限',
     'email' => '电子邮件',
     'password' => '密码',
@@ -48,6 +53,7 @@ return array(
     't_read' => '阅读时间',
     't_debate' => '驳论时间',
     't_remain' => '剩馀时间',
+    'lastUpdate' => '最后更新',
     
     'article' => '文稿',
     'op' => '对手',

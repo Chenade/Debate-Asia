@@ -99,7 +99,8 @@ class articles extends Model
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        if (array_key_exists('content', $input)) $content->content = json_encode($input['content'], JSON_UNESCAPED_UNICODE);
+        if (array_key_exists('content', $input) && $input['content'] != null) 
+            $content->content = json_encode($input['content'], JSON_UNESCAPED_UNICODE);
         $content->save();
         return true;
     }
