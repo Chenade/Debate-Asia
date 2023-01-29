@@ -1,7 +1,7 @@
 @include('includes.language')
 @extends('layouts.default', ['page_header' =>'About','page_parent' =>'Home','page_parent_path' =>'/','page_path' =>'', 'page_banner' =>'sub_banner.png'])
 @section('content')
-    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; height: 100vh; object-fit: cover;opacity: 0.5;">
+    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; height: 100vh; object-fit: cover;opacity: 0.5; position:fixed; left: 0; top: 0;">
     <div class="" style="margin-top:130px; position: absolute; top: 0;left: 0;min-height: 100vh;">
         <!-- body -->
         <div class="d-flex justify-content-center align-items-center flex-column">

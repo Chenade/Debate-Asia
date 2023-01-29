@@ -47,7 +47,7 @@ return array(
     't_write' => '立論時間',
     't_read' => '閱讀時間',
     't_debate' => '駁論時間',
-    't_remain' => '駁論時間',
+    't_remain' => '剩餘時間',
     
     'article' => '文稿',
     'op' => '對手',

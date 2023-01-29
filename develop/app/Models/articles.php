@@ -34,14 +34,29 @@ class articles extends Model
 
     public static function initArticle($sid)
     {
-        $content = new articles;
-        $content->sid = $sid;
-        $content->type = 0;
-        $content->save();
-        $content = new articles;
-        $content->sid = $sid;
-        $content->type = 1;
-        $content->save();
+        $content = DB::table('article')
+                    -> where('sid', $sid) 
+                    -> where('type', 0) 
+                    -> first();
+        if (!$content)
+        {
+            $content = new articles;
+            $content->sid = $sid;
+            $content->type = 0;
+            $content->save();
+        }
+        
+        $content = DB::table('article')
+                    -> where('sid', $sid) 
+                    -> where('type', 1) 
+                    -> first();
+        if (!$content)
+        {
+            $content = new articles;
+            $content->sid = $sid;
+            $content->type = 1;
+            $content->save();
+        }
         return DB::table('article')
                     -> where('sid', $sid) 
                     -> orderBy('type', 'ASC') 

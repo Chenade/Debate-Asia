@@ -1,23 +1,23 @@
 @include('includes.language')
 @extends('layouts.default', ['page_header' =>'About','page_parent' =>'Home','page_parent_path' =>'/','page_path' =>'', 'page_banner' =>'sub_banner.png'])
 @section('content')
-    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; height: 100vh; object-fit: cover;opacity: 0.5;">
+    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; height: 100vh; object-fit: cover;opacity: 0.5; position:fixed; left: 0; top: 0;">
     <!-- body -->
     <div class="col-12" style="margin-top:50px; position: absolute; top: 0;left: 0;min-height: 100vh; overflow-y: auto; overflow-x: hidden;">
-        <div class="col-12 d-flex flex-wrap justify-content-around" style="height: 200px;">
-            <div class="col-12 col-sm-6  col-lg-2" style="background-color: white"></div>
+        <div class="col-12 d-flex flex-wrap justify-content-around" style="min-height: 200px;">
+            <div class="col-12 col-sm-6 col-lg-2" style="background-color: white"></div>
             <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
-                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">{{trans('dictionary.pos')}}：</span></p>
+                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 35px; font-size: 14px;">{{trans('dictionary.pos')}}：</span></p>
                 <h4 id="a_name" class="mt-3 mb-1"></h4>
                 <h5 id="a_school" class="mt-1"></h5>
             </div>
             <div class="col-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-around" style="background-color: black">
                 <h3 style="color: white;" id="tag" class="mt-3 mb-1"></h3>
                 <div class="col-2"><hr></div>
-                <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>{{trans('dictionary.section')}}，{{trans('dictionary.t_remain')}}：<span id="remainTime"></span>{{trans('dictionary.mins')}}</h4>
+                <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>{{trans('dictionary.section')}}，{{trans('dictionary.t_remain')}}：<span id="remainTime"></span></h4>
             </div>
             <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
-                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 25px;">{{trans('dictionary.neg')}}：</span></p>
+                <p class="roles"><span class="badge badge-secondary"  style="margin-top: 35px; font-size: 14px;">{{trans('dictionary.neg')}}：</span></p>
                 <h4 id="b_name" class="mt-3 mb-1"></h4>
                 <h5 id="b_school" class="mt-1"></h5>
             </div>
@@ -39,9 +39,9 @@
                 <div class="col-1"></div>
             </div>
         </div>
-        <div class="stages" id="stage1" style="min-height: 61vh; display:none;">
+        <div class="stages" id="stage1" style="height: 55vh; display:none;">
             <div class="col-12 d-flex flex-wrap justify-content-around mt-1">
-                <div class="col-6" style="background-color: rgba(255,255,255,0.6)">
+                <div class="col-6" style="background-color: rgba(255,255,255,0.6); height: 60vh;">
                     <ul class="nav nav-tabs">
                         <li class="nav-item" id="b_article_tab" style="display: none;">
                             <a class="nav-link" id="_b_article_tab" data-toggle="tab" href="#b_article">{{trans('dictionary.op')}}{{trans('dictionary.argument')}}</a>
@@ -58,8 +58,8 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "b_article_content"
-                                    rows="15" class="col-12 mt-3" 
-                                    style="font-size: medium; resize: none; background-color: #F5F5F5">
+                                    rows="15" class="col-12" 
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
                         </div>
@@ -67,13 +67,13 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "a_article_content"
-                                    rows="15" class="col-12 mt-3" 
-                                    style="font-size: medium; resize: none; background-color: #F5F5F5">
+                                    rows="15" class="col-12" 
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
                         </div>
                         <div class="tab-pane active" id="info_tab">
-                            <div class="col-12">
+                            <div class="col-12" style="height: 40vh;">
                                 <h3>{{trans('dictionary.title')}}：<br><span id="title"></span></h3>
                                 <hr>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.title')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
@@ -83,50 +83,19 @@
                         </div>
                     </div>
                 </div>
-                <textarea id="input"
-                    rows="15" class="col-6" 
-                    style="
-                        margin: 20px 0;
-                        font-size: medium; 
-                        resize: none; 
-                        background-color: white"></textarea>
-            </div>
-        </div>
-        <div id="stage3" style="min-height: 61vh; display:none;">
-            <div class="col-12 d-flex flex-wrap justify-content-around mt-1">
-                <div class="col-6" style="background-color: white">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
-                        </li>
-                        <li class="nav-item com-detail">
-                            <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="info_tab">
-                            <div class="col-12">
-                                <textarea disabled
-                                    rows="15" 
-                                    class="col-12 mt-3" 
-                                    style="font-size: medium; resize: none; background-color: gray">
-                                </textarea>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="candidates_tab">
-                            <div class="col-12">
-                                <textarea disabled
-                                    rows="15" 
-                                    class="col-12 mt-3" 
-                                    style="font-size: medium; resize: none; background-color: gray">
-                                </textarea>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-6" >
+                    <textarea id="input"
+                        rows="17" class="col-12" 
+                        style="
+                            margin: 20px 0;
+                            font-size: medium; 
+                            resize: none; 
+                            background-color: white"></textarea>
+                    <!-- <button id="moveStage" class="btn btn-success" data-stage="2">提前交稿</button> -->
                 </div>
-                <textarea rows="15" class="col-6" style="font-size: medium; resize: none; background-color: gray"></textarea>
             </div>
         </div>
+        <div class="mb-5"></div>
     </div>
 @stop
 @section('end_script')

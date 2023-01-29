@@ -1,10 +1,10 @@
 @include('includes.language')
 @extends('layouts.default', ['page_header' =>'About','page_parent' =>'Home','page_parent_path' =>'/','page_path' =>'', 'page_banner' =>'sub_banner.png'])
 @section('content')
-    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; min-height: 1200px; object-fit: fill;opacity: 0.3;">
+    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; height: 100vh; object-fit: cover;opacity: 0.5; position:fixed; left: 0; top: 0;">
     <div class="col-12 d-flex justify-content-center" style="margin-top:80px; position: absolute; top: 0;left: 0;">
         <!-- body -->
-        <div class="container">
+        <div class="container" style="background-color: rgba(255,255,255,0.6);">
                 
             <div class="col-12">
                 <div class="section-heading text-center">
