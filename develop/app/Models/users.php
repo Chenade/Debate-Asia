@@ -106,6 +106,17 @@ class users extends Model
             $lst->competition = SESSIONS::getListByUser($id);
             foreach ($lst->competition as $row)
             {
+                unset($row->t_debate);
+                unset($row->t_read);
+                unset($row->t_write);
+                unset($row->created_at);
+                unset($row->updated_at);
+                $op = DB::table('session')
+                        -> where('roomid', $row->roomid)
+                        -> leftJoin('users', 'session.mid', '=', 'users.id')
+                        -> select ('session.id', 'session.mid', 'session.role', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
+                        -> get();
+                $row->usr = $op;
                 if ($row->status < 3)
                     unset ($row->title);
                     unset ($row->role);
