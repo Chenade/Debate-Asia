@@ -29,16 +29,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //----- Admin Control ----//
 // token done
 Route::prefix('admin')->group(function () {
-    Route::post('/signup', function(){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
+    Route::post('/signup', function(Request $request){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
         $required = array('account', 'password', 'authority');
         if (count(array_intersect_key(array_flip($required), $input)) != count($required))
             return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
         $token2 = users::store($input);
-        return response() -> json(['success' => True, 'message' => $token], 200);
+        return response() -> json(['success' => True, 'token' => $token], 200);
     });
 
     Route::post('/ct', function(Request $request){
