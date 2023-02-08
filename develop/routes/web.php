@@ -26,18 +26,18 @@ Route::get('/language/{lang}', function ($lang) {
 });
 
 Route::prefix('admin')->group(function () {
-	Route::get('/', 			function () { return view('page.management.users');});
-	Route::get('/competition', 	function () { return view('page.management.competition');});
-	Route::get('/session', 		function () { return view('page.management.session');});
+	Route::get('/', 				function () { return view('page.management.users');});
+	Route::get('/competition', 		function () { return view('page.management.competition');});
+	Route::get('/session', 			function () { return view('page.management.session');});
 });
 
-Route::get('/', 				function () { return view('page.index');});
+Route::get('/', 					function () { return view('page.index');});
 // Route::get('/guideline', 		function () { return view('page.guideline');});
-Route::get('/rules', 			function () { return view('page.rules');});
+Route::get('/rules', 				function () { return view('page.rules');});
 
 
 Route::prefix('candidate')->group(function () {
-	Route::get('/', 				function () { return view('page.candidate');});
-	Route::get('/session/{sid}', 	function () { return view('page.session');});
-	// Route::get('/session', 				function () { return view('page.management.session');});
+	Route::get('/', 					function () { return view('page.candidate');});
+	Route::get('{cid}/session/{sid}', 	function () { return view('page.session');});
+	// Route::get('/session', 			function () { return view('page.management.session');});
 });

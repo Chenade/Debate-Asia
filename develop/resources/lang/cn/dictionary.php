@@ -52,8 +52,9 @@ return array(
     't_write' => '立论时间',
     't_read' => '阅读时间',
     't_debate' => '驳论时间',
-    't_remain' => '剩馀时间',
+    't_remain' => '剩余时间',
     'lastUpdate' => '最后更新',
+    'livechat_note' => '請掃碼微信聯絡賽務工作人員',
     
     'article' => '文稿',
     'op' => '对手',

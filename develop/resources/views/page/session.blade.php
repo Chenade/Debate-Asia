@@ -24,16 +24,23 @@
             <div class="col-12 col-sm-6  col-lg-2" style="background-color: white"></div>
         </div>
         <div class="stages" id="stage0" style="display:none;">
-            <div class="col-12 d-flex flex-wrap justify-content-around mt-1" style="min-height: 61vh">
-                <div class="col-9 d-flex justify-content-center">
+            <div class="col-12 d-flex flex-wrap justify-content-around mt-1 align-items-center" style="min-height: 61vh">
+                <div class="col-8 d-flex justify-content-center">
                     <iframe id="videos" allowfullscreen autoplay
                         height=450 width=800 
                         src='https://player.youku.com/embed/XNTkzMzUwMTYyNA==' 
                         frameborder=0 >
                     </iframe>
                 </div>
-                <div class="col-2 d-flex flex-column justify-content-end">
-                    <p></p>
+                <div class="col-4 d-flex flex-column justify-content-around align-items-start   ">
+                    <p style="text-indent: -1em;">{{trans('rules.rv1')}}</p>
+                    <p style="text-indent: -1em; margin-bottom: 2px;">{{trans('rules.rv2')}}</p>
+                    <p style="text-indent: -1em; margin-bottom: 2px;">{{trans('rules.rv3')}}</p>
+                    <p style="text-indent: -1em; margin-bottom: 2px;">{{trans('rules.rv4')}}</p>
+                    <p style="text-indent: -1em; margin-bottom: 2px;">{{trans('rules.rv5')}}</p>
+                    <p style="text-indent: -1em; margin-bottom: 2px;">{{trans('rules.rv6')}}</p>
+                    <p style="text-indent: -1em;">{{trans('rules.rv7')}}</p>
+                    <p style="text-indent: -1em; margin-bottom: 2px;">{{trans('rules.rv8')}}</p>
                     <button class="btn btn-success next-stage" data-stage="1">確認</button>
                 </div>
                 <div class="col-1"></div>

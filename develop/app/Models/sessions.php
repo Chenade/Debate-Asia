@@ -39,15 +39,15 @@ class sessions extends Model
         return $content->id;
     }
     
-    public static function deleteById($id)
+    public static function deleteById($input)
     {
-        $row = DB::table('session') -> where('id',$id) -> first();
+        $row = DB::table('session') 
+                -> where('cid', $input['cid']) 
+                -> where('mid', $input['mid']) 
+                -> first();
         if (!$row)
             return NULL;
-        $input = [];
-        $input['del'] = 1;
-        DB::table('session')-> where('id', $id)-> update($input);
-
+        DB::table('session')->delete($row->id);
         return true;
     }
 
@@ -57,19 +57,15 @@ class sessions extends Model
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        if (array_key_exists('status', $input)){
-            $content->status = $input['status'];
-            if ($input['status'] == 1)
-            {
-                ARTICLES::initArticle($id);
-            }
-        }
-        if (array_key_exists('tag', $input)) $content->tag = $input['tag'];
-        if (array_key_exists('title', $input)) $content->title = $input['title'];
-        if (array_key_exists('date', $input)) $content->date = $input['date'];
-        if (array_key_exists('t_write', $input)) $content->t_write = $input['t_write'];
-        if (array_key_exists('t_read', $input)) $content->t_read = $input['t_read'];
-        if (array_key_exists('t_debate', $input)) $content->t_debate = $input['t_debate'];
+        // if (array_key_exists('status', $input)){
+        //     $content->status = $input['status'];
+        //     if ($input['status'] == 1)
+        //     {
+        //         ARTICLES::initArticle($id);
+        //     }
+        // }
+        if (array_key_exists('roomid', $input)) $content->roomid = $input['roomid'];
+        if (array_key_exists('role', $input)) $content->role = $input['role'];
         $content->save();
         return true;
     }
@@ -111,10 +107,11 @@ class sessions extends Model
                 -> get();
     }
 
-    public static function getSessionStatus($rid)
+    public static function getSessionStatus($rid, $cid)
     {
         $row = DB::table('session')
                 -> where('roomid', $rid)
+                -> where('cid', $cid)
                 -> leftJoin('users', 'session.mid', '=', 'users.id')
                 -> select ('session.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
                 -> get();

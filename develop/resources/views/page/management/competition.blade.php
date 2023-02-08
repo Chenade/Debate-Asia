@@ -89,6 +89,9 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
+                        </div>
                     </div>
                     <div class="tab-pane" id="candidates_tab">
                         <div class="col-12">
@@ -107,6 +110,7 @@
                                     <th scope="col">Role</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Score</th>
+                                    <th scope="col">Operate</th>
                                     </tr>
                                 </thead>
                                 <tbody id="candidate_list">
@@ -119,9 +123,13 @@
                                     <th scope="col">Role</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Score</th>
+                                    <th scope="col">Operate</th>
                                     </tr>
                                 </tfoot>
                             </table>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-success pair-btn">{{trans('dictionary.pairs')}}</button>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="judges_tab">
@@ -160,8 +168,6 @@
                             
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success pair-btn">{{trans('dictionary.pairs')}}</button>
-                    <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
                     <button type="button" class="btn btn-danger delete-btn" data-action="delete" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">{{trans('dictionary.delete')}}</button>
                 </div>
             </div>

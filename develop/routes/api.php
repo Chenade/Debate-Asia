@@ -272,11 +272,12 @@ Route::prefix('sessions')->group(function () {
         return response() -> json(['success' => True, 'token' => $token, 'data' => $content[0]], 200);
     });
     
-    Route::post('/create',function (){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
+    Route::post('/create',function (Request $request){
+        $token = $request->header('token');
+        $token = ADMIN::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
         $required = array('mid', 'cid');
         if (count(array_intersect_key(array_flip($required), $input)) != count($required))
             return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
@@ -284,6 +285,21 @@ Route::prefix('sessions')->group(function () {
         if (!$row)
             return response() -> json(['success' => False, 'message' => 'Member already joined', 'token' => $token], 400);
         return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
+    });
+
+    Route::post('/delete',function (Request $request){
+        $token = $request->header('token');
+        $token = ADMIN::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
+        // $required = array('mid', 'cid');
+        // if (count(array_intersect_key(array_flip($required), $input)) != count($required))
+        //     return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
+        $row = SESSIONS::deleteById($input);
+        if (!$row)
+            return response() -> json(['success' => False, 'message' => 'Member not joined', 'token' => $token], 400);
+        return response() -> json(['success' => True, 'message' => $input, 'token' => $token], 200);
     });
     
     Route::post('/pairs/{id}', function($cid){
@@ -303,13 +319,13 @@ Route::prefix('sessions')->group(function () {
         return response() -> json(['success' => True, 'message' => '', 'token' => 'token'], 200);
     }); 
 
-    Route::get('/rooms/{id}/status',function (Request $request, $id){
+    Route::get('/{cid}/rooms/{id}/status',function (Request $request, $cid, $id){
         $token = $request->header('token');
         $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
-        $content = SESSIONS::getSessionStatus($id);
+        $content = SESSIONS::getSessionStatus($id, $cid);
         $content['mid'] = USERS::getId($token);
         return response() -> json(['success' => True, 'data' => $content, 'token' => $token], 200);
     });
@@ -319,7 +335,6 @@ Route::prefix('sessions')->group(function () {
         $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
         $input = request() -> all();
         $content = SESSIONS::updateById($id, $input);
         if (!$content)

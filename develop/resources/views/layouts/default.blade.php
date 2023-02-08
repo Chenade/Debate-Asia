@@ -32,6 +32,7 @@
       <div class="modal-body">
         <div class="d-flex justify-content-center align-items-center flex-column">
             <img src="/img/qrcode_wechat.png" />
+            <h5>{{trans('dictionary.livechat_note')}}</h5>
         </div>
       </div>
     </div>

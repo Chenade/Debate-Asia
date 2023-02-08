@@ -54,6 +54,7 @@ return array(
     't_debate' => '駁論時間',
     't_remain' => '剩餘時間',
     'lastUpdate' => '最後更新',
+    'livechat_note' => '請掃碼微信聯絡賽務工作人員',
     
     'article' => '文稿',
     'op' => '對手',
