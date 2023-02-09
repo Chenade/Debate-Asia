@@ -11,7 +11,7 @@ body{
 
 .top-header-area i{
     padding-right: 5px;
-    color: #E7A60A;
+    color: #B20E17;
 }
 
 .top-header-content  > a{
@@ -49,7 +49,7 @@ body{
 }
 
 .footer-area h4{
-    color: #E7A60A;
+    color: #B20E17;
     margin: 0.5em 0;
 }
 
@@ -98,7 +98,7 @@ body{
 }
 
 .tag{
-    color: #E7A60A;
+    color: #B20E17;
     font-weight: bold;
 }
 
@@ -120,7 +120,7 @@ body{
     padding: 0 40px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #E7A60A;
+    background-color: #B20E17;
     color: #ffffff;
     border: none;
     border-radius: 2px;
@@ -138,9 +138,9 @@ body{
     padding: 0 30px;
     text-align: center;
     text-transform: capitalize;
-    color: #E7A60A;
+    color: #B20E17;
     background-color: #ffffff;
-    border: solid #E7A60A 2px;
+    border: solid #B20E17 2px;
     border-radius: 2px;
     transition-duration: 500ms;
 }
@@ -249,7 +249,7 @@ div::-webkit-scrollbar {
 }
 
 .single-post-area:hover{
-    color: #E7A60A !important;
+    color: #B20E17 !important;
     transform: scale(1.2);
 }
 
@@ -261,7 +261,7 @@ div::-webkit-scrollbar {
 }
 
 .post-catagory{
-    color: #E7A60A;
+    color: #B20E17;
     font-weight: bold;
 }
 
@@ -286,7 +286,7 @@ div::-webkit-scrollbar {
     font-size: 1rem;
     line-height: 1rem;
     border-radius: 0.25rem;
-    color: #E7A60A;
+    color: #B20E17;
     text-decoration: none;
     background-color: transparent;
 }
@@ -297,7 +297,7 @@ div::-webkit-scrollbar {
 }
 
 .btn-pete:focus { 
-    background-color: #E7A60A; 
+    background-color: #B20E17; 
     color: White; 
 }
 
@@ -309,7 +309,7 @@ div::-webkit-scrollbar {
     vertical-align: middle;
     color: #ffffff;
     text-decoration: none;
-    background-color: #E7A60A;
+    background-color: #B20E17;
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
     line-height: 1.5;
@@ -322,6 +322,6 @@ div::-webkit-scrollbar {
 }
 
 .btn-peter:focus { 
-    background-color: #E7A60A; 
+    background-color: #B20E17; 
     color: White; 
 }

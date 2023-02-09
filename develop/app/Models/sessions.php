@@ -57,17 +57,36 @@ class sessions extends Model
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        // if (array_key_exists('status', $input)){
-        //     $content->status = $input['status'];
-        //     if ($input['status'] == 1)
-        //     {
-        //         ARTICLES::initArticle($id);
-        //     }
-        // }
+        if (array_key_exists('status', $input)){
+            $content->status = $input['status'];
+            if ($input['status'] == 1)
+            {
+                ARTICLES::initArticle($id);
+            }
+        }
         if (array_key_exists('roomid', $input)) $content->roomid = $input['roomid'];
         if (array_key_exists('role', $input)) $content->role = $input['role'];
         $content->save();
         return true;
+    }
+
+    public static function uploadImage($sid, $input)
+    {
+        $content = sessions::find($sid);
+        if (!$content)
+            return ("error");
+        $content->timestamps = false;
+        $content->camera = $input['dataURI'];
+        $content->camera_ts = time();
+        $content->save();
+        $row = DB::table('session')
+                -> where('cid', $content->cid)
+                -> where('roomid', $content->roomid)
+                -> where('mid', '<>', $content->mid)
+                -> first();
+        if (!$row)
+            return (NULL);
+        return $row;
     }
 
     public static function getElementById($id)

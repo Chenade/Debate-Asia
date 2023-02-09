@@ -5,23 +5,27 @@
     <!-- body -->
     <div class="col-12" style="margin-top:50px; position: absolute; top: 0;left: 0;min-height: 100vh; overflow-y: auto; overflow-x: hidden;">
         <div class="col-12 d-flex flex-wrap justify-content-around" style="min-height: 200px;">
-            <div class="col-12 col-sm-6 col-lg-2" style="background-color: white"></div>
-            <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
+            <div id="pos_box" class="col-12 col-sm-6 col-lg-2" style="background-color: white; margin: 0; padding: 0">
+               
+            </div>
+            <div class="col-12 col-sm-6 col-lg-2 d-flex flex-column justify-content-start align-items-around" style="padding:10px;background-color: lightgray; height: 225px;" id="size_default">
                 <p class="roles"><span class="badge badge-secondary"  style="margin-top: 35px; font-size: 14px;">{{trans('dictionary.pos')}}：</span></p>
                 <h4 id="a_name" class="mt-3 mb-1"></h4>
                 <h5 id="a_school" class="mt-1"></h5>
             </div>
-            <div class="col-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-around" style="background-color: black">
+            <div class="col-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-around" style="background-color: black; min-height 225px;">
                 <h3 style="color: white;" id="tag" class="mt-3 mb-1"></h3>
                 <div class="col-2"><hr></div>
                 <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>{{trans('dictionary.section')}}，{{trans('dictionary.t_remain')}}：<span id="remainTime"></span></h4>
             </div>
-            <div class="col-12 col-sm-6 col-lg-2" style="background-color: lightgray">
+            <div class="col-12 col-sm-6 col-lg-2 d-flex flex-column justify-content-start align-items-around" style="padding:10px;background-color: lightgray;height: 225px;">
                 <p class="roles"><span class="badge badge-secondary"  style="margin-top: 35px; font-size: 14px;">{{trans('dictionary.neg')}}：</span></p>
                 <h4 id="b_name" class="mt-3 mb-1"></h4>
                 <h5 id="b_school" class="mt-1"></h5>
             </div>
-            <div class="col-12 col-sm-6  col-lg-2" style="background-color: white"></div>
+            <div id="neg_box" class="col-12 col-sm-6  col-lg-2" style="background-color: white; padding:0;">
+                
+            </div>
         </div>
         <div class="stages" id="stage0" style="display:none;">
             <div class="col-12 d-flex flex-wrap justify-content-around mt-1 align-items-center" style="min-height: 61vh">

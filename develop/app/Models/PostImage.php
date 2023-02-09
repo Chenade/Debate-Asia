@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\PseudoTypes\True_;
 use phpDocumentor\Reflection\Types\Null_;
 use Ramsey\Uuid\Uuid;
+use App\Models\sessions;
+
 
 class PostImage extends Model
 {
@@ -19,22 +21,16 @@ class PostImage extends Model
     public $timestamps = true;
 
     protected $guarded = [];
-    
-    public static function store(Request $request, $type, $id){
-        $data= new PostImage();
-        $filename = NULL;
 
-        if($request->file('image')){
-            $file= $request->file('image');
-            $filename= Uuid::uuid4().'.'.$file->extension();
-            $file-> move(public_path('upload/Image'), $filename);
-            $data['filename']= $file->getClientOriginalName();
-            $data['uuid_name']= $filename;
-            $data['type'] = $type;
-            $data['linked_id']= $id;
-        }
-        $data->save();
-        return $filename;
+    public static function store(Request $request){
+        $content = SESSIONS::find($request->sid);
+        if (!$content)
+            return NULL;
+        return $request->id;
+        $content->timestamps = true;
+        $content->camera = $request->dataURI;
+        $content->save();
+        return true;
     }
 
     public static function getList($type, $id)

@@ -37,7 +37,7 @@
     }
 
     .footer-area h4{
-        color: #E7A60A;
+        color: #B20E17;
         margin: 0.5em 0;
     }
 
@@ -84,7 +84,7 @@
     .single-welcome-slide {
         width: 100%;
         height: 100vh;
-        background-color: #E7A60A;
+        background-color: #B20E17;
         background-color: rgba(0, 0, 0, .6);
         background-blend-mode: multiply;
     }
@@ -108,7 +108,7 @@
         width: 80px;
         height: 80px;
         border-radius: 50%;
-        background-color: #E7A60A;
+        background-color: #B20E17;
         text-indent: -50000em;
         position: absolute;
         top: 50%;
@@ -240,7 +240,7 @@
     }
     
     .project-content .text h6 {
-        color: #E7A60A;
+        color: #B20E17;
         font-size: 1.5em;
         font-weight: 700;
     }
@@ -256,7 +256,7 @@
         width: 100%;
         bottom: 0;
         left: 0;
-        background-color: #E7A60A;
+        background-color: #B20E17;
         z-index: 100;
         transform: translateY(100%);
         opacity: 0;
@@ -284,7 +284,7 @@
     
     .service-detail-btn:hover {
         background-color: transparent;
-        color: #E7A60A;
+        color: #B20E17;
         font-weight: 600;
     }
     

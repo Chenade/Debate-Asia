@@ -73,7 +73,7 @@
 .view-detail-btn {
     padding: 0;
     font-size: 16px;
-    color: #E7A60A;
+    color: #B20E17;
     font-weight: 600;
 }
 
@@ -109,7 +109,7 @@
 
 .news-detail-btn:hover {
     background-color: transparent;
-    color: #E7A60A;
+    color: #B20E17;
     font-weight: 600;
 }
 /*--- news ---*/
@@ -137,7 +137,7 @@
 }
 
 .nearby-meta p{
-    color: #E7A60A;
+    color: #B20E17;
 }
 
 .nearby-title{

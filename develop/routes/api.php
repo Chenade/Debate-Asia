@@ -408,26 +408,17 @@ Route::prefix('judges')->group(function () {
 });
 
 Route::prefix('image')->group(function () {
-    Route::post('/{type}/{id}/store', function(Request $request, $type, $id){
-        $token = ADMIN::validToken(request() -> token);
+    Route::post('/session/{sid}/store', function(Request $request, $sid){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
-        $category = get_category($type);
-        $content = get_content($type, $id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => $type.' not found.'], 404);
-        
-        if ($category == 2)
-        {
-            $image = PostImage::getList($category, $id);
-            foreach($image as $i)
-            PostImage::deleteById($i->id);
-        }
-        $filename = PostImage::store($request, $category, $id);
-        if (!$filename)
-            return response() -> json(['success' => False, 'message' => 'Image upload failed'], 400);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
+        $input = request() -> all();
+        $content = SESSIONS::uploadImage($sid, $input);
+        if ($content == 'error')
+            return response() -> json(['success' => False, 'message' => 'Imagess upload failed'], 400);
+        return response() -> json(['success' => True, 'content' => $content->camera, 'token' => $token], 200);
     });
 
     Route::get('/{type}/{id}/get', function(Request $request, $type, $id){

@@ -1,7 +1,7 @@
 .single-welcome-slide {
     width: 100%;
     height: 770px;
-    background-color: #E7A60A;
+    background-color: #B20E17;
     background-color: rgba(0, 0, 0, .6);
     background-blend-mode: multiply;
 }
@@ -24,7 +24,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #E7A60A;
+    background-color: #B20E17;
     text-indent: -50000em;
     position: absolute;
     top: 50%;
@@ -155,7 +155,7 @@
 }
 
 .project-content .text h6 {
-    color: #E7A60A;
+    color: #B20E17;
     font-size: 0.6 em;
     font-weight: 700;
 }
@@ -171,7 +171,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    background-color: #E7A60A;
+    background-color: #B20E17;
     z-index: 100;
     transform: translateY(100%);
     opacity: 0;
@@ -202,7 +202,7 @@
 }
 
 .room-content h3 {
-    color: #E7A60A;
+    color: #B20E17;
     font-size: 1.5em;
     display: block;
     margin: 0  0 25px 0;
@@ -242,7 +242,7 @@
 }
 
 .single-post-area:hover{
-    color: #E7A60A !important;
+    color: #B20E17 !important;
     transform: scale(1.2);
 }
 
@@ -254,7 +254,7 @@
 }
 
 .post-catagory{
-    color: #E7A60A;
+    color: #B20E17;
     font-weight: bold;
 }
 
@@ -283,7 +283,7 @@
 
 .service-detail-btn:hover {
     background-color: transparent;
-    color: #E7A60A;
+    color: #B20E17;
     font-weight: 600;
 }
 
