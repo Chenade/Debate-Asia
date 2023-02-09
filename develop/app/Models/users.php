@@ -113,6 +113,7 @@ class users extends Model
                 unset($row->updated_at);
                 $op = DB::table('session')
                         -> where('roomid', $row->roomid)
+                        -> where('cid', $row->cid)
                         -> leftJoin('users', 'session.mid', '=', 'users.id')
                         -> select ('session.id', 'session.mid', 'session.role', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
                         -> get();
