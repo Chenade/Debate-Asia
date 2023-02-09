@@ -87,7 +87,7 @@
                             <div class="col-12" style="height: 40vh;">
                                 <h3>{{trans('dictionary.title')}}：<br><span id="title"></span></h3>
                                 <hr>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.title')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
                             </div>

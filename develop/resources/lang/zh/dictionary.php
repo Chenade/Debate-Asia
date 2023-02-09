@@ -49,7 +49,7 @@ return array(
     'time' => '時間',
     'mins' => '分鐘',
     'section' => '環節',
-    't_write' => '立論時間',
+    't_write' => '申論時間',
     't_read' => '閱讀時間',
     't_debate' => '駁論時間',
     't_remain' => '剩餘時間',
