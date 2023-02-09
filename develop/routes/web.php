@@ -34,6 +34,10 @@ Route::prefix('admin')->group(function () {
 Route::get('/', 					function () { return view('page.index');});
 // Route::get('/guideline', 		function () { return view('page.guideline');});
 Route::get('/rules', 				function () { return view('page.rules');});
+Route::get('/.well-known/pki-validation/FE7FD8FCB84DEF4D0EDDD3B44C619063.txt', 				
+function () { return "EA8B8E58819F4238E896820A23E04ACCBC85ECC000142F1AB60427B4DACF886D\n
+	comodoca.com\n
+	68435359c1b14e3";});
 
 
 Route::prefix('candidate')->group(function () {
@@ -41,3 +45,4 @@ Route::prefix('candidate')->group(function () {
 	Route::get('{cid}/session/{sid}', 	function () { return view('page.session');});
 	// Route::get('/session', 			function () { return view('page.management.session');});
 });
+
