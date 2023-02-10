@@ -85,7 +85,8 @@
                         </div>
                         <div class="tab-pane active" id="info_tab">
                             <div class="col-12" style="height: 40vh;">
-                                <h3>{{trans('dictionary.title')}}：<br><span id="title"></span></h3>
+                                <h3 class="mb-0">{{trans('dictionary.title')}}：</h3>
+                                <div class="mt-1 d-flex flex-column" id="title"></div>
                                 <hr>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
