@@ -8,6 +8,7 @@ use App\Models\articles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class sessions extends Model
 {
@@ -75,15 +76,50 @@ class sessions extends Model
         $content = sessions::find($sid);
         if (!$content)
             return ("error");
+        if (!$content->camera)
+            $content->camera = Uuid::uuid4() . '.jpeg';
         $content->timestamps = false;
-        $content->camera = $input['dataURI'];
         $content->camera_ts = time();
         $content->save();
+
+        $mime = substr($input['dataURI'], 5, strpos($input['dataURI'], ';') - 5);
+        $extension = explode('/', $mime)[1];
+        $filename = $content->camera;
+        $file_path = public_path() .'/camera//' . $filename;
+        $data = base64_decode(str_replace('data:'.$mime.';base64,', '', $input['dataURI']));
+        file_put_contents($file_path, $data);
+
         $row = DB::table('session')
                 -> where('cid', $content->cid)
                 -> where('roomid', $content->roomid)
                 -> where('mid', '<>', $content->mid)
                 -> first();
+        if (!$row)
+            return (NULL);
+        return $row;
+    }
+    
+    public static function saveImage()
+    {
+        $row = DB::table('session')
+                -> where('camera', '<>', NULL)
+                -> get();
+        foreach ($row as $v)
+        {
+            $base64 = $v->camera;
+
+            $mime = substr($base64, 5, strpos($base64, ';') - 5);
+            $extension = explode('/', $mime)[1];
+            $filename = Uuid::uuid4() . '.' . $extension;
+            $file_path = public_path() .'/camera//' . $filename;
+
+            
+            $data = base64_decode(str_replace('data:'.$mime.';base64,', '', $base64));
+            file_put_contents($file_path, $data);
+            DB::table('session')
+                    -> where('id', $v->id)
+                    -> update(['camera' => $filename]);
+        }
         if (!$row)
             return (NULL);
         return $row;

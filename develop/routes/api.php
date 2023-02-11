@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //----- Admin Control ----//
 // token done
 Route::prefix('admin')->group(function () {
+    Route::middleware(['logresponse'])->group(function () {
     Route::post('/signup', function(Request $request){
         $token = $request->header('token');
         $token = USERS::validToken($token);
@@ -47,6 +48,7 @@ Route::prefix('admin')->group(function () {
         $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        // Log::info('/admin/ct - 403 {"success":false,"message":"Invalid Token"}'  . ' | ' . $token);
         $auth = USERS::getauth($token);
         return response() -> json(['success' => True, 'auth' => $auth, 'token' => $token], 200);
     });
@@ -106,7 +108,7 @@ Route::prefix('admin')->group(function () {
         $row['b'] = ARTICLES::getArticlebySID($sbid);
         return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
     });
-
+});
 });
 
 Route::prefix('users')->group(function () {
@@ -381,6 +383,21 @@ Route::prefix('articles')->group(function () {
             return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
         return response() -> json(['success' => True, 'token' => $token, 'data' => $content], 200);
     });
+
+    Route::get('download/{id}',function (Request $request, $id){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $content = ARTICLES::getArticlebySid($id);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
+        $return = COMPETITION::getInfoBySid($id);
+        $return->article = $content;
+        return response() -> json(['success' => True, 'message' => '', 'data' => $return], 200);
+    });
+
 });
 
 // token done
@@ -439,5 +456,10 @@ Route::prefix('image')->group(function () {
         if (!$row)
             return response() -> json(['success' => False, 'message' => 'News not found.'], 200);
         return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
+    });
+
+    Route::get('/convert', function(){
+        $image = SESSIONS::saveImage();
+        return response() -> json(['success' => True, 'message' => '', 'data' => $image], 200);
     });
 });

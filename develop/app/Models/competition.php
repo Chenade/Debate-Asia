@@ -74,4 +74,17 @@ class competition extends Model
         $content->save();
         return true;
     }
+
+    
+    public static function getInfoBySid($sid)
+    {
+        $row = DB::table('session')
+            -> where('id', $sid)
+            -> first();
+        $row2 = DB::table('competition')
+            -> where('id', $row->cid)
+            -> first();
+        return $row2;
+    }
+
 }

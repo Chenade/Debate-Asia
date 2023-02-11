@@ -191,6 +191,25 @@ class users extends Model
         return NULL;        
     }
 
+
+    public static function getAcc($token)
+    {
+        if (USERS::is_base64($token))
+        {
+            $decode_token = base64_decode($token);
+            if ($decode_token)
+            {
+                $decode_token = explode("_", base64_decode($token));
+                if (count($decode_token) == 3)
+                {
+                    $acc = base64_decode($decode_token[1]);
+                    return ($acc);
+                }
+            }
+        }
+        return NULL;        
+    }
+
     public static function validToken($token)
     {
         if (USERS::is_base64($token))
