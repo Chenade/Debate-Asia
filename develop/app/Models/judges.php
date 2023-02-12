@@ -111,7 +111,7 @@ class judges extends Model
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
-                            'judge.id','judge.comment', 'judge.score_1', 'judge.score_2', 'judge.score_3', 'judge.score_4', 'judge.score_5', 
+                            'judge.id','judge.comment', 'judge.score_1', 'judge.score_2', 'judge.score_3', 'judge.score_4', 'judge.score', 
                             'session.cid', 'session.role',
                             'competition.title', 'competition.tag', 'competition.date', 'competition.t_read', 'competition.t_debate', 'competition.t_write',
                             )
@@ -128,7 +128,7 @@ class judges extends Model
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
-                            'judge.id','judge.comment', 'judge.score_1', 'judge.score_2', 'judge.score_3', 'judge.score_4', 'judge.score_5', 
+                            'judge.id','judge.comment', 'judge.score_1', 'judge.score_2', 'judge.score_3', 'judge.score_4', 'judge.score', 
                             'session.cid', 'session.role',
                             'competition.title', 'competition.tag', 'competition.date', 'competition.t_read', 'competition.t_debate', 'competition.t_write',
                             )

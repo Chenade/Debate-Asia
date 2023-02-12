@@ -473,7 +473,7 @@ Route::prefix('judges')->group(function () {
             $return['usr'][$value->role]['judge']['score'][2] = $value->score_2;
             $return['usr'][$value->role]['judge']['score'][3] = $value->score_3;
             $return['usr'][$value->role]['judge']['score'][4] = $value->score_4;
-            $return['usr'][$value->role]['judge']['score'][5] = $value->score_5;
+            $return['usr'][$value->role]['judge']['sum_score'] = $value->score;
             $return['usr'][$value->role]['article'] = $value->article;
         }
         

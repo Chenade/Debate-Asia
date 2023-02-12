@@ -17,6 +17,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#pos_score_tab">{{trans('dictionary.grade')}}{{trans('dictionary.standard')}}</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane" id="pos_argue">
@@ -38,8 +41,8 @@
                             <!-- </div> -->
                         </div>
                         <div class="tab-pane active" id="info_tab">
-                            <div class="col-12" style="">
-                                <h3 class="mb-0">{{trans('dictionary.title')}}：</h3>
+                            <div class="col-12">
+                                <h4 class="mb-0">{{trans('dictionary.title')}}：</h4>
                                 <div class="mt-1 d-flex flex-column info-title"></div>
                                 <hr>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
@@ -47,24 +50,69 @@
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
                             </div>
                         </div>
+                        <div class="tab-pane" id="pos_score_tab">
+                            <table class="col-12">
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_1_title')}}（200{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_1_content')}}</p class="mb-0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_2_title')}}（200{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_2_content')}}</p class="mb-0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_3_title')}}（50{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_3_content')}}</p class="mb-0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_4_title')}}（50{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_4_content')}}</p class="mb-0"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6" >
                     <p>{{trans('dictionary.pos')}}{{trans('dictionary.grade')}}：</p>
                     <table class="col-12">
                         <tr>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
+                            <td class="col-2">{{trans('rules.score_1_title')}}</td>
+                            <td class="col-2">{{trans('rules.score_2_title')}}</td>
+                            <td class="col-2">{{trans('rules.score_3_title')}}</td>
+                            <td class="col-2">{{trans('rules.score_4_title')}}</td>
+                            <td class="col-2">{{trans('rules.sum_score')}}</td>
                         </tr>
                         <tr>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="1"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="2"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="3"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="4"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="5"></td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="1"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="2"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="3"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="4"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="5" disabled></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                     <p>{{trans('dictionary.pos')}}{{trans('dictionary.comment')}}：</p>
@@ -97,7 +145,10 @@
                             <a class="nav-link" id="_neg_rebuttal_tab" data-toggle="tab" href="#neg_rebuttal">{{trans('dictionary.neg')}}{{trans('dictionary.rebuttal')}}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#neg_info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
+                            <a class="nav-link" data-toggle="tab" href="#neg_info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#neg_score_tab">{{trans('dictionary.grade')}}{{trans('dictionary.standard')}}</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -119,9 +170,9 @@
                                 </textarea>
                             <!-- </div> -->
                         </div>
-                        <div class="tab-pane active" id="neg_info_tab">
-                            <div class="col-12" style="">
-                                <h3 class="mb-0">{{trans('dictionary.title')}}：</h3>
+                        <div class="tab-pane" id="neg_info_tab">
+                            <div class="col-12">
+                                <h4 class="mb-0">{{trans('dictionary.title')}}：</h4>
                                 <div class="mt-1 d-flex flex-column info-title"></div>
                                 <hr>
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
@@ -129,24 +180,69 @@
                                 <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
                             </div>
                         </div>
+                        <div class="tab-pane active" id="neg_score_tab">
+                            <table class="col-12">
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_1_title')}}（200{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_1_content')}}</p class="mb-0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_2_title')}}（200{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_2_content')}}</p class="mb-0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_3_title')}}（50{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_3_content')}}</p class="mb-0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-4"><h6>{{trans('rules.score_4_title')}}（50{{trans('rules.score')}}）</h6></td>
+                                    <td class="col-8"><p class="mb-0">{{trans('rules.score_4_content')}}</p class="mb-0"></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6" >
                     <p>{{trans('dictionary.neg')}}{{trans('dictionary.grade')}}：</p>
                     <table class="col-12">
                         <tr>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
-                            <td>Score 1</td>
+                            <td class="col-2">{{trans('rules.score_1_title')}}</td>
+                            <td class="col-2">{{trans('rules.score_2_title')}}</td>
+                            <td class="col-2">{{trans('rules.score_3_title')}}</td>
+                            <td class="col-2">{{trans('rules.score_4_title')}}</td>
+                            <td class="col-2">{{trans('rules.sum_score')}}</td>
                         </tr>
                         <tr>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="1"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="2"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="3"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="4"></td>
-                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="5"></td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="1"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="2"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="3"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="4"></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
+                                </div>
+                            </td>
+                            <td class="col-2">
+                                <div class="col-12 d-flex">
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="5" disabled></div>
+                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                     <p>{{trans('dictionary.neg')}}{{trans('dictionary.comment')}}：</p>

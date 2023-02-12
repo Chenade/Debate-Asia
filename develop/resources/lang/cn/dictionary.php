@@ -65,6 +65,7 @@ return array(
     'rebuttal' => '反驳',
 
     'grade' => '评分',
+    'standard' => '標準',
     'comment' => '评语',
     'submit' => '提交',
     'view' => '查看',
