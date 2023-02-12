@@ -15,13 +15,13 @@
                     <h5 class="mt-1 mb-1" id="school_name"></h5>
                 </div>
             </div>
-            <h3 class="mb-0 mt-3">{{trans('dictionary.future')}}{{trans('dictionary.competition')}}</h3>
+            <h3 class="mb-0 mt-3">{{trans('dictionary.round')}}{{trans('dictionary.list')}}</h3>
             <div id="upcomingEvent" style="height: 51vh; overflow-y: auto; overflow-x: hidden;">
                 <!-- <div class="col-11" style="background-color: black; height: 180px; margin: 10px;"></div> -->
             </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-7">
-            <h3 class="mb-0">{{trans('dictionary.past')}}{{trans('dictionary.competition')}}</h3>
+            <h3 class="mb-0">{{trans('dictionary.competition')}}{{trans('dictionary.list')}}</h3>
                 <div id="pastEvent" style="height: 72vh; overflow-y: auto; overflow-x: hidden;">
                     <!-- <div class="col-12" style="background-color: black; height: 220px; margin: 10px;"></div> -->
                 </div>

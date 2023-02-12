@@ -67,4 +67,6 @@ return array(
     'grade' => '評分',
     'comment' => '評語',
     'submit' => '提交',
+    'view' => '查看',
+    'list' => '清單',
 );

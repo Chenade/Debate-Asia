@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\articles;
+use App\Models\competition;
 
 class judges extends Model
 {
@@ -16,10 +17,6 @@ class judges extends Model
     public $timestamps = true;
 
     protected $guarded = [];
-
-    // protected $casts = [
-    //     'content' => 'array'
-    // ];
 
     public static function store($request)
     {
@@ -33,10 +30,12 @@ class judges extends Model
         return $content->id;
     }
 
-    public static function getListbyCID($cid)
+    public static function getListbyCID($cid, $mid)
     {
-        return DB::table('judge')
-                -> where('cid', $cid) 
+        return DB::table('session')
+                -> where('cid', $cid)
+                -> where('role', '<>', 3)
+                -> orderBy ('roomid')
                 -> get();
     }
 
@@ -119,7 +118,10 @@ class judges extends Model
                 -> get();
         if (count($row) < 1)
         {
-            $cid = DB::table('session') -> where('id', $sid) -> first();
+            $cid = DB::table('session') -> where('id', $sid) -> where('roomid', '<>', 0) -> first();
+            return $cid;
+            if (!$cid)
+                return NULL;
             JUDGES::init($cid->cid, $sid);
 
             $row = DB::table('judge')
@@ -135,6 +137,7 @@ class judges extends Model
         }
        return ($row);
     }
+
     public static function getJudgeRoom($cid, $rid)
     {
         $row = DB::table('session')
@@ -144,13 +147,46 @@ class judges extends Model
                 -> get();
         $return = array();
         foreach ($row as $key => $value) {
-            $tmp = JUDGES::getJudgeStatus($value->id)[0];
+            $tmp = JUDGES::getJudgeStatus($value->id);
+            if (!$tmp)
+                return (NULL);
+            $tmp = $tmp[0];
             $article = ARTICLES::getArticlebySID($value->id);
             $arr_article[$article[0]->type] = $article[0]->content;
             $arr_article[$article[1]->type] = $article[1]->content;
             $tmp->article = $arr_article;
             array_push($return, $tmp);
         }
+       return ($return);
+    }
+
+    public static function getJudgeList($mid)
+    {
+        $row = DB::table('session')
+                    -> where ('mid', $mid)
+                    -> get();
+        $return = array();
+        $return['competition'] = array();
+        foreach ($row as $k => $v) {
+            $return['competition'][$v->cid]['status'] = $v->status;
+            $return['competition'][$v->cid]['info'] = COMPETITION::getElementById($v->cid)[0];
+        }
+        $return['usr'] = DB::table('users') -> where('id', $mid) -> first();
+       return ($return);
+    }
+
+    
+    public static function getJudgeRoomList($cid, $mid)
+    {
+        $return = array();
+        $arr = JUDGES::getListbyCID($cid, $mid);
+        $tmp = array();
+        foreach ($arr as $key => $value) {
+            if (!array_key_exists($value->roomid, $tmp))
+                $tmp[$value->roomid] = array();
+            array_push($tmp[$value->roomid], $value);
+        }
+        $return['rooms'] = $tmp;
        return ($return);
     }
 }

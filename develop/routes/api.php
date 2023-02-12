@@ -430,7 +430,20 @@ Route::prefix('judges')->group(function () {
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
-        $row = USERS::getJudgeListByUser(USERS::getId($token));
+        // $row = USERS::getJudgeListByUser(USERS::getId($token));
+        $row = JUDGES::getJudgeList(USERS::getId($token));
+        if (!$row)
+            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
+        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
+    });
+
+    Route::get('/{cid}/roomlist',function (Request $request, $cid){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $row = JUDGES::getJudgeRoomList($cid, USERS::getId($token));
         if (!$row)
             return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
         return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
@@ -443,7 +456,7 @@ Route::prefix('judges')->group(function () {
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
         $row = JUDGES::getJudgeRoom($cid, $id);
-        if (count($row) < 1)
+        if (!$row || count($row) < 1)
             return response() -> json(['success' => FALSE, 'message' => 'Judge info not found'], 404);
         $return['competition']['title'] = $row[0]->title;
         $return['competition']['tag'] = $row[0]->tag;
