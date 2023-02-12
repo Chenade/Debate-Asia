@@ -67,7 +67,7 @@
                     <div class="tab-pane active" id="article_tab">
                         <div class="d-flex flex-wrap">
                             <div class="col-12 col-lg-4" style="padding: 30px;">
-                                <div><img src="" width=250 height=150 alt="camera"/></div>
+                                <div><img src="" width=250 height=150 alt="camera" id="a_camera"/></div>
                                 <h6>{{trans('dictionary.pos')}}{{trans('dictionary.name')}}：<span id="a_name"></span></h6>
                                 <h6>{{trans('dictionary.pos')}}{{trans('dictionary.school')}}：<span id="a_school"></span></h6>
                                 <h6>{{trans('dictionary.pos')}}{{trans('dictionary.status')}}：<span id="a_status"></span></h6>
@@ -91,7 +91,7 @@
                         <hr>
                         <div class="d-flex flex-wrap">
                         <div class="col-12 col-lg-4" style="padding: 30px;">
-                                <div><img src="" width=250 height=150 alt="camera"/></div>
+                                <div><img src="" width=250 height=150 alt="camera" id="b_camera"/></div>
                                 <h6>{{trans('dictionary.neg')}}{{trans('dictionary.name')}}：<span id="b_name"></span></h6>
                                 <h6>{{trans('dictionary.neg')}}{{trans('dictionary.school')}}：<span id="b_school"></span></h6>
                                 <h6>{{trans('dictionary.neg')}}{{trans('dictionary.status')}}：<span id="b_status"></span></h6>

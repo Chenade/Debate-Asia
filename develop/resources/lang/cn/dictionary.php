@@ -26,6 +26,7 @@ return array(
     'account' => '帐户',
     'manage' => '管理',
     'monitor' => '监控',
+    'ranking' => '排名',
     'select' => '选择',
     'add' => '新增',
     'save' => '储存',

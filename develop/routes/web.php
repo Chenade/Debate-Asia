@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-// 	//return ("Hello World");
-// 	return view('fixing');
-// 	// return view('index');
-// });
-
 Route::get('/language/{lang}', function ($lang) {
     App::setlocale($lang);
     session(['setLocale' => $lang]);
@@ -29,6 +23,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('/', 				function () { return view('page.management.users');});
 	Route::get('/competition', 		function () { return view('page.management.competition');});
 	Route::get('/session', 			function () { return view('page.management.session');});
+	Route::get('/ranking', 			function () { return view('page.management.ranking');});
 });
 
 Route::get('/', 					function () { return view('page.index');});
@@ -40,7 +35,6 @@ Route::prefix('candidate')->group(function () {
 	Route::get('{cid}/session/{sid}', 	function () { return view('page.session');});
 	// Route::get('/session', 			function () { return view('page.management.session');});
 });
-
 
 Route::prefix('judge')->group(function () {
 	Route::get('/', 					function () { return view('page.judge');});

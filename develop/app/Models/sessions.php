@@ -130,7 +130,7 @@ class sessions extends Model
     {
         $row = DB::table('session')
                 -> where('id', $id)
-                -> select ('id', 'status', 'updated_at', 'mid')
+                -> select ('id', 'status', 'updated_at', 'mid', 'camera')
                 -> first();
         $row->user = USERS::getElementBySId($row->mid);
         return $row;

@@ -492,6 +492,17 @@ Route::prefix('judges')->group(function () {
         return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
     });
 
+    Route::post('/{cid}/end', function(Request $request, $cid){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $input = request() -> all();
+        $content = JUDGES::endJudging($cid);
+        return response() -> json(['success' => True, 'content' => $content, 'token' => $token], 200);
+    });
+
 });
 
 Route::prefix('image')->group(function () {

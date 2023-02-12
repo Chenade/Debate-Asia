@@ -174,7 +174,6 @@ class judges extends Model
        return ($return);
     }
 
-    
     public static function getJudgeRoomList($cid, $mid)
     {
         $return = array();
@@ -187,5 +186,30 @@ class judges extends Model
         }
         $return['rooms'] = $tmp;
        return ($return);
+    }
+
+    public static function endJudging($cid)
+    {
+        $row = DB::table('session')
+                    -> where('cid', $cid)
+                    -> where('role', 3)
+                    -> update(['status' => 3]);
+        
+        $lst = DB::table('session')
+                    -> where('cid', $cid)
+                    -> where('role', '<', 3)
+                    -> select ('id')
+                    -> get();
+        foreach ($lst as $key => $value) {
+            $sum = DB::table('judge')
+                        -> where ('sid', $value->id)
+                        -> sum ('score');
+            if (!$sum)
+                $sum = 0;
+            $row = DB::table('session')
+                        -> where('id', $value->id)
+                        -> update(['score' => $sum, 'status' => 5]);
+        }
+        return $row;
     }
 }

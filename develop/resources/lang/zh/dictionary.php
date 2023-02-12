@@ -26,6 +26,7 @@ return array(
     'account' => '帳戶',
     'manage' => '管理',
     'monitor' => '監控',
+    'ranking' => '排名',
     'add' => '新增',
     'select' => '選擇',
     'save' => '儲存',

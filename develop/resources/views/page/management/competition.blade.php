@@ -146,7 +146,7 @@
                                     <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Score</th>
+                                    <th scope="col">Operation</th>
                                     </tr>
                                 </thead>
                                 <tbody id="judges_list">
@@ -156,10 +156,13 @@
                                     <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Score</th>
+                                    <th scope="col">Operation</th>
                                     </tr>
                                 </tfoot>
                             </table>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-success judge-end-btn">評分結束</button>
+                            </div>
                         </div>
                     </div>
                 </div>
