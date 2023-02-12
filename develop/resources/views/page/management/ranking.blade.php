@@ -2,47 +2,59 @@
 @extends('layouts.manage', ['page_header' =>'比賽管理'])
 @section('content')
 
-    <section id="manage_session">
-        <div class="container">
-            <div class="col-12"><h5 style="margin-bottom: 5px;">{{trans('dictionary.select')}}{{trans('dictionary.round')}}：</h5></div>
-            <div class="col-12 d-flex flex-wrap">
-                <select class="selectpicker col-12" id="select_competition" title="Choose one of the following...">
-                    <option value="1">[test_tag] test_title</option>
-                </select>
+    <section id="manage_ranking">
+    <div class="container">
+        <div class="d-flex">
+            <div class="col-4">
+                <div><h5 style="margin-bottom: 5px;">{{trans('dictionary.select')}}{{trans('dictionary.round')}}：</h5></div>
+                <div id="clist">
+                </div>
+                <hr>
+                <div><h5 style="margin-bottom: 5px;">{{trans('dictionary.award')}}{{trans('dictionary.list')}}：</h5></div>
+                <div>
+                    <div class="ml-2">
+                        <ul id="awardlist">
+                            <li>第一名</li>
+                            <li>第二名</li>
+                            <li>第三名</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-success">{{trans('dictionary.add')}}{{trans('dictionary.award')}}</button>
+                </div>
             </div>
-            <hr>
-            <div class="col-12">
-                <table class="table table-striped table-hover">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-9">
+                        <h5 class="mt-3 mb-3">{{trans('dictionary.candidate')}}{{trans('dictionary.list')}}：</h5>
+                    </div>
+                    <div class="col-3 d-flex justify-content-end">
+                        <button class="btn btn-success mb-4 mt-3" id="submit_ranking">{{trans('dictionary.submit')}}{{trans('dictionary.ranking')}}</button>
+                    </div>
+                </div>
+                <table class="col-12">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col-3">正方名稱</th>
-                        <th scope="col">畫面</th>
-                        <th scope="col">狀態</th>
-                        <th scope="col"></th>
-                        <th scope="col">狀態</th>
-                        <th scope="col">畫面</th>
-                        <th scope="col-3">反方名稱</th>
+                            <td>場次</td>
+                            <td>選手名稱</td>
+                            <td>選手分數</td>
+                            <td>獎項</td>
                         </tr>
                     </thead>
-                    <tbody id="session_list">
-        
-                    </tbody>
+                    <tbody id="candidate_list"></tbody>
                     <tfoot>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col-3">正方名稱</th>
-                        <th scope="col">畫面</th>
-                        <th scope="col">狀態</th>
-                        <th scope="col"></th>
-                        <th scope="col">狀態</th>
-                        <th scope="col">畫面</th>
-                        <th scope="col-3">反方名稱</th>
+                            <td>場次</td>
+                            <td>選手名稱</td>
+                            <td>選手分數</td>
+                            <td>獎項</td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+    </div>
     </section>
 
     
@@ -123,7 +135,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="session_modal" role="dialog">
+    <div class="modal fade" id="ranking_modal" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -134,7 +146,7 @@
                     
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.session')}}{{trans('dictionary.info')}}</a>
+                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.ranking')}}{{trans('dictionary.info')}}</a>
                     </li>
                     <li class="nav-item com-detail">
                         <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
@@ -160,8 +172,8 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.session')}}{{trans('dictionary.time')}}:</label>
-                                <input type="text" class="form-control" id="datetimepicker_session_time" placeholder="{{trans('dictionary.birthday')}}">
+                                <label class="col-form-label">{{trans('dictionary.ranking')}}{{trans('dictionary.time')}}:</label>
+                                <input type="text" class="form-control" id="datetimepicker_ranking_time" placeholder="{{trans('dictionary.birthday')}}">
                             </div>
                         </div>
                         <div class="d-flex flex-wrap">
@@ -277,7 +289,6 @@
     <script src="/js/lib/jquery-ui.min.js"></script>
     <script src="/js/lib/jquery.ui.touch-punch.min.js"></script>
     <script src="/js/general.min.js"></script>
-    <script src="/js/manage/session.min.js"></script>
+    <script src="/js/manage/ranking.min.js"></script>
 
 @stop
-

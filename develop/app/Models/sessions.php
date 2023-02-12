@@ -211,4 +211,34 @@ class sessions extends Model
         return true;
     }
 
+    public static function getCandidatesListbyCid($request)
+    {
+        $lst = DB::table('session')
+                    -> whereIn('cid', $request['cid'])
+                    -> where('role', '<', 3)
+                    -> join('competition', 'competition.id', '=', 'session.cid')
+                    -> join('users', 'users.id', '=', 'session.mid')
+                    -> orderBy ('score', 'DESC')
+                    -> select ('competition.tag', 'users.name_cn', 'session.id', 'session.score', 'session.status', 'session.rank')
+                    -> get();
+        if (!$lst)
+            return (NULL);
+        return $lst;
+    }
+
+    
+    public static function updateRankingList($request)
+    {
+        foreach ($request['lst'] as $key => $value)
+        {
+            $content = sessions::find($key);
+            if ($content)
+            {
+                $content->rank = $value;
+                $content->save();
+            }
+        }
+        return true;
+    }
+
 }

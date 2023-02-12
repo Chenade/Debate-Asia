@@ -71,4 +71,6 @@ return array(
     'submit' => '提交',
     'view' => '查看',
     'list' => '清单',
+
+    'award' => '獎項',
 );

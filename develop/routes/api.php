@@ -402,7 +402,6 @@ Route::prefix('articles')->group(function () {
 
 });
 
-// token done
 Route::prefix('candidates')->group(function () {
     Route::get('/list',function (Request $request){
         $token = $request->header('token');
@@ -543,4 +542,33 @@ Route::prefix('image')->group(function () {
         $image = SESSIONS::saveImage();
         return response() -> json(['success' => True, 'message' => '', 'data' => $image], 200);
     });
+});
+
+Route::prefix('ranking')->group(function () {
+    Route::post('/candidates/list',function (Request $request){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+
+        $input = request() -> all();
+        $row = SESSIONS::getCandidatesListbyCid($input);
+        if (!$row)
+            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
+        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
+    });
+
+    Route::post('/submit',function (Request $request){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+
+        $input = request() -> all();
+        $row = SESSIONS::updateRankingList($input);
+        // if (!$row)
+        //     return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
+        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
+    });
+
 });

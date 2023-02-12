@@ -19,7 +19,10 @@ class LogResponse
         $data = $request->all();
         $detail = ' | Details: {';
         foreach ($data as $key => $value) {
-            $detail .= $key . ': ' . $value . ',';
+            if (is_array($value))
+                $detail .= $key . ': ' . implode("','",$value) . ',';
+            else
+                $detail .= $key . ': ' . $value . ',';
         }
         $detail .= ' }';
 
