@@ -41,7 +41,12 @@
                     </li>
                     <li class="nav-item nav-auth" id="nav_admin" style="margin: 0 1.5em;font-size:0.9em; display:none;">
                         <a class="nav-link" href="/admin" style="">
-                            <i class="fa-duotone fa-users"></i>&emsp;{{trans('dictionary.admin')}}{{trans('dictionary.panel')}}
+                             <i class="fa-solid fa-user"></i>&emsp;{{trans('dictionary.admin')}}{{trans('dictionary.panel')}}
+                        </a>
+                    </li>
+                    <li class="nav-item nav-auth" id="nav_judge" style="margin: 0 1.5em;font-size:0.9em; display:none;">
+                        <a class="nav-link" href="/judge" style="">
+                             <i class="fa-solid fa-user"></i>&emsp;{{trans('dictionary.judge')}}{{trans('dictionary.panel')}}
                         </a>
                     </li>
                     <li class="nav-item nav-auth" id="nav_logout" style="margin: 0 1.5em; font-size:0.9em; display:none;">

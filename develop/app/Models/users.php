@@ -126,6 +126,30 @@ class users extends Model
         return ($lst);
     }
 
+    public static function getJudgeListByUser($id)
+    {
+        $lst = DB::table('users') 
+                    -> where('id', $id) 
+                    -> first();
+        if ($lst)
+        {
+            unset ($lst->password);
+            unset ($lst->authority);
+            unset ($lst->created_at);
+            unset ($lst->updated_at);
+            $lst->competition = SESSIONS::getListByUser($id);
+            foreach ($lst->competition as $row)
+            {
+                unset($row->t_debate);
+                unset($row->t_read);
+                unset($row->t_write);
+                unset($row->created_at);
+                unset($row->updated_at);
+            }
+        }
+        return ($lst);
+    }
+
     public static function getlogin($request)
     {
         $row = DB::table('users') -> where('account', $request['account']) -> first();

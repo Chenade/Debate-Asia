@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\users;
 use App\Models\competition;
 use App\Models\articles;
+use App\Models\judges;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,12 +59,12 @@ class sessions extends Model
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        if (array_key_exists('status', $input)){
+        if ($content->role < 3 && array_key_exists('status', $input)){
             $content->status = $input['status'];
             if ($input['status'] == 1)
-            {
                 ARTICLES::initArticle($id);
-            }
+            else if ($input['status'] == 4)
+                JUDGES::init($content->cid, $id);
         }
         if (array_key_exists('roomid', $input)) $content->roomid = $input['roomid'];
         if (array_key_exists('role', $input)) $content->role = $input['role'];

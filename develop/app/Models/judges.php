@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\articles;
 
 class judges extends Model
 {
@@ -60,17 +61,96 @@ class judges extends Model
 
     public static function updateById($id, $input)
     {
-        $content = judge::find($id);
+        $content = judges::find($id);
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        if (array_key_exists('tag', $input)) $content->tag = $input['tag'];
-        if (array_key_exists('title', $input)) $content->title = $input['title'];
-        if (array_key_exists('date', $input)) $content->date = $input['date'];
-        if (array_key_exists('t_write', $input)) $content->t_write = $input['t_write'];
-        if (array_key_exists('t_read', $input)) $content->t_read = $input['t_read'];
-        if (array_key_exists('t_debate', $input)) $content->t_debate = $input['t_debate'];
+        if (array_key_exists('comment', $input)) $content->comment = $input['comment'];
+        if (array_key_exists('score_1', $input)) $content->score_1 = $input['score_1'];
+        if (array_key_exists('score_2', $input)) $content->score_2 = $input['score_2'];
+        if (array_key_exists('score_3', $input)) $content->score_3 = $input['score_3'];
+        if (array_key_exists('score_4', $input)) $content->score_4 = $input['score_4'];
+        if (array_key_exists('score_5', $input)) $content->score_5 = $input['score_5'];
+        $content->score = $content->score_1 + $content->score_2 + $content->score_3 + $content->score_4 + $content->score_5;
         $content->save();
+        $status = DB::table('session')
+                        -> where('id', $content->jid) 
+                        -> update(['status' => 2]);
         return true;
+    }
+    
+    public static function init($cid, $sid)
+    {
+        $lst = DB::table('session')
+                -> where('cid', $cid)
+                -> where('role', 3)
+                -> get();
+        foreach ($lst as $key => $value) {
+            $content = DB::table('judge')
+                        -> where('sid', $sid) 
+                        -> where('jid', $value->id) 
+                        -> first();
+            if (!$content)
+            {
+                $content = new judges;
+                $content->sid = $sid;
+                $content->jid = $value->id;
+                $content->save();
+            }
+            $content = DB::table('session')
+                        -> where('id', $value->id) 
+                        -> update(['status' => 1]);
+        }
+        
+        return true;
+    }
+
+    public static function getJudgeStatus($sid)
+    {
+        $row = DB::table('judge')
+                -> where ('judge.sid', $sid)
+                -> leftJoin ('session', 'judge.sid', '=', 'session.id')
+                -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
+                -> select (
+                            'judge.id','judge.comment', 'judge.score_1', 'judge.score_2', 'judge.score_3', 'judge.score_4', 'judge.score_5', 
+                            'session.cid', 'session.role',
+                            'competition.title', 'competition.tag', 'competition.date', 'competition.t_read', 'competition.t_debate', 'competition.t_write',
+                            )
+                -> get();
+        if (count($row) < 1)
+        {
+            $cid = DB::table('session') -> where('id', $sid) -> first();
+            JUDGES::init($cid->cid, $sid);
+
+            $row = DB::table('judge')
+                -> where ('judge.sid', $sid)
+                -> leftJoin ('session', 'judge.sid', '=', 'session.id')
+                -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
+                -> select (
+                            'judge.id','judge.comment', 'judge.score_1', 'judge.score_2', 'judge.score_3', 'judge.score_4', 'judge.score_5', 
+                            'session.cid', 'session.role',
+                            'competition.title', 'competition.tag', 'competition.date', 'competition.t_read', 'competition.t_debate', 'competition.t_write',
+                            )
+                -> get();
+        }
+       return ($row);
+    }
+    public static function getJudgeRoom($cid, $rid)
+    {
+        $row = DB::table('session')
+                -> where ('session.cid', $cid)
+                -> where ('session.roomid', $rid)
+                -> select ('id')
+                -> get();
+        $return = array();
+        foreach ($row as $key => $value) {
+            $tmp = JUDGES::getJudgeStatus($value->id)[0];
+            $article = ARTICLES::getArticlebySID($value->id);
+            $arr_article[$article[0]->type] = $article[0]->content;
+            $arr_article[$article[1]->type] = $article[1]->content;
+            $tmp->article = $arr_article;
+            array_push($return, $tmp);
+        }
+       return ($return);
     }
 }

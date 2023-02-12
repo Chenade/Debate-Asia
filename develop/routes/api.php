@@ -141,6 +141,8 @@ Route::prefix('users')->group(function () {
             $url = '/admin';
         else if ($content->authority == 1)
             $url = '/candidate';
+        else if ($content->authority == 2)
+            $url = '/judge';
         return response() -> json(['success' => True, 'message' => $token, 'url' => $url], 200);
     });
 
@@ -420,6 +422,61 @@ Route::prefix('judges')->group(function () {
     Route::get('/list/{cid}',function ($cid){
         $row = JUDGES::getListbyCID($cid);
         return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
+    });
+
+    Route::get('/list',function (Request $request){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $row = USERS::getJudgeListByUser(USERS::getId($token));
+        if (!$row)
+            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
+        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
+    });
+
+    Route::get('sessions/{cid}/rooms/{id}/status',function (Request $request, $cid, $id){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $row = JUDGES::getJudgeRoom($cid, $id);
+        if (count($row) < 1)
+            return response() -> json(['success' => FALSE, 'message' => 'Judge info not found'], 404);
+        $return['competition']['title'] = $row[0]->title;
+        $return['competition']['tag'] = $row[0]->tag;
+        $return['competition']['date'] = $row[0]->date;
+        $return['competition']['t_read'] = $row[0]->t_read;
+        $return['competition']['t_write'] = $row[0]->t_write;
+        $return['competition']['t_debate'] = $row[0]->t_debate;
+
+        foreach ($row as $key => $value) 
+        {
+            $return['usr'][$value->role]['judge']['id'] = $value->id;
+            $return['usr'][$value->role]['judge']['comment'] = $value->comment;
+            $return['usr'][$value->role]['judge']['score'][1] = $value->score_1;
+            $return['usr'][$value->role]['judge']['score'][2] = $value->score_2;
+            $return['usr'][$value->role]['judge']['score'][3] = $value->score_3;
+            $return['usr'][$value->role]['judge']['score'][4] = $value->score_4;
+            $return['usr'][$value->role]['judge']['score'][5] = $value->score_5;
+            $return['usr'][$value->role]['article'] = $value->article;
+        }
+        
+        return response() -> json(['success' => True, 'message' => '','data' => $return, 'token' => $token], 200);
+    });
+
+    Route::put('/submit/{id}',function (Request $request, $id){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
+        $content = JUDGES::updateById($id, $input);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Sessions not found.'], 404);
+        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
     });
 
 });

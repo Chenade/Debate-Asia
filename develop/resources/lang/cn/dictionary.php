@@ -17,7 +17,7 @@ return array(
     'borcher' => '简章',
     'livechat' => '即时谘询',
     'candidate' => '选手',
-    'judge' => '裁判',
+    'judge' => '评委',
     'panel' => '专区',
     'login' => '登入帐户',
     'logout' => '登出帐户',
@@ -63,4 +63,8 @@ return array(
     'neg' => '反方',
     'argument' => '立论',
     'rebuttal' => '反驳',
+
+    'grade' => '评分',
+    'comment' => '评语',
+    'submit' => '提交',
 );

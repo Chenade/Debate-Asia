@@ -1,0 +1,176 @@
+@include('includes.language')
+@extends('layouts.default', ['page_header' =>'About','page_parent' =>'Home','page_parent_path' =>'/','page_path' =>'', 'page_banner' =>'suneg_banner.png'])
+@section('content')
+    <img class="bg" src="/img/background.png" alt="" style=" width: 100%; height: 100vh; object-fit: cover;opacity: 0.5; position:fixed; left: 0; top: 0;">
+    <!-- body -->
+    <div class="col-12" style="margin-top:60px; position: absolute; top: 0;left: 0;min-height: 100vh; overflow-y: auto; overflow-x: hidden;">
+        <div class="stages" id="stage1" style="">
+            <div class="col-12 d-flex flex-wrap justify-content-around mt-1">
+                <div class="col-6" style="background-color: rgba(255,255,255,0.6); ">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item" id="pos_argue_tab" style="">
+                            <a class="nav-link" id="_pos_argue_tab" data-toggle="tab" href="#pos_argue">{{trans('dictionary.pos')}}{{trans('dictionary.argument')}}</a>
+                        </li>
+                        <li class="nav-item" id="pos_rebuttal_tab" style="">
+                            <a class="nav-link" id="_pos_rebuttal_tab" data-toggle="tab" href="#pos_rebuttal">{{trans('dictionary.pos')}}{{trans('dictionary.rebuttal')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="pos_argue">
+                            <!-- <div class="col-12"> -->
+                                <textarea disabled
+                                    id = "pos_argue_content"
+                                    rows="12" class="col-12" 
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
+                                </textarea>
+                            <!-- </div> -->
+                        </div>
+                        <div class="tab-pane" id="pos_rebuttal">
+                            <!-- <div class="col-12"> -->
+                                <textarea disabled
+                                    id = "pos_rebuttal_content"
+                                    rows="12" class="col-12" 
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
+                                </textarea>
+                            <!-- </div> -->
+                        </div>
+                        <div class="tab-pane active" id="info_tab">
+                            <div class="col-12" style="">
+                                <h3 class="mb-0">{{trans('dictionary.title')}}：</h3>
+                                <div class="mt-1 d-flex flex-column info-title"></div>
+                                <hr>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" >
+                    <p>{{trans('dictionary.pos')}}{{trans('dictionary.grade')}}：</p>
+                    <table class="col-12">
+                        <tr>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                        </tr>
+                        <tr>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="1"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="2"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="3"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="4"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 pos_score" data-id="5"></td>
+                        </tr>
+                    </table>
+                    <p>{{trans('dictionary.pos')}}{{trans('dictionary.comment')}}：</p>
+                    <div class="d-flex align-items-end">
+                        <div class="col-11">
+                            <textarea id="pos_comment"
+                            rows="7" class="col-12" 
+                            style="
+                                font-size: medium; 
+                                resize: none; 
+                                background-color: white"></textarea>
+                        </div>
+                        <div class="col-1">
+                            <button class="btn btn-success save-btn" data-type="pos" id="save_pos">{{trans('dictionary.submit')}}</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="stages" id="neg" style="">
+            <div class="col-12 d-flex flex-wrap justify-content-around mt-1">
+                <div class="col-6" style="background-color: rgba(255,255,255,0.6); ">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item" id="neg_argue_tab" style="">
+                            <a class="nav-link" id="_neg_argue_tab" data-toggle="tab" href="#neg_argue">{{trans('dictionary.neg')}}{{trans('dictionary.argument')}}</a>
+                        </li>
+                        <li class="nav-item" id="neg_rebuttal_tab" style="">
+                            <a class="nav-link" id="_neg_rebuttal_tab" data-toggle="tab" href="#neg_rebuttal">{{trans('dictionary.neg')}}{{trans('dictionary.rebuttal')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#neg_info_tab">{{trans('dictionary.competition')}}{{trans('dictionary.info')}}</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="neg_argue">
+                            <!-- <div class="col-12"> -->
+                                <textarea disabled
+                                    id = "neg_argue_content"
+                                    rows="12" class="col-12" 
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
+                                </textarea>
+                            <!-- </div> -->
+                        </div>
+                        <div class="tab-pane" id="neg_rebuttal">
+                            <!-- <div class="col-12"> -->
+                                <textarea disabled
+                                    id = "neg_rebuttal_content"
+                                    rows="12" class="col-12" 
+                                    style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
+                                </textarea>
+                            <!-- </div> -->
+                        </div>
+                        <div class="tab-pane active" id="neg_info_tab">
+                            <div class="col-12" style="">
+                                <h3 class="mb-0">{{trans('dictionary.title')}}：</h3>
+                                <div class="mt-1 d-flex flex-column info-title"></div>
+                                <hr>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" >
+                    <p>{{trans('dictionary.neg')}}{{trans('dictionary.grade')}}：</p>
+                    <table class="col-12">
+                        <tr>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                            <td>Score 1</td>
+                        </tr>
+                        <tr>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="1"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="2"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="3"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="4"></td>
+                            <td class="col-2"><input type="number" min="0" max="100" class="col-12 neg_score" data-id="5"></td>
+                        </tr>
+                    </table>
+                    <p>{{trans('dictionary.neg')}}{{trans('dictionary.comment')}}：</p>
+                    <div class="d-flex align-items-end">
+                        <div class="col-11">
+                            <textarea id="neg_comment"
+                            rows="7" class="col-12" 
+                            style="
+                                font-size: medium; 
+                                resize: none; 
+                                background-color: white"></textarea>
+                        </div>
+                        <div class="col-1">
+                            <button class="btn btn-success save-btn" data-type="neg" id="save_neg">{{trans('dictionary.submit')}}</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="mb-5"></div>
+    </div>
+@stop
+@section('end_script')
+    <script src="/js/general.min.js?v={{Config::get('app.version')}}"></script>
+    <script src="/js/grading.min.js?v={{Config::get('app.version')}}"></script>
+@stop
