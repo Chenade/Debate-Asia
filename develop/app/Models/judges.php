@@ -118,8 +118,7 @@ class judges extends Model
                 -> get();
         if (count($row) < 1)
         {
-            $cid = DB::table('session') -> where('id', $sid) -> where('roomid', '<>', 0) -> first();
-            return $cid;
+            $cid = DB::table('session') -> where('id', $sid) -> first();
             if (!$cid)
                 return NULL;
             JUDGES::init($cid->cid, $sid);
