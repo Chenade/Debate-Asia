@@ -10,18 +10,17 @@
                 <div id="clist">
                 </div>
                 <hr>
+                <div>
+                    <input type="text" id="award_name" class="form-control"/>
+                    <button class="btn btn-success" id="submit_award">{{trans('dictionary.add')}}{{trans('dictionary.award')}}</button>
+                </div>
+                <hr>
                 <div><h5 style="margin-bottom: 5px;">{{trans('dictionary.award')}}{{trans('dictionary.list')}}：</h5></div>
                 <div>
                     <div class="ml-2">
                         <ul id="awardlist">
-                            <li>第一名</li>
-                            <li>第二名</li>
-                            <li>第三名</li>
                         </ul>
                     </div>
-                </div>
-                <div>
-                    <button class="btn btn-success">{{trans('dictionary.add')}}{{trans('dictionary.award')}}</button>
                 </div>
             </div>
             <div class="col-8">

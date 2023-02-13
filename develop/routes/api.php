@@ -10,6 +10,7 @@ use App\Models\competition;
 use App\Models\sessions;
 use App\Models\judges;
 use App\Models\articles;
+use App\Models\Awards;
 
 /*
 |--------------------------------------------------------------------------
@@ -569,6 +570,56 @@ Route::prefix('ranking')->group(function () {
         // if (!$row)
         //     return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
         return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
+    });
+
+});
+
+Route::prefix('awards')->group(function () {
+
+    Route::get('/list',function (Request $request){
+        $token = $request->header('token');
+        $token = ADMIN::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $row = Awards::getList();
+        return response() -> json(['success' => True, 'data' => $row, 'token' => $token], 200);
+    });
+
+    Route::post('/create',function (Request $request){
+        $token = $request->header('token');
+        $token = ADMIN::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
+        $required = array('name');
+        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
+            return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
+        $row = Awards::store($input);
+        return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
+    });
+
+    Route::post('/delete',function (Request $request){
+        $token = $request->header('token');
+        $token = ADMIN::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
+        $row = Awards::deleteById($input);
+        if (!$row)
+            return response() -> json(['success' => False, 'message' => 'Member not joined', 'token' => $token], 400);
+        return response() -> json(['success' => True, 'message' => $input, 'token' => $token], 200);
+    });
+    
+    Route::put('/{id}',function (Request $request, $id){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
+        $content = Awards::updateById($id, $input);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Sessions not found.'], 404);
+        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
     });
 
 });
