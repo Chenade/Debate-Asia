@@ -55,7 +55,7 @@ class competition extends Model
         
             $lst = DB::table('session') -> where('cid', $id)  ->get();
             foreach ($lst as $key => $value) {
-                if ($value->camera)
+                if ($value->camera && (is_writable($_SERVER['DOCUMENT_ROOT']."/camera//" . $value->camera)))
                     unlink($_SERVER['DOCUMENT_ROOT']."/camera//" . $value->camera);
                 $deleted = DB::table('article') -> where('sid', $value->id)  ->delete();
             }
