@@ -223,15 +223,15 @@ Route::prefix('competition')->group(function () {
         return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
     });
     
-    // Route::delete('/{id}/{token}',function ($id, $token){
-    //     $token = ADMIN::validToken($token);
-    //     if(!$token)
-    //         return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-    //     $row = ADS::deleteById($id);
-    //     if (!$row)
-    //         return response() -> json(['success' => False, 'message' => 'Banner not found.'], 200);
-    //     return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    // });
+    Route::get('/delete/{id}',function ($id){
+        // $token = ADMIN::validToken($token);
+        // if(!$token)
+            // return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $row = COMPETITION::deleteById($id);
+        if (!$row)
+            return response() -> json(['success' => False, 'message' => 'COMPETITION not found.'], 200);
+        return response() -> json(['success' => True, 'message' => ''], 200);
+    });
 });
 
 Route::prefix('sessions')->group(function () {

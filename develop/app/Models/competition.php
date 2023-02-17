@@ -49,13 +49,18 @@ class competition extends Model
 
     public static function deleteById($id)
     {
-        $row = DB::table('competition') -> where('id',$id) -> first();
-        if (!$row)
-            return NULL;
-        $input = [];
-        $input['del'] = 1;
-        DB::table('competition')-> where('id', $id)-> update($input);
-
+        $content = competition::find($id);
+        if (!$content)
+            return (NULL);
+        
+            $lst = DB::table('session') -> where('cid', $id)  ->get();
+            foreach ($lst as $key => $value) {
+                if ($value->camera)
+                    unlink($_SERVER['DOCUMENT_ROOT']."/camera//" . $value->camera);
+                $deleted = DB::table('article') -> where('sid', $value->id)  ->delete();
+            }
+            $deleted = DB::table('session') -> where('cid', $id)  ->delete();
+            $deleted = DB::table('competition') -> where('id',$id)  ->delete();
         return true;
     }
 
