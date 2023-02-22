@@ -212,4 +212,13 @@ class judges extends Model
         }
         return $row;
     }
+
+    public static function getJudgebySID($sid)
+    {
+        $content = DB::table('judge')
+                    -> where('sid', $sid) 
+                    -> orderBy('score', 'DESC') 
+                    -> get();
+        return ($content);
+    }
 }

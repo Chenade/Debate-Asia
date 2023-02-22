@@ -503,6 +503,20 @@ Route::prefix('judges')->group(function () {
         return response() -> json(['success' => True, 'content' => $content, 'token' => $token], 200);
     });
 
+    Route::get('download/{id}',function (Request $request, $id){
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        
+        $content = JUDGES::getJudgebySID($id);
+        if (!$content)
+            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
+        $return = COMPETITION::getInfoBySid($id);
+        $return->judge = $content;
+        return response() -> json(['success' => True, 'message' => '', 'data' => $return], 200);
+    });
+
 });
 
 Route::prefix('image')->group(function () {
@@ -592,7 +606,7 @@ Route::prefix('awards')->group(function () {
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         $input = request() -> all();
         $required = array('name');
-        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
+        if (!$request->name || count(array_intersect_key(array_flip($required), $input)) != count($required))
             return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
         $row = Awards::store($input);
         return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
