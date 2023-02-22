@@ -77,7 +77,7 @@ class sessions extends Model
         $content = sessions::find($sid);
         if (!$content)
             return ("error");
-        if ($content->camera)
+        if ($content->camera && (is_writable($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera)))
             unlink($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera);
         $content->camera = Uuid::uuid4() . '.jpeg';
         $content->timestamps = false;

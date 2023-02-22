@@ -17,13 +17,9 @@ class LogResponse
         $path = $request->path();
         $method = '{' .  $request->method() . '} ';
         $data = $request->all();
+        if (array_key_exists('dataURI', $data)) $data['dataURI'] = "data/image";
         $detail = ' | Details: {';
-        foreach ($data as $key => $value) {
-            if (is_array($value))
-                $detail .= $key . ': ' . implode("','",$value) . ',';
-            else
-                $detail .= $key . ': ' . $value . ',';
-        }
+        $detail .= json_encode($data);
         $detail .= ' }';
 
         Log::info($method . $path .' | ' . USERS::getAcc($request->header('token')) . $detail);
