@@ -169,7 +169,7 @@ Route::prefix('users')->group(function () {
     
     Route::post('/create',function (){
         $input = request() -> all();
-        $token = ADMIN::checkToken($input);
+        $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         $required = array('title', 'content');
