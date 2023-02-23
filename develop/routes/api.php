@@ -181,7 +181,7 @@ Route::prefix('users')->group(function () {
     
     Route::put('/{id}',function (Request $request, $id){
         $token = $request->header('token');
-        $token = ADMIN::checkToken($input);
+        $token = USERS::validToken($token);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         $input = request() -> all();
