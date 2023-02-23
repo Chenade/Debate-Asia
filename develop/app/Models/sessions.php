@@ -236,6 +236,7 @@ class sessions extends Model
             if ($content)
             {
                 $content->rank = $value;
+                $content->status = 6;
                 $content->save();
             }
         }

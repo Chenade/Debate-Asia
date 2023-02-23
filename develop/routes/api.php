@@ -179,11 +179,12 @@ Route::prefix('users')->group(function () {
         return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
     });
     
-    Route::put('/{id}',function ($id){
-        $input = request() -> all();
+    Route::put('/{id}',function (Request $request, $id){
+        $token = $request->header('token');
         $token = ADMIN::checkToken($input);
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $input = request() -> all();
         $content = USERS::updateById($id, $input);
         if (!$content)
             return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
