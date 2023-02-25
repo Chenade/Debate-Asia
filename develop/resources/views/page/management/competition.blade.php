@@ -29,7 +29,7 @@
     </section>
 
     <div class="modal fade" id="competition_modal" role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title"><span id="md-method">新增</span>{{trans('dictionary.round')}}</h4>

@@ -66,8 +66,21 @@ class sessions extends Model
             else if ($input['status'] == 4)
                 JUDGES::init($content->cid, $id);
         }
-        if (array_key_exists('roomid', $input)) $content->roomid = $input['roomid'];
-        if (array_key_exists('role', $input)) $content->role = $input['role'];
+        if (array_key_exists('roomid', $input) || array_key_exists('role', $input))
+        {
+            $content->judge_note = NULL;
+            $tmp = DB::table('session')
+                        -> where ('roomid', $input['roomid'])
+                        -> where ('role', $input['role'])
+                        -> where ('id', '!=', $id)
+                        -> update (['judge_note' => NULL]);
+            if (array_key_exists('roomid', $input)) $content->roomid = $input['roomid'];
+            if (array_key_exists('role', $input)) $content->role = $input['role'];
+        }
+        else
+        {
+            if (array_key_exists('judge_note', $input)) $content->judge_note = $input['judge_note'];
+        }
         $content->save();
         return true;
     }
@@ -226,7 +239,6 @@ class sessions extends Model
             return (NULL);
         return $lst;
     }
-
     
     public static function updateRankingList($request)
     {
