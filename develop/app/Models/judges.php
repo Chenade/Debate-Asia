@@ -106,9 +106,9 @@ class judges extends Model
 
     public static function getJudgeStatus($sid, $token)
     {
-        $row = "DB::table('judge')
+        $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
-                -> where ('judge.jid', ".USERS::getId($token).")
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -116,14 +116,13 @@ class judges extends Model
                             'session.cid', 'session.role',
                             'competition.title', 'competition.tag', 'competition.date', 'competition.t_read', 'competition.t_debate', 'competition.t_write',
                             )
-                -> get();";
-        return ($row);
+                -> get();;
         if (count($row) < 1)
         {
             $cid = DB::table('session') -> where('id', $sid) -> first();
             if (!$cid)
                 return NULL;
-            JUDGES::init($cid->cid, $sid);
+            JUDGES::init(USERS::getId($token), $sid);
 
             $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
@@ -150,8 +149,8 @@ class judges extends Model
         $return = array();
         foreach ($row as $key => $value) {
             $tmp = JUDGES::getJudgeStatus($value->id, $token);
-                return ($tmp);
-                if (!$tmp || count($tmp) <= 0)
+                // return ($tmp);
+            if (!$tmp || count($tmp) <= 0)
                 return ($tmp);
             $tmp = $tmp[0];
             $article = ARTICLES::getArticlebySID($value->id);
