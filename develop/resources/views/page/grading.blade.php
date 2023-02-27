@@ -213,7 +213,7 @@
                         </div>
                         <div class="col-6 row">
                             <div><p>{{trans('rules.sum_score')}}</p></div>
-                            <div class="col-12 d-flex">
+                            <div class="col-9 d-flex">
                                 <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="neg_score col-12 inputbox" data-id="5" disabled></div>
                                 <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
                             </div>
