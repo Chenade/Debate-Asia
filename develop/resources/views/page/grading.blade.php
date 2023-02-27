@@ -26,7 +26,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "pos_argue_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -35,7 +35,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "pos_rebuttal_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -85,31 +85,31 @@
                         <tr>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="1"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12 inputbox" data-id="1"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="2"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12 inputbox" data-id="2"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12" data-id="3"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12 inputbox" data-id="3"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12" data-id="4"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12 inputbox" data-id="4"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="pos_score col-12" data-id="5" disabled></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="pos_score col-12 inputbox" data-id="5" disabled></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
                                 </div>
                             </td>
@@ -118,7 +118,7 @@
                     <p>{{trans('dictionary.pos')}}{{trans('dictionary.comment')}}：</p>
                     <div class="d-flex align-items-end">
                         <div class="col-11">
-                            <textarea id="pos_comment"
+                            <textarea id="pos_comment inputTextbox"
                             rows="7" class="col-12" 
                             style="
                                 font-size: medium; 
@@ -156,7 +156,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "neg_argue_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -165,7 +165,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "neg_rebuttal_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -215,31 +215,31 @@
                         <tr>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="1"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12 inputbox" data-id="1"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="2"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12 inputbox" data-id="2"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12" data-id="3"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12 inputbox" data-id="3"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12" data-id="4"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12 inputbox" data-id="4"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="neg_score col-12" data-id="5" disabled></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="neg_score col-12 inputbox" data-id="5" disabled></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
                                 </div>
                             </td>
@@ -249,7 +249,7 @@
                     <div class="d-flex align-items-end">
                         <div class="col-11">
                             <textarea id="neg_comment"
-                            rows="7" class="col-12" 
+                            rows="7" class="col-12 inputTextbox" 
                             style="
                                 font-size: medium; 
                                 resize: none; 
