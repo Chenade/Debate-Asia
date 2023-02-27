@@ -141,7 +141,6 @@ class judges extends Model
 
     public static function getJudgeRoom($cid, $rid, $token)
     {
-        return (USERS::getId($token));
         $row = DB::table('session')
                 -> where ('session.cid', $cid)
                 -> where ('session.roomid', $rid)
