@@ -118,8 +118,8 @@
                     <p>{{trans('dictionary.pos')}}{{trans('dictionary.comment')}}：</p>
                     <div class="d-flex align-items-end">
                         <div class="col-11">
-                            <textarea id="pos_comment inputTextbox"
-                            rows="7" class="col-12" 
+                            <textarea id="pos_comment"
+                            rows="7" class="col-12 inputTextbox" 
                             style="
                                 font-size: medium; 
                                 resize: none; 
