@@ -73,7 +73,17 @@
                     </div>
                 </div>
                 <div class="col-6" >
-                    <p>{{trans('dictionary.pos')}}{{trans('dictionary.grade')}}：</p>
+                    <div class="col-12 row">
+                        <div class="col-6">
+                            <p>{{trans('dictionary.pos')}}{{trans('dictionary.grade')}}：</p>
+                        </div>
+                        <div class="col-6">
+                            <div class="col-12 d-flex">
+                                <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="pos_score col-12 inputbox" data-id="5" disabled></div>
+                                <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="col-12">
                         <tr>
                             <td class="col-2">{{trans('rules.score_1_title')}}</td>
@@ -83,34 +93,28 @@
                             <td class="col-2">{{trans('rules.sum_score')}}</td>
                         </tr>
                         <tr>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
                                     <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12 inputbox" data-id="1"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
                                     <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12 inputbox" data-id="2"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
                                     <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12 inputbox" data-id="3"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
                                     <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12 inputbox" data-id="4"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
-                                </div>
-                            </td>
-                            <td class="col-2">
-                                <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="pos_score col-12 inputbox" data-id="5" disabled></div>
-                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
                                 </div>
                             </td>
                         </tr>
