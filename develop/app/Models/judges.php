@@ -116,7 +116,7 @@ class judges extends Model
                             'session.cid', 'session.role',
                             'competition.title', 'competition.tag', 'competition.date', 'competition.t_read', 'competition.t_debate', 'competition.t_write',
                             )
-                -> get();;
+                -> get();
         if (count($row) < 1)
         {
             $cid = DB::table('session') -> where('id', $sid) -> first();
@@ -141,6 +141,7 @@ class judges extends Model
 
     public static function getJudgeRoom($cid, $rid, $token)
     {
+        return (USERS::getId($token));
         $row = DB::table('session')
                 -> where ('session.cid', $cid)
                 -> where ('session.roomid', $rid)
