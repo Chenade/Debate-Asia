@@ -19,7 +19,7 @@ class LogResponse
         $data = $request->all();
         if (array_key_exists('dataURI', $data)) $data['dataURI'] = "data/image";
         $detail = ' | Details: {';
-        $detail .= json_encode($data);
+        $detail .= json_encode($data, JSON_UNESCAPED_UNICODE);
         $detail .= ' }';
 
         Log::info($method . $path .' | ' . USERS::getAcc($request->header('token')) . $detail);
