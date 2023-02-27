@@ -150,7 +150,7 @@ class judges extends Model
         foreach ($row as $key => $value) {
             $tmp = JUDGES::getJudgeStatus($value->id, $token);
             if (!$tmp || count($tmp) <= 0)
-                return (NULL);
+                return ($tmp);
             $tmp = $tmp[0];
             $article = ARTICLES::getArticlebySID($value->id);
             $arr_article[$article[0]->type] = $article[0]->content;

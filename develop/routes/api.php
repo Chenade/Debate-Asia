@@ -458,7 +458,7 @@ Route::prefix('judges')->group(function () {
         
         $row = JUDGES::getJudgeRoom($cid, $id, $token);
         if (!$row || count($row) < 1)
-            return response() -> json(['success' => FALSE, 'message' => 'Judge info not found'], 404);
+            return response() -> json(['success' => FALSE, 'message' => 'Judge info not found', 'data' => $row], 404);
         $return['competition']['title'] = $row[0]->title;
         $return['competition']['tag'] = $row[0]->tag;
         $return['competition']['date'] = $row[0]->date;
