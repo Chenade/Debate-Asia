@@ -87,13 +87,13 @@ class judges extends Model
         foreach ($lst as $key => $value) {
             $content = DB::table('judge')
                         -> where('sid', $sid) 
-                        -> where('jid', $value->id) 
+                        -> where('jid', $value->mid) 
                         -> first();
             if (!$content)
             {
                 $content = new judges;
                 $content->sid = $sid;
-                $content->jid = $value->id;
+                $content->jid = $value->mid;
                 $content->save();
             }
             $content = DB::table('session')
@@ -122,7 +122,7 @@ class judges extends Model
             $cid = DB::table('session') -> where('id', $sid) -> first();
             if (!$cid)
                 return NULL;
-            JUDGES::init(USERS::getId($token), $sid);
+            JUDGES::init($cid->cid, $sid);
 
             $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
