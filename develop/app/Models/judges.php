@@ -108,7 +108,7 @@ class judges extends Model
     {
         $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
-                -> where ('judge.mid', USERS::getId($token))
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -126,7 +126,7 @@ class judges extends Model
 
             $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
-                -> where ('judge.mid', USERS::getId($token))
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
