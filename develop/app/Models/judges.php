@@ -87,13 +87,13 @@ class judges extends Model
         foreach ($lst as $key => $value) {
             $content = DB::table('judge')
                         -> where('sid', $sid) 
-                        -> where('jid', $value->id) 
+                        -> where('jid', $value->mid) 
                         -> first();
             if (!$content)
             {
                 $content = new judges;
                 $content->sid = $sid;
-                $content->jid = $value->id;
+                $content->jid = $value->mid;
                 $content->save();
             }
             $content = DB::table('session')
@@ -104,10 +104,11 @@ class judges extends Model
         return true;
     }
 
-    public static function getJudgeStatus($sid)
+    public static function getJudgeStatus($sid, $token)
     {
         $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -125,6 +126,7 @@ class judges extends Model
 
             $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -137,7 +139,7 @@ class judges extends Model
        return ($row);
     }
 
-    public static function getJudgeRoom($cid, $rid)
+    public static function getJudgeRoom($cid, $rid, $token)
     {
         $row = DB::table('session')
                 -> where ('session.cid', $cid)
@@ -146,9 +148,10 @@ class judges extends Model
                 -> get();
         $return = array();
         foreach ($row as $key => $value) {
-            $tmp = JUDGES::getJudgeStatus($value->id);
-            if (!$tmp)
-                return (NULL);
+            $tmp = JUDGES::getJudgeStatus($value->id, $token);
+                // return ($tmp);
+            if (!$tmp || count($tmp) <= 0)
+                return ($tmp);
             $tmp = $tmp[0];
             $article = ARTICLES::getArticlebySID($value->id);
             $arr_article[$article[0]->type] = $article[0]->content;

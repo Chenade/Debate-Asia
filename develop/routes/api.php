@@ -456,9 +456,10 @@ Route::prefix('judges')->group(function () {
         if(!$token)
             return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
         
-        $row = JUDGES::getJudgeRoom($cid, $id);
+        $row = JUDGES::getJudgeRoom($cid, $id, $token);
+            // return response() -> json(['success' => TRUE, 'message' => 'Judge info not found', 'data' => $row], 200);
         if (!$row || count($row) < 1)
-            return response() -> json(['success' => FALSE, 'message' => 'Judge info not found'], 404);
+            return response() -> json(['success' => TRUE, 'message' => 'Judge info not found', 'data' => $row], 200);
         $return['competition']['title'] = $row[0]->title;
         $return['competition']['tag'] = $row[0]->tag;
         $return['competition']['date'] = $row[0]->date;
@@ -478,7 +479,7 @@ Route::prefix('judges')->group(function () {
             $return['usr'][$value->role]['article'] = $value->article;
         }
         
-        return response() -> json(['success' => True, 'message' => '','data' => $return, 'token' => $token], 200);
+        return response() -> json(['success' => True, 'message' => '','data' => $return, 'token' => $token, 'id'=> USERS::getId($token)], 200);
     });
 
     Route::put('/submit/{id}',function (Request $request, $id){
