@@ -72,9 +72,9 @@ class judges extends Model
         if (array_key_exists('score_5', $input)) $content->score_5 = $input['score_5'];
         $content->score = $content->score_1 + $content->score_2 + $content->score_3 + $content->score_4 + $content->score_5;
         $content->save();
-        $status = DB::table('session')
-                        -> where('id', $content->jid) 
-                        -> update(['status' => 2]);
+        // $status = DB::table('session')
+        //                 -> where('id', $content->jid) 
+        //                 -> update(['status' => 2]);
         return true;
     }
     
