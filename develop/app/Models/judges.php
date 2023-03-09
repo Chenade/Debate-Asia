@@ -104,10 +104,11 @@ class judges extends Model
         return true;
     }
 
-    public static function getJudgeStatus($sid)
+    public static function getJudgeStatus($sid, $jid)
     {
         $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
+                -> where ('judge.jid', $jid)
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -125,6 +126,7 @@ class judges extends Model
 
             $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
+                -> where ('judge.jid', $jid)
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -137,7 +139,7 @@ class judges extends Model
        return ($row);
     }
 
-    public static function getJudgeRoom($cid, $rid)
+    public static function getJudgeRoom($cid, $rid, $id)
     {
         $row = DB::table('session')
                 -> where ('session.cid', $cid)
@@ -146,7 +148,7 @@ class judges extends Model
                 -> get();
         $return = array();
         foreach ($row as $key => $value) {
-            $tmp = JUDGES::getJudgeStatus($value->id);
+            $tmp = JUDGES::getJudgeStatus($value->id, $id);
             if (!$tmp)
                 return (NULL);
             $tmp = $tmp[0];
