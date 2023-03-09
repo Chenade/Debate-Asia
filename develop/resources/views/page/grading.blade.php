@@ -26,7 +26,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "pos_argue_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -35,7 +35,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "pos_rebuttal_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -73,44 +73,48 @@
                     </div>
                 </div>
                 <div class="col-6" >
-                    <p>{{trans('dictionary.pos')}}{{trans('dictionary.grade')}}：</p>
+                    <div class="col-12 row">
+                        <div class="col-6">
+                            <p>{{trans('dictionary.pos')}}{{trans('dictionary.grade')}}：</p>
+                        </div>
+                        <div class="col-6 row">
+                            <div><p>{{trans('rules.sum_score')}}</p></div>
+                            <div class="col-9 d-flex">
+                                <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="pos_score col-12 inputbox" data-id="5" disabled></div>
+                                <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
+                            </div>
+                        </div>
+                    </div>
                     <table class="col-12">
                         <tr>
-                            <td class="col-2">{{trans('rules.score_1_title')}}</td>
-                            <td class="col-2">{{trans('rules.score_2_title')}}</td>
-                            <td class="col-2">{{trans('rules.score_3_title')}}</td>
-                            <td class="col-2">{{trans('rules.score_4_title')}}</td>
-                            <td class="col-2">{{trans('rules.sum_score')}}</td>
+                            <td class="col-3">{{trans('rules.score_1_title')}}</td>
+                            <td class="col-3">{{trans('rules.score_2_title')}}</td>
+                            <td class="col-3">{{trans('rules.score_3_title')}}</td>
+                            <td class="col-3">{{trans('rules.score_4_title')}}</td>
                         </tr>
                         <tr>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="1"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12 inputbox" data-id="1"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12" data-id="2"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="pos_score col-12 inputbox" data-id="2"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12" data-id="3"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12 inputbox" data-id="3"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
-                            <td class="col-2">
+                            <td class="col-3">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12" data-id="4"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="pos_score col-12 inputbox" data-id="4"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
-                                </div>
-                            </td>
-                            <td class="col-2">
-                                <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="pos_score col-12" data-id="5" disabled></div>
-                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
                                 </div>
                             </td>
                         </tr>
@@ -119,7 +123,7 @@
                     <div class="d-flex align-items-end">
                         <div class="col-11">
                             <textarea id="pos_comment"
-                            rows="7" class="col-12" 
+                            rows="7" class="col-12 inputTextbox" 
                             style="
                                 font-size: medium; 
                                 resize: none; 
@@ -156,7 +160,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "neg_argue_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -165,7 +169,7 @@
                             <!-- <div class="col-12"> -->
                                 <textarea disabled
                                     id = "neg_rebuttal_content"
-                                    rows="12" class="col-12" 
+                                    rows="12" class="col-12 inputTextbox" 
                                     style="font-size: medium; resize: none; background-color: #F5F5F5; margin-top: 20px;">
                                 </textarea>
                             <!-- </div> -->
@@ -203,44 +207,49 @@
                     </div>
                 </div>
                 <div class="col-6" >
-                    <p>{{trans('dictionary.neg')}}{{trans('dictionary.grade')}}：</p>
+                    <div class="col-12 row">
+                        <div class="col-6">
+                            <p>{{trans('dictionary.neg')}}{{trans('dictionary.grade')}}：</p>
+                        </div>
+                        <div class="col-6 row">
+                            <div><p>{{trans('rules.sum_score')}}</p></div>
+                            <div class="col-9 d-flex">
+                                <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="neg_score col-12 inputbox" data-id="5" disabled></div>
+                                <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <table class="col-12">
                         <tr>
                             <td class="col-2">{{trans('rules.score_1_title')}}</td>
                             <td class="col-2">{{trans('rules.score_2_title')}}</td>
                             <td class="col-2">{{trans('rules.score_3_title')}}</td>
                             <td class="col-2">{{trans('rules.score_4_title')}}</td>
-                            <td class="col-2">{{trans('rules.sum_score')}}</td>
                         </tr>
                         <tr>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="1"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12 inputbox" data-id="1"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12" data-id="2"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="200" class="neg_score col-12 inputbox" data-id="2"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/200</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12" data-id="3"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12 inputbox" data-id="3"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
                                 </div>
                             </td>
                             <td class="col-2">
                                 <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12" data-id="4"></div>
+                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="50" class="neg_score col-12 inputbox" data-id="4"></div>
                                     <div class="col-4 d-flex align-items-center" style="padding: 0">/50</div>
-                                </div>
-                            </td>
-                            <td class="col-2">
-                                <div class="col-12 d-flex">
-                                    <div class="col-8" style="padding: 0"><input type="number" min="0" max="500" class="neg_score col-12" data-id="5" disabled></div>
-                                    <div class="col-4 d-flex align-items-center" style="padding: 0">/500</div>
                                 </div>
                             </td>
                         </tr>
@@ -249,7 +258,7 @@
                     <div class="d-flex align-items-end">
                         <div class="col-11">
                             <textarea id="neg_comment"
-                            rows="7" class="col-12" 
+                            rows="7" class="col-12 inputTextbox" 
                             style="
                                 font-size: medium; 
                                 resize: none; 

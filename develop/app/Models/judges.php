@@ -72,9 +72,9 @@ class judges extends Model
         if (array_key_exists('score_5', $input)) $content->score_5 = $input['score_5'];
         $content->score = $content->score_1 + $content->score_2 + $content->score_3 + $content->score_4 + $content->score_5;
         $content->save();
-        $status = DB::table('session')
-                        -> where('id', $content->jid) 
-                        -> update(['status' => 2]);
+        // $status = DB::table('session')
+        //                 -> where('id', $content->jid) 
+        //                 -> update(['status' => 2]);
         return true;
     }
     
@@ -87,13 +87,13 @@ class judges extends Model
         foreach ($lst as $key => $value) {
             $content = DB::table('judge')
                         -> where('sid', $sid) 
-                        -> where('jid', $value->id) 
+                        -> where('jid', $value->mid) 
                         -> first();
             if (!$content)
             {
                 $content = new judges;
                 $content->sid = $sid;
-                $content->jid = $value->id;
+                $content->jid = $value->mid;
                 $content->save();
             }
             $content = DB::table('session')
@@ -104,11 +104,11 @@ class judges extends Model
         return true;
     }
 
-    public static function getJudgeStatus($sid, $jid)
+    public static function getJudgeStatus($sid, $token)
     {
         $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
-                -> where ('judge.jid', $jid)
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -126,7 +126,7 @@ class judges extends Model
 
             $row = DB::table('judge')
                 -> where ('judge.sid', $sid)
-                -> where ('judge.jid', $jid)
+                -> where ('judge.jid', USERS::getId($token))
                 -> leftJoin ('session', 'judge.sid', '=', 'session.id')
                 -> leftJoin ('competition', 'session.cid', '=', 'competition.id')
                 -> select (
@@ -139,7 +139,11 @@ class judges extends Model
        return ($row);
     }
 
+<<<<<<< HEAD
     public static function getJudgeRoom($cid, $rid, $id)
+=======
+    public static function getJudgeRoom($cid, $rid, $token)
+>>>>>>> 4c87c03839532c6fa0c52cc7a3a0851d7e5df682
     {
         $row = DB::table('session')
                 -> where ('session.cid', $cid)
@@ -148,9 +152,16 @@ class judges extends Model
                 -> get();
         $return = array();
         foreach ($row as $key => $value) {
+<<<<<<< HEAD
             $tmp = JUDGES::getJudgeStatus($value->id, $id);
             if (!$tmp)
                 return (NULL);
+=======
+            $tmp = JUDGES::getJudgeStatus($value->id, $token);
+                // return ($tmp);
+            if (!$tmp || count($tmp) <= 0)
+                return ($tmp);
+>>>>>>> 4c87c03839532c6fa0c52cc7a3a0851d7e5df682
             $tmp = $tmp[0];
             $article = ARTICLES::getArticlebySID($value->id);
             $arr_article[$article[0]->type] = $article[0]->content;
