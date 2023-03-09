@@ -139,11 +139,7 @@ class judges extends Model
        return ($row);
     }
 
-<<<<<<< HEAD
-    public static function getJudgeRoom($cid, $rid, $id)
-=======
     public static function getJudgeRoom($cid, $rid, $token)
->>>>>>> 4c87c03839532c6fa0c52cc7a3a0851d7e5df682
     {
         $row = DB::table('session')
                 -> where ('session.cid', $cid)
@@ -152,16 +148,10 @@ class judges extends Model
                 -> get();
         $return = array();
         foreach ($row as $key => $value) {
-<<<<<<< HEAD
-            $tmp = JUDGES::getJudgeStatus($value->id, $id);
-            if (!$tmp)
-                return (NULL);
-=======
             $tmp = JUDGES::getJudgeStatus($value->id, $token);
                 // return ($tmp);
             if (!$tmp || count($tmp) <= 0)
                 return ($tmp);
->>>>>>> 4c87c03839532c6fa0c52cc7a3a0851d7e5df682
             $tmp = $tmp[0];
             $article = ARTICLES::getArticlebySID($value->id);
             $arr_article[$article[0]->type] = $article[0]->content;
