@@ -265,10 +265,18 @@ class users extends Model
         $row = DB::table('users') -> where('id',$id) -> first();
         if (!$row)
             return NULL;
-        $input = [];
-        $input['del'] = 1;
-        // DB::table('activity')-> where('id', $id)-> update($input);
+        if ($row['locked'] == 1)
+            return NULL;
+        DB::table('users') -> where('id',$id) -> delete();
+        return true;
+    }
 
+    public static function lockById($id)
+    {
+        $row = DB::table('users') -> where('id',$id) -> first();
+        if (!$row)
+            return NULL;
+        DB::table('users') -> where('id',$id) -> update(['locked' => 1]);
         return true;
     }
 }

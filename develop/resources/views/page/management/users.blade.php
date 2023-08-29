@@ -136,8 +136,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-danger delete-btn" data-action="delete" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">{{trans('dictionary.delete')}}</button>
+                        <button type="button" class="btn btn-primary lock-btn" data-action="lock" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">{{trans('dictionary.lock')}}</button>
+                    </div>
                     <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
-                    <button type="button" class="btn btn-danger delete-btn" data-action="delete" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">{{trans('dictionary.delete')}}</button>
                 </div>
             </div>
         </div>

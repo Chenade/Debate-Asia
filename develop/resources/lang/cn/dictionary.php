@@ -30,6 +30,8 @@ return array(
     'select' => '选择',
     'add' => '新增',
     'save' => '储存',
+    'delete' => '刪除',
+    'lock' => '鎖定',
     'pairs' => '随机分配场次',
 
     'info' => '资讯',
