@@ -265,7 +265,7 @@ class users extends Model
         $row = DB::table('users') -> where('id',$id) -> first();
         if (!$row)
             return NULL;
-        if ($row['locked'] == 1)
+        if ($row->locked == 1)
             return NULL;
         DB::table('users') -> where('id',$id) -> delete();
         return true;
