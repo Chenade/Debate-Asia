@@ -29,15 +29,18 @@
                     <div class="col-3 d-flex flex-column justify-content-center">
                         <span>{{trans('dictionary.account')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_account" style="margin: 0">
+                    <input class="col-9 charnum" type="text" id="edit_account" style="margin: 0; padding-right:30px;">
+                    <span class="charCount" style="  position: absolute; top: 50%;right: 25px;transform: translateY(-50%);color: gray;">0 / 12</span>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.password')}}:</span>
                     </div>
-                    <input class="col-7" type="text" id="edit_password" style="margin: 0"  placeholder="">
-                    <button class="btn btn-primary col-2" style="margin: 0;" id="getUser">{{trans('dictionary.login')}}</button>
+                    <input class="col-9 charnum" type="password" id="edit_password" style="margin: 0; padding-right:30px;"  placeholder="">
+                    <span class="charCount" style="  position: absolute; top: 50%;right: 25px;transform: translateY(-50%);color: gray;">0 / 12</span>
+
+                    <!-- <button class="btn btn-primary col-2" style="margin: 0;" id="getUser">{{trans('dictionary.login')}}</button> -->
                 </div>
                 
                 <hr style="color: black; width: 60vw;">
