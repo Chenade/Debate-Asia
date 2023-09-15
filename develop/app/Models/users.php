@@ -109,11 +109,23 @@ class users extends Model
     public static function getSignupLst($request)
     {
         $lst = DB::table('competition_log') 
-                    ->select('competition_log.*', 'users.id as user_id', 'groups.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
-                    -> where ('competition_log.competition_id', $request['competition_id'])
-                    -> leftJoin('users', 'competition_log.userId', '=', 'users.id')
-                    -> leftJoin('groups', 'competition_log.groupId', '=', 'groups.group_id')
-                    -> get();
+                    ->select(
+                        'competition_log.id as id', // Alias the id column
+                        'competition_log.competition_id', // Include the competition_id column
+                        'competition_log.*', 
+                        'users.id as user_id', 
+                        'groups.id as group_id', // Alias the groupId column
+                        'groups.group_name', 
+                        'users.name_cn', 
+                        'users.name_zh', 
+                        'users.school_cn', 
+                        'users.school_zh'
+                    )
+                    ->where('competition_log.competition_id', $request['competition_id'])
+                    ->leftJoin('users', 'competition_log.userId', '=', 'users.id')
+                    ->leftJoin('groups', 'competition_log.groupId', '=', 'groups.id')
+                    ->get();
+    
 
         return $lst;
     }
@@ -122,12 +134,19 @@ class users extends Model
     public static function getSignupById($id)
     {
         $lst = DB::table('competition_log') 
-                    ->select('competition_log.*', 'users.id as user_id', 'groups.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
-                    -> where ('competition_log.id', $id)
-                    -> leftJoin('users', 'competition_log.userId', '=', 'users.id')
-                    -> leftJoin('groups', 'competition_log.groupId', '=', 'groups.group_id')
-                    -> first();
-
+                    ->select(
+                        'competition_log.id as competition_log.id', // Alias the id column
+                        'competition_log.*', 
+                        'users.id as user_id', 
+                        'groups.id as group_id', // Alias the groupId column
+                        'groups.group_name', // Alias the groupId column
+                        'users.*', 
+                    )
+                    ->where('competition_log.id', $id)
+                    ->leftJoin('users', 'competition_log.userId', '=', 'users.id')
+                    ->leftJoin('groups', 'competition_log.groupId', '=', 'groups.id')
+                    ->first();
+    
         return $lst;
     }
 

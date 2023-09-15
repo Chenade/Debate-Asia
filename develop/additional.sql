@@ -1,19 +1,8 @@
 -- Create Competitions table
-CREATE TABLE Competitions (
-    competition_id INT PRIMARY KEY,
-    competition_name VARCHAR(255),
-    start_date DATE,
-    end_date DATE
-);
+CREATE TABLE Competitions (competition_id INT PRIMARY KEY,competition_name VARCHAR(255),start_date DATE,end_date DATE,created_at DATETIME,updated_at DATETIME,);
 
 -- Create Groups table
-CREATE TABLE Groups (
-    group_id INT PRIMARY KEY,
-    competition_id INT,
-    group_name VARCHAR(255),
-    group_config TEXT,
-    FOREIGN KEY (competition_id) REFERENCES Competitions(competition_id)
-);
+CREATE TABLE Groups (group_id INT PRIMARY KEY,competition_id INT,group_name VARCHAR(255),group_config TEXT,FOREIGN KEY (competition_id) REFERENCES Competitions(competition_id));
 
 -- Create Sessions table
 CREATE TABLE Sessions (
@@ -46,6 +35,7 @@ ALTER TABLE `users` CHANGE `token` `token` VARCHAR(255) CHARACTER SET utf8mb4 CO
 ALTER TABLE `users` ADD `name_en` VARCHAR(255) NOT NULL AFTER `name_zh`;
 ALTER TABLE `users` ADD `gender` VARCHAR(10) NOT NULL AFTER `name_en`;
 ALTER TABLE `users` ADD `address` TEXT NOT NULL AFTER `account`;
+
 ALTER TABLE `competition_log` ADD `date` JSON NOT NULL AFTER `groupId`, ADD `language` JSON NOT NULL AFTER `date`, ADD `invoice_name` VARCHAR(50) NULL AFTER `language`, ADD `invoice_no` VARCHAR(20) NULL AFTER `invoice_name`;
 
 ALTER TABLE `competition_log` CHANGE `language` `language` VARCHAR(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL;
@@ -53,3 +43,5 @@ ALTER TABLE `competition_log` ADD `updated_at` DATE NOT NULL AFTER `approval`, A
 ALTER TABLE `users` ADD `mentor` TEXT NOT NULL AFTER `email`;
 ALTER TABLE `users` ADD `region` TEXT NOT NULL AFTER `email`;
 ALTER TABLE `competition_log` ADD `competition_id` INT NOT NULL DEFAULT '1' AFTER `userId`;
+ALTER TABLE `groups` ADD `t_write` INT NULL AFTER `group_config`, ADD `t_read` INT NULL AFTER `t_write`, ADD `t_debate` INT NULL AFTER `t_read`;
+ALTER TABLE `groups` CHANGE `group_id` `id` INT(11) NOT NULL;

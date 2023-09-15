@@ -15,15 +15,15 @@
 
             <div class="d-flex flex-wrap align-items-start flex-column" style="padding: 0 90px 0 110px; margin-bottom: 50px;">
 
-                <p style="color: black; font-weight:900; text-align:justify;">「用中文思辨，用寫作看世界。」</p>
+                <p style="color: black; font-weight:900; text-align:justify;">「{{trans('dictionary.solgan1')}}」</p>
 
-                <p style="color: black; font-weight:500; text-align:justify;"> 主辦單位：亞洲思辨教育學會、北京縱橫思海文化發展有限公司</p>
+                <p style="color: black; font-weight:500; text-align:justify;"> {{trans('dictionary.host')}}：{{trans('dictionary.DebateAsia')}}、{{trans('dictionary.zhonghen')}}</p>
 
-                <p style="color: black; font-weight:500; text-align:justify;"> 請每位報名者填選以下資料，並提交成功繳費之截圖證明，成功報名者將收到電郵通知比賽平台的登入資料。</p>
+                <p style="color: black; font-weight:500; text-align:justify;"> {{trans('dictionary.note_signup')}}</p>
 
                 <hr style="color: black; width: 60vw;">
 
-                <p style="color: black; font-weight:500; text-align:justify;"> 若去年有報名過比賽，請輸入帳號密碼，將自動帶入基本資料，若無，下列資料將做為未來比賽登入資訊</p>
+                <p style="color: black; font-weight:500; text-align:justify;">{{trans('dictionary.account_condition')}}</p>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
@@ -53,20 +53,20 @@
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.chinese')}}{{trans('dictionary.name')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_chinese_name" style="margin: 0"  placeholder="(請輸入與身份證相同的中文全名)">
+                    <input class="col-9" type="text" id="edit_chinese_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_zh')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.english')}}{{trans('dictionary.name')}}:</span>
+                        <span>{{trans('dictionary.en')}}{{trans('dictionary.name')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_english_name" style="margin: 0"  placeholder="(將顯示於英文版參賽證明書)">
+                    <input class="col-9" type="text" id="edit_english_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_en')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
                         <span>{{trans('dictionary.gender')}}:</span>
-                        <span style="font-size: 0.8em; color: grey;">(僅作主辦方統計用途)</span>
+                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.note_birthday')}}</span>
                     </div>
                     <select class=" selectpicker col-9" id="edit_gender">
                         <option value="female">{{trans('dictionary.female')}}</option>
@@ -78,51 +78,51 @@
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
                         <span>{{trans('dictionary.birthday')}}:</span>
-                        <span style="font-size: 0.8em; color: grey;">(請選擇公曆日期)</span>
+                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.note_birthday')}}</span>
                     </div>
                     <input class="col-9" type="date" id="edit_birthday" style="margin: 0">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.phone_number')}}:</span>
+                        <span>{{trans('dictionary.cellphone')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_cellphone" style="margin: 0"  placeholder="(請輸入國際區號與電話號碼，例：+852 8888 8888)">
+                    <input class="col-9" type="text" id="edit_cellphone" style="margin: 0"  placeholder="{{trans('dictionary.note_cellphone')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.wechat')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_wechat" style="margin: 0"  placeholder="(供主辦方在比賽期間聯繫參賽者)">
+                    <input class="col-9" type="text" id="edit_wechat" style="margin: 0"  placeholder="{{trans('dictionary.note_wechat')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.address')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_address" style="margin: 0"  placeholder="(供主辦方寄送獎座、獎狀、證書、作品選集及紀念品)">
+                    <input class="col-9" type="text" id="edit_address" style="margin: 0"  placeholder="{{trans('dictionary.note_address')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.region')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_region" style="margin: 0"  placeholder="(以就讀學校所在地為準)">
+                    <input class="col-9" type="text" id="edit_region" style="margin: 0"  placeholder="{{trans('dictionary.note_region')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.school')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_school" style="margin: 0" placeholder="(請輸入學校全名)">
+                    <input class="col-9" type="text" id="edit_school" style="margin: 0" placeholder="{{trans('dictionary.note_school')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.mentor')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_mentor" style="margin: 0"  placeholder="(參賽者如有指導老師可於此欄目選填老師中文全名)">
+                    <input class="col-9" type="text" id="edit_mentor" style="margin: 0"  placeholder="{{trans('dictionary.note_mentor')}}">
                 </div>
 
                 <hr style="color: black; width: 60vw;">
@@ -175,34 +175,34 @@
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.proof')}}:</span>
                     </div>
-                    <input class="col-5" type="file" name="file" id="edit_proof" style="margin: 0"  placeholder="（如需）">
+                    <input class="col-5" type="file" name="file" id="edit_proof" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
                     <input type="checkbox" id="edit_noproof" style="margin: 0">
-                    <label for="edit_noproof">&ensp;由團隊其他人繳交</label>
+                    <label for="edit_noproof">&ensp;{{trans('dictionary.note_proof')}}</label>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.invoice_name')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_invoice_name" style="margin: 0"  placeholder="（如需）">
+                    <input class="col-9" type="text" id="edit_invoice_name" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.invoice_no')}}:</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_invoice_no" style="margin: 0"  placeholder="（如需）">
+                    <input class="col-9" type="text" id="edit_invoice_no" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
                 </div>
 
                 <hr style="color: black; width: 60vw;">
 
                 <div class="col-12 d-flex mb-3">
                     <input type="checkbox" id="edit_agree" style="margin: 0">
-                    <label for="edit_agree">我已閱讀比賽簡章，並同意參賽之合約條款及授權主辦方收集以上資料作賽務用途</label>
+                    <label for="edit_agree">{{trans('dictionary.signup_condition')}}</label>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
-                    <button class="btn btn-success col-12" id="submit">Submit</button>
+                    <button class="btn btn-success col-12" id="submit">{{trans('dictionary.submit')}}</button>
                 </div>
 
             </div>
