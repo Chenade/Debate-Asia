@@ -14,6 +14,15 @@
                 <ul class="navbar-nav w-100">
                     <div class="ml-auto"></div>
                     <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin">{{trans('dictionary.account')}}{{trans('dictionary.manage')}}</a></li>
+                    <!-- <li class="nav-item dropdown" style="margin: 0 0.5em;font-size:0.9em;">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">{{trans('dictionary.competition')}}{{trans('dictionary.manage')}}</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/competition/manage">Competition</a>
+                            <a class="dropdown-item" href="/competition/manage/group">Group{{trans('dictionary.manage')}}</a>
+                            <a class="dropdown-item" href="/competition/manage/session">Session{{trans('dictionary.manage')}}</a>
+                            <a class="dropdown-item" href="/competition/manage/round">Rounds{{trans('dictionary.manage')}}</a>
+                        </div>
+                    </li> -->
                     <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin/competition">{{trans('dictionary.competition')}}{{trans('dictionary.manage')}}</a></li>
                     <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin/session">{{trans('dictionary.competition')}}{{trans('dictionary.monitor')}}</a></li>
                     <li class="nav-item" style="margin: 0 0.5em;font-size:0.9em;"><a class="nav-link" href="/admin/ranking">{{trans('dictionary.competition')}}{{trans('dictionary.ranking')}}</a></li>

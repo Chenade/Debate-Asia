@@ -21,6 +21,7 @@ return array(
     'panel' => '專區',
     'login' => '登入帳戶',
     'logout' => '登出帳戶',
+    'signup' => '報名比賽',
     
     'admin' => '管理員',
     'account' => '帳戶',

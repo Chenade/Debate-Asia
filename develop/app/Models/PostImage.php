@@ -58,4 +58,15 @@ class PostImage extends Model
         return true;
     }
 
+    //upload image
+    public static function uploadImage($type, $file)
+    {
+        $uuid = Uuid::uuid4();
+        $extension = $file->getClientOriginalExtension();
+        $uuid_name = $uuid->toString();
+        $newFileName = $uuid_name . '.' . $extension;
+        $file->move($_SERVER['DOCUMENT_ROOT']."/upload/Image/" . $type . "/", $newFileName);
+        return $newFileName;
+    }
+
 }

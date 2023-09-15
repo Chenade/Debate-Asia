@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/', 					function () { return view('page.index');});
 // Route::get('/guideline', 		function () { return view('page.guideline');});
 Route::get('/rules', 				function () { return view('page.rules');});
+Route::get('/signup', 				function () { return view('page.signup');});
 
 Route::prefix('candidate')->group(function () {
 	Route::get('/', 					function () { return view('page.candidate');});

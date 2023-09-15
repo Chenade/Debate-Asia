@@ -6,6 +6,7 @@ use App\Models\sessions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\competition_log;
 
 class users extends Model
 {
@@ -37,6 +38,108 @@ class users extends Model
         $content->token = "";
         $content->save();
         return "";
+    }
+
+    public static function getInfo($request)
+    {
+        $usr = DB::table('users') 
+            -> where('account', $request['account']) 
+            -> first();
+
+        if ($usr && $usr->password == $request['password'])
+            return $content = users::find($usr->id);
+        return NULL;
+    }
+
+    public static function signup($request)
+    {
+        $usr = DB::table('users') 
+            -> where('account', $request['account']) 
+            -> first();
+
+        if (!$usr)
+            $content = new users;
+        else if ($usr && $usr->password == $request['password'])
+            $content = users::find($usr->id);
+        else
+            return "Account already taken / Wrong Password!";
+
+        $content->authority = 1;
+        $content->email = $request['email'];
+        $content->account = $request['account'];
+        $content->password = $request['password'];
+        $content->school_cn = $request['school'];
+        $content->school_zh = $request['school'];
+        $content->name_cn = $request['chinese_name'];
+        $content->name_zh = $request['chinese_name'];
+        $content->name_en = $request['english_name'];
+        $content->gender = $request['gender'];
+        $content->birthday = $request['birthday'];
+        $content->cellphone = $request['cellphone'];
+        $content->wechat = $request['wechat'];
+        $content->address = $request['address'];
+        $content->mentor = $request['mentor'];
+        
+        // $content->whatsapp = $request['whatsapp'];
+        // $content->lineid = $request['lineid'];
+        // $token = users::genToken($request['account']);
+        // $content->token = "";
+        $content->save();
+
+        $chk = DB::table('competition_log') 
+            -> where('userId', $content->id) 
+            -> first();
+        if ($chk)
+            return "Already signed up!";
+
+        $log = new competition_log;
+        $log->userId = $content->id;
+        $log->groupId = $request['group'];
+        $log->date =  json_encode($request['date']);
+        $log->language = $request['language'];
+        $log->invoice_name = $request['invoice_name'];
+        $log->invoice_no = $request['invoice_no'];
+        $log->proof = $request['proof'];
+        $log->save();
+
+        return NULL;
+    }
+
+    // getSignupLst
+    public static function getSignupLst($request)
+    {
+        $lst = DB::table('competition_log') 
+                    ->select('competition_log.*', 'users.id as user_id', 'groups.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
+                    -> where ('competition_log.competition_id', $request['competition_id'])
+                    -> leftJoin('users', 'competition_log.userId', '=', 'users.id')
+                    -> leftJoin('groups', 'competition_log.groupId', '=', 'groups.group_id')
+                    -> get();
+
+        return $lst;
+    }
+
+    //getSignupById
+    public static function getSignupById($id)
+    {
+        $lst = DB::table('competition_log') 
+                    ->select('competition_log.*', 'users.id as user_id', 'groups.*', 'users.name_cn', 'users.name_zh', 'users.school_cn', 'users.school_zh')
+                    -> where ('competition_log.id', $id)
+                    -> leftJoin('users', 'competition_log.userId', '=', 'users.id')
+                    -> leftJoin('groups', 'competition_log.groupId', '=', 'groups.group_id')
+                    -> first();
+
+        return $lst;
+    }
+
+    //signUpApprove
+    public static function signUpApprove($id)
+    {
+        $log = competition_log::find($id);
+        if (!$log)
+            return "No such record!";
+        $log->approval = 1;
+        $log->save();
+        return NULL;
     }
     
     public static function updateById($id, $input)

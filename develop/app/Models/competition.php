@@ -10,7 +10,7 @@ class competition extends Model
 {
     use HasFactory;
 
-    protected $table = 'competition';
+    protected $table = 'competitions';
     
     public $timestamps = true;
 
@@ -36,15 +36,15 @@ class competition extends Model
 
     public static function getList()
     {
-        return DB::table('competition')
+        return DB::table('competitions')
                 -> get();
     }
 
     public static function getElementById($id)
     {
-        return DB::table('competition') 
+        return DB::table('competitions') 
                 -> where('id', $id) 
-                -> get();
+                -> first();
     }
 
     public static function deleteById($id)
@@ -60,7 +60,7 @@ class competition extends Model
                 $deleted = DB::table('article') -> where('sid', $value->id)  ->delete();
             }
             $deleted = DB::table('session') -> where('cid', $id)  ->delete();
-            $deleted = DB::table('competition') -> where('id',$id)  ->delete();
+            $deleted = DB::table('competitions') -> where('id',$id)  ->delete();
         return true;
     }
 
@@ -70,12 +70,12 @@ class competition extends Model
         if (!$content)
             return NULL;
         $content->timestamps = true;
-        if (array_key_exists('tag', $input)) $content->tag = $input['tag'];
-        if (array_key_exists('title', $input)) $content->title = $input['title'];
-        if (array_key_exists('date', $input)) $content->date = $input['date'];
-        if (array_key_exists('t_write', $input)) $content->t_write = $input['t_write'];
-        if (array_key_exists('t_read', $input)) $content->t_read = $input['t_read'];
-        if (array_key_exists('t_debate', $input)) $content->t_debate = $input['t_debate'];
+        if (array_key_exists('competition_name', $input)) $content->competition_name = $input['competition_name'];
+        if (array_key_exists('start_date', $input)) $content->start_date = $input['start_date'];
+        if (array_key_exists('end_date', $input)) $content->end_date = $input['end_date'];
+        // if (array_key_exists('t_write', $input)) $content->t_write = $input['t_write'];
+        // if (array_key_exists('t_read', $input)) $content->t_read = $input['t_read'];
+        // if (array_key_exists('t_debate', $input)) $content->t_debate = $input['t_debate'];
         $content->save();
         return true;
     }
@@ -86,7 +86,7 @@ class competition extends Model
         $row = DB::table('session')
             -> where('id', $sid)
             -> first();
-        $row2 = DB::table('competition')
+        $row2 = DB::table('competitions')
             -> where('id', $row->cid)
             -> first();
         return $row2;

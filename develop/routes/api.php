@@ -113,7 +113,36 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('users')->group(function () {
-    
+
+    Route::post('/info',function (Request $request){
+        $content = USERS::getInfo($request->all());
+        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
+        
+    });
+
+    Route::post('/signup',function (Request $request){
+        $val = USERS::signup($request->all());
+        if ($val)
+            return response() -> json(['success' => FALSE, 'error' => $val], 400);
+        return response() -> json(['success' => True], 200);
+    });
+
+    Route::get('/signup/list',function (Request $request){
+        $lst = USERS::getSignupLst($request->all());
+        return response() -> json(['success' => True, 'data' => $lst], 200);
+    });
+
+    Route::get('/signup/{id}',function ($id, Request $request){
+        $lst = USERS::getSignupById($id);
+        return response() -> json(['success' => True, 'data' => $lst], 200);
+    });
+
+    Route::post('/signup/{id}/approval',function ($id, Request $request){
+        $lst = USERS::signUpApprove($id);
+        return response() -> json(['success' => True, 'data' => $lst], 200);
+    });
+
+
     Route::get('/token',function (Request $request){
         $token = $request->header('token');
         $token = USERS::validToken($token);
@@ -215,337 +244,59 @@ Route::prefix('users')->group(function () {
         return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
     });
 });
-
-Route::prefix('competition')->group(function () {
-
-    Route::get('/{id}',function ($id){
-        $content = COMPETITION::getElementById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
-    });
     
-    Route::post('/create',function (){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $required = array('title', 'tag');
-        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
-            return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $row = COMPETITION::store($input);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
-    
-    Route::put('/{id}',function ($id){
-        $input = request() -> all();
-        $token = ADMIN::checkToken($input);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $content = COMPETITION::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
-    
-    // Route::get('/delete/{id}',function ($id){
-    //     // $token = ADMIN::validToken($token);
-    //     // if(!$token)
-    //         // return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-    //     $row = COMPETITION::deleteById($id);
-    //     if (!$row)
-    //         return response() -> json(['success' => False, 'message' => 'COMPETITION not found.'], 200);
-    //     return response() -> json(['success' => True, 'message' => ''], 200);
-    // });
-});
+use App\Http\Controllers\CompetitionController;
+Route::get('competitions', [CompetitionController::class, 'index']);
+Route::get('competitions/{id}', [CompetitionController::class, 'show']);
+Route::post('competitions', [CompetitionController::class, 'store']);
+Route::put('competitions/{id}', [CompetitionController::class, 'update']);
+Route::delete('competitions/{id}', [CompetitionController::class, 'destroy']);
 
-Route::prefix('sessions')->group(function () {
-    Route::get('/{roles}/{cid}',function (Request $request, $roles, $cid){
-        $token = $request->header('token');
-        $token = ADMIN::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
 
-        if ($roles == 'candidates')
-            $row = SESSIONS::getListbyCID(1, $cid);
-        else
-            $row = SESSIONS::getListbyCID(3, $cid);
-        foreach ($row as $value)
-        {
-            switch ($value->role) {
-                case 1:
-                    $value->roles = '正方';
-                    break;
-                case 2:
-                    $value->roles = '反方';
-                    break;
-                case 3:
-                    $value->roles = '裁判';
-                    break;
-                default:
-                    $value->roles = '未指定';
-                    break;
-            }
-        }
-        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
-    });
+use App\Http\Controllers\GroupController;
+Route::get('groups', [GroupController::class, 'index']);
+Route::get('groups/{id}', [GroupController::class, 'show']);
+Route::post('groups', [GroupController::class, 'store']);
+Route::put('groups/{id}', [GroupController::class, 'update']);
+Route::delete('groups/{id}', [GroupController::class, 'destroy']);
 
-    Route::get('/{id}',function ($id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $content = SESSIONS::getElementById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        return response() -> json(['success' => True, 'token' => $token, 'data' => $content[0]], 200);
-    });
-    
-    Route::post('/create',function (Request $request){
-        $token = $request->header('token');
-        $token = ADMIN::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $input = request() -> all();
-        $required = array('mid', 'cid');
-        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
-            return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $row = SESSIONS::store($input);
-        if (!$row)
-            return response() -> json(['success' => False, 'message' => 'Member already joined', 'token' => $token], 400);
-        return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
-    });
 
-    Route::post('/delete',function (Request $request){
-        $token = $request->header('token');
-        $token = ADMIN::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $input = request() -> all();
-        // $required = array('mid', 'cid');
-        // if (count(array_intersect_key(array_flip($required), $input)) != count($required))
-        //     return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $row = SESSIONS::deleteById($input);
-        if (!$row)
-            return response() -> json(['success' => False, 'message' => 'Member not joined', 'token' => $token], 400);
-        return response() -> json(['success' => True, 'message' => $input, 'token' => $token], 200);
-    });
-    
-    Route::post('/pairs/{id}', function($cid){
-        $lst = array();
-        $row = SESSIONS::getListbyCID(1, $cid);
-        foreach ($row as &$value) {
-            array_push($lst, $value->mid);
-        }
-        shuffle($lst);
-        $room = 1;
-        $count = 1;
-        foreach ($lst as &$mid) {
-            $row = SESSIONS::pairsRoom($cid, $mid, $room, ($count % 2) + 1);
-            if ($count % 2 == 0) $room += 1;
-            $count += 1;
-        }
-        return response() -> json(['success' => True, 'message' => '', 'token' => 'token'], 200);
-    }); 
+use App\Http\Controllers\SessionController;
+Route::get('sessions', [SessionController::class, 'index']);
+Route::get('sessions/{id}', [SessionController::class, 'show']);
+Route::post('sessions', [SessionController::class, 'store']);
+Route::put('sessions/{id}', [SessionController::class, 'update']);
+Route::delete('sessions/{id}', [SessionController::class, 'destroy']);
 
-    Route::get('/{cid}/rooms/{id}/status',function (Request $request, $cid, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $content = SESSIONS::getSessionStatus($id, $cid);
-        $content['mid'] = USERS::getId($token);
-        return response() -> json(['success' => True, 'data' => $content, 'token' => $token], 200);
-    });
-    
-    Route::put('/{id}',function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $input = request() -> all();
-        $content = SESSIONS::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Sessions not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
 
-});
+use App\Http\Controllers\RoundController;
+Route::get('rounds', [RoundController::class, 'index']);
+Route::get('rounds/{id}', [RoundController::class, 'show']);
+Route::post('rounds', [RoundController::class, 'store']);
+Route::put('rounds/{id}', [RoundController::class, 'update']);
+Route::delete('rounds/{id}', [RoundController::class, 'destroy']);
 
-Route::prefix('articles')->group(function () {
-    
-    Route::put('/admin/update',function (Request $request){
-        $token = $request->header('token');
-        $token = ADMIN::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $input = request() -> all();
-        $content = ARTICLES::updateById($input['a'][0]['id'], $input['a'][0]);
-        if ($content) $content = ARTICLES::updateById($input['a'][1]['id'], $input['a'][1]);
-        if ($content) $content = ARTICLES::updateById($input['b'][0]['id'], $input['b'][0]);
-        if ($content) $content = ARTICLES::updateById($input['b'][1]['id'], $input['b'][1]);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'AArticle not found.'], 404);
-        return response() -> json(['success' => True, 'message' => $input, 'token' => $token], 200);
-    });
 
-    Route::get('/{id}',function ($id){
-        $content = SESSIONS::getElementById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content[0]], 200);
-    });
-    
-    Route::put('/{id}',function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $input = request() -> all();
-        $content = ARTICLES::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        return response() -> json(['success' => True, 'token' => $token, 'data' => $content], 200);
-    });
-
-    Route::get('download/{id}',function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $content = ARTICLES::getArticlebySid($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        $return = COMPETITION::getInfoBySid($id);
-        $return->article = $content;
-        return response() -> json(['success' => True, 'message' => '', 'data' => $return], 200);
-    });
-
-});
-
-Route::prefix('candidates')->group(function () {
-    Route::get('/list',function (Request $request){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $row = USERS::getEventListByUser(USERS::getId($token));
-        if (!$row)
-            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
-        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
-    });
-
-});
-
-Route::prefix('judges')->group(function () {
-    Route::get('/list/{cid}',function ($cid){
-        $row = JUDGES::getListbyCID($cid);
-        return response() -> json(['success' => True, 'message' => '','data' => $row], 200);
-    });
-
-    Route::get('/list',function (Request $request){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        // $row = USERS::getJudgeListByUser(USERS::getId($token));
-        $row = JUDGES::getJudgeList(USERS::getId($token));
-        if (!$row)
-            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
-        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
-    });
-
-    Route::get('/{cid}/roomlist',function (Request $request, $cid){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $row = JUDGES::getJudgeRoomList($cid, USERS::getId($token));
-        if (!$row)
-            return response() -> json(['success' => FALSE, 'message' => 'User not found'], 404);
-        return response() -> json(['success' => True, 'message' => '','data' => $row, 'token' => $token], 200);
-    });
-
-    Route::get('sessions/{cid}/rooms/{id}/status',function (Request $request, $cid, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $row = JUDGES::getJudgeRoom($cid, $id, $token);
-            // return response() -> json(['success' => TRUE, 'message' => 'Judge info not found', 'data' => $row], 200);
-        if (!$row || count($row) < 1)
-            return response() -> json(['success' => TRUE, 'message' => 'Judge info not found', 'data' => $row], 200);
-        $return['competition']['title'] = $row[0]->title;
-        $return['competition']['tag'] = $row[0]->tag;
-        $return['competition']['date'] = $row[0]->date;
-        $return['competition']['t_read'] = $row[0]->t_read;
-        $return['competition']['t_write'] = $row[0]->t_write;
-        $return['competition']['t_debate'] = $row[0]->t_debate;
-
-        foreach ($row as $key => $value) 
-        {
-            $return['usr'][$value->role]['judge']['id'] = $value->id;
-            $return['usr'][$value->role]['judge']['comment'] = $value->comment;
-            $return['usr'][$value->role]['judge']['score'][1] = $value->score_1;
-            $return['usr'][$value->role]['judge']['score'][2] = $value->score_2;
-            $return['usr'][$value->role]['judge']['score'][3] = $value->score_3;
-            $return['usr'][$value->role]['judge']['score'][4] = $value->score_4;
-            $return['usr'][$value->role]['judge']['sum_score'] = $value->score;
-            $return['usr'][$value->role]['article'] = $value->article;
-        }
-        
-        return response() -> json(['success' => True, 'message' => '','data' => $return, 'token' => $token, 'id'=> USERS::getId($token)], 200);
-    });
-
-    Route::put('/submit/{id}',function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $input = request() -> all();
-        $content = JUDGES::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Sessions not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
-
-    Route::post('/{cid}/end', function(Request $request, $cid){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $input = request() -> all();
-        $content = JUDGES::endJudging($cid);
-        return response() -> json(['success' => True, 'content' => $content, 'token' => $token], 200);
-    });
-
-    Route::get('download/{id}',function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $content = JUDGES::getJudgebySID($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Competition not found.'], 404);
-        $return = COMPETITION::getInfoBySid($id);
-        $return->judge = $content;
-        return response() -> json(['success' => True, 'message' => '', 'data' => $return], 200);
-    });
-
-});
 
 Route::prefix('image')->group(function () {
+
+    // /api/image/upload/proof
+    Route::post('/upload/{type}', function(Request $request, $type){
+        $input = request() -> all();
+        $file = $request->file('file');
+        if ($file) {
+            $content = PostImage::uploadImage($type, $file);
+            
+            if ($content === 'error') {
+                return response()->json(['success' => false, 'message' => 'Image upload failed'], 400);
+            }
+    
+            return response()->json(['success' => true, 'content' => $content], 200);
+        } else {
+            return response()->json(['success' => false, 'message' => 'No file uploaded'], 400);
+        }
+    });
+
     Route::post('/session/{sid}/store', function(Request $request, $sid){
         $token = $request->header('token');
         $token = USERS::validToken($token);
