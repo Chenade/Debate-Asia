@@ -45,3 +45,5 @@ ALTER TABLE `users` ADD `region` TEXT NOT NULL AFTER `email`;
 ALTER TABLE `competition_log` ADD `competition_id` INT NOT NULL DEFAULT '1' AFTER `userId`;
 ALTER TABLE `groups` ADD `t_write` INT NULL AFTER `group_config`, ADD `t_read` INT NULL AFTER `t_write`, ADD `t_debate` INT NULL AFTER `t_read`;
 ALTER TABLE `groups` CHANGE `group_id` `id` INT(11) NOT NULL;
+
+--

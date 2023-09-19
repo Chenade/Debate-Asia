@@ -8,16 +8,16 @@
                 
             <div class="col-12">
                 <div class="section-heading text-center">
-                    <h6 class="tag">Signup</h6>
+                    <h6 class="tag">Competition Registration</h6>
                     <h2 style="font-weight: 900">{{trans('dictionary.signup')}}</h2>
                 </div>
             </div>
 
             <div class="d-flex flex-wrap align-items-start flex-column" style="padding: 0 90px 0 110px; margin-bottom: 50px;">
 
-                <p style="color: black; font-weight:900; text-align:justify;">「{{trans('dictionary.solgan1')}}」</p>
+                <p style="color: black; font-weight:900; text-align: center; color: #B20E17; width:100%">「{{trans('dictionary.solgan1')}}」</p>
 
-                <p style="color: black; font-weight:500; text-align:justify;"> {{trans('dictionary.host')}}：{{trans('dictionary.DebateAsia')}}、{{trans('dictionary.zhonghen')}}</p>
+                <p style="color: black; font-weight:500; text-align:justify;"> {{trans('dictionary.host')}}：{{trans('dictionary.DebateAsia')}}</p>
 
                 <p style="color: black; font-weight:500; text-align:justify;"> {{trans('dictionary.note_signup')}}</p>
 
@@ -27,17 +27,17 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
-                        <span>{{trans('dictionary.account')}}:</span>
+                        <span>{{trans('dictionary.account')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 charnum" type="text" id="edit_account" style="margin: 0; padding-right:30px;">
+                    <input class="col-9 charnum mandatory" type="text" id="edit_account" style="margin: 0; padding-right:30px;">
                     <span class="charCount" style="  position: absolute; top: 50%;right: 25px;transform: translateY(-50%);color: gray;">0 / 12</span>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.password')}}:</span>
+                        <span>{{trans('dictionary.password')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 charnum" type="password" id="edit_password" style="margin: 0; padding-right:30px;"  placeholder="">
+                    <input class="col-9 charnum mandatory" type="password" id="edit_password" style="margin: 0; padding-right:30px;"  placeholder="">
                     <span class="charCount" style="  position: absolute; top: 50%;right: 25px;transform: translateY(-50%);color: gray;">0 / 12</span>
 
                     <!-- <button class="btn btn-primary col-2" style="margin: 0;" id="getUser">{{trans('dictionary.login')}}</button> -->
@@ -47,29 +47,28 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
-                        <span>{{trans('dictionary.email')}}:</span>
+                        <span>{{trans('dictionary.email')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="email" id="edit_email" style="margin: 0">
+                    <input class="col-9 mandatory" type="email" id="edit_email" style="margin: 0">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.chinese')}}{{trans('dictionary.name')}}:</span>
+                        <span>{{trans('dictionary.chinese')}}{{trans('dictionary.name')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_chinese_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_zh')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_chinese_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_zh')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.en')}}{{trans('dictionary.name')}}:</span>
+                        <span>{{trans('dictionary.en')}}{{trans('dictionary.name')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_english_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_en')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_english_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_en')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
-                    <div class="col-3 d-flex flex-column justify-content-center">
-                        <span>{{trans('dictionary.gender')}}:</span>
-                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.note_birthday')}}</span>
+                    <div class="col-3 d-flex align-items-center">
+                        <span>{{trans('dictionary.gender')}}<span class="redStar">*</span>：</span>
                     </div>
                     <select class=" selectpicker col-9" id="edit_gender">
                         <option value="female">{{trans('dictionary.female')}}</option>
@@ -77,53 +76,53 @@
                         <option value="other">{{trans('dictionary.other')}}</option>
                     </select>
                 </div>
-
+                
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
-                        <span>{{trans('dictionary.birthday')}}:</span>
+                        <span>{{trans('dictionary.birthday')}}<span class="redStar">*</span>：</span>
                         <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.note_birthday')}}</span>
                     </div>
-                    <input class="col-9" type="date" id="edit_birthday" style="margin: 0">
+                    <input class="col-9 mandatory" type="date" id="edit_birthday" style="margin: 0">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.cellphone')}}:</span>
+                        <span>{{trans('dictionary.cellphone')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_cellphone" style="margin: 0"  placeholder="{{trans('dictionary.note_cellphone')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_cellphone" style="margin: 0"  placeholder="{{trans('dictionary.note_cellphone')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.wechat')}}:</span>
+                        <span>{{trans('dictionary.wechat')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_wechat" style="margin: 0"  placeholder="{{trans('dictionary.note_wechat')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_wechat" style="margin: 0"  placeholder="{{trans('dictionary.note_wechat')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.address')}}:</span>
+                        <span>{{trans('dictionary.address')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_address" style="margin: 0"  placeholder="{{trans('dictionary.note_address')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_address" style="margin: 0"  placeholder="{{trans('dictionary.note_address')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.region')}}:</span>
+                        <span>{{trans('dictionary.region')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_region" style="margin: 0"  placeholder="{{trans('dictionary.note_region')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_region" style="margin: 0"  placeholder="{{trans('dictionary.note_region')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.school')}}:</span>
+                        <span>{{trans('dictionary.school')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_school" style="margin: 0" placeholder="{{trans('dictionary.note_school')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_school" style="margin: 0" placeholder="{{trans('dictionary.note_school')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.mentor')}}:</span>
+                        <span>{{trans('dictionary.mentor')}}：</span>
                     </div>
                     <input class="col-9" type="text" id="edit_mentor" style="margin: 0"  placeholder="{{trans('dictionary.note_mentor')}}">
                 </div>
@@ -132,15 +131,16 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.select')}}{{trans('dictionary.group')}}:</span>
+                        <span>{{trans('dictionary.select')}}{{trans('dictionary.group')}}<span class="redStar">*</span>：</span>
                     </div>
                     <select class="selectpicker col-9" id="edit_group">
                     </select>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
-                    <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.select')}}{{trans('dictionary.date')}}:</span>
+                    <div class="col-3 d-flex flex-column justify-content-center">
+                        <span>{{trans('dictionary.firstRoundDate')}}<span class="redStar">*</span>：</span>
+                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.mutliple')}}</span>
                     </div>
                     <select class="selectpicker col-9" multiple id="edit_date">
                     </select>
@@ -148,7 +148,7 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.select')}}{{trans('dictionary.language')}}:</span>
+                        <span>{{trans('dictionary.select')}}{{trans('dictionary.language')}}<span class="redStar">*</span>：</span>
                     </div>
                     <select class="selectpicker col-9" id="edit_language">
                         <option value="zh" selected>{{trans('dictionary.zh')}}</option>
@@ -158,17 +158,20 @@
                 </div>
 
                 <div class="col-12 d-flex mb-3">
-                    <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.select')}}{{trans('dictionary.input')}}:</span>
+                    <div class="col-3 d-flex flex-column justify-content-center">
+                        <span>{{trans('dictionary.input')}}<span class="redStar">*</span>：</span>
+                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.mutliple')}}</span>
                     </div>
-                    <select class="selectpicker col-9" multiple id="edit_date">
-                        <option value="pinyin">{{trans('dictionary.pinyin')}}</option>
-                        <option value="pinyin">{{trans('dictionary.pinyin')}}</option>
-                        <option value="pinyin">{{trans('dictionary.pinyin')}}</option>
-                        <option value="pinyin">{{trans('dictionary.pinyin')}}</option>
-                        <option value="pinyin">{{trans('dictionary.pinyin')}}</option>
-                        <option value="pinyin">{{trans('dictionary.pinyin')}}</option>
+                    <select class="selectpicker col-9" multiple id="edit_input">
+                        <option value="zhuyin" selected>{{trans('dictionary.zhuyin')}}</option>
+                        <option value="cangjie">{{trans('dictionary.cangjie')}}</option>
+                        <option value="sucheng">{{trans('dictionary.sucheng')}}</option>
+                        <option value="pinyin_m">{{trans('dictionary.pinyin_m')}}</option>
+                        <option value="pinyin_c">{{trans('dictionary.pinyin_c')}}</option>
+                        <option value="stroke">{{trans('dictionary.stroke')}}</option>
+                        <option value="wubi">{{trans('dictionary.wubi')}}</option>
                         <option value="handwriting">{{trans('dictionary.handwriting')}}</option>
+                        <option value="other">{{trans('dictionary.other')}}</option>
                     </select>
                 </div>
 
@@ -176,7 +179,7 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.proof')}}:</span>
+                        <span>{{trans('dictionary.proof')}}<span class="redStar">*</span>：</span>
                     </div>
                     <input class="col-5" type="file" name="file" id="edit_proof" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
                     <input type="checkbox" id="edit_noproof" style="margin: 0">
@@ -185,14 +188,14 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.invoice_name')}}:</span>
+                        <span>{{trans('dictionary.invoice_name')}}：</span>
                     </div>
                     <input class="col-9" type="text" id="edit_invoice_name" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.invoice_no')}}:</span>
+                        <span>{{trans('dictionary.invoice_no')}}：</span>
                     </div>
                     <input class="col-9" type="text" id="edit_invoice_no" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
                 </div>

@@ -102,6 +102,11 @@ body{
     font-weight: bold;
 }
 
+.redStar{
+    color: red;
+    font-weight: bold;
+}
+
 .modal-title{
     margin: 0!important;
 }
