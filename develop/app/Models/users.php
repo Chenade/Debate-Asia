@@ -94,7 +94,7 @@ class users extends Model
 
         $log = new competition_log;
         $log->userId = $content->id;
-        $log->groupId = $request['group'];
+        $log->group_id = $request['group'];
         $log->date =  json_encode($request['date']);
         $log->language = $request['language'];
         $log->invoice_name = $request['invoice_name'];
@@ -123,7 +123,7 @@ class users extends Model
                     )
                     ->where('competition_log.competition_id', $request['competition_id'])
                     ->leftJoin('users', 'competition_log.userId', '=', 'users.id')
-                    ->leftJoin('groups', 'competition_log.groupId', '=', 'groups.id')
+                    ->leftJoin('groups', 'competition_log.group_id', '=', 'groups.id')
                     ->get();
     
 
@@ -144,7 +144,7 @@ class users extends Model
                     )
                     ->where('competition_log.id', $id)
                     ->leftJoin('users', 'competition_log.userId', '=', 'users.id')
-                    ->leftJoin('groups', 'competition_log.groupId', '=', 'groups.id')
+                    ->leftJoin('groups', 'competition_log.group_id', '=', 'groups.id')
                     ->first();
     
         return $lst;

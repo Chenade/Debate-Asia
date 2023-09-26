@@ -6,7 +6,7 @@
 
 <div class="d-flex container">
     <div class="col-4" style="padding: 0; border: solid gray 1px; height: 85vh;">
-        <div style="display: flex; align-items: center; justify-content: space-around; background-color: lightgray; height: 3em; paddin: 2em; font-weight: bold;"> 
+        <div style="display: flex; align-items: center; justify-content: space-asession; backgsession-color: lightgray; height: 3em; paddin: 2em; font-weight: bold;"> 
             <span>{{trans('dictionary.competition_lst')}} </span>
             <button class="btn btn-success competition-add-btn" style="margin:0">{{trans('dictionary.add')}}</button>
         </div>
@@ -14,21 +14,24 @@
         </div>
     </div>
     <div class="col-8" style="padding: 0; border: solid gray 1px; height: 85vh;">
-        <div style="display: flex; align-items: center; justify-content: center; background-color: lightgray; height: 3em; paddin: 2em; font-weight: bold;"> {{trans('dictionary.config')}} </div>
+        <div style="display: flex; align-items: center; justify-content: center; backgsession-color: lightgray; height: 3em; paddin: 2em; font-weight: bold;"> {{trans('dictionary.config')}} </div>
         <div>
             <ul class="nav nav-pills mb-1 mt-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{trans('dictionary.competition')}}{{trans('dictionary.config')}}</button>
+                    <button class="nav-link" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false" style="margin:0;">{{trans('dictionary.competition')}}{{trans('dictionary.config')}}</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link nav-details" id="pills-groups-tab" data-toggle="pill" data-target="#pills-groups" type="button" role="tab" aria-controls="pills-groups" aria-selected="false" style="display:none;">{{trans('dictionary.group')}}{{trans('dictionary.config')}}</button>
+                    <button class="nav-link nav-details" id="pills-groups-tab" data-toggle="pill" data-target="#pills-groups" type="button" role="tab" aria-controls="pills-groups" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.group')}}{{trans('dictionary.config')}}</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link nav-details" id="pills-signup-tab" data-toggle="pill" data-target="#pills-signup" type="button" role="tab" aria-controls="pills-signup" aria-selected="false" style="display:none;">{{trans('dictionary.signup_lst')}}</button>
+                    <button class="nav-link nav-details active" id="pills-session-tab" data-toggle="pill" data-target="#pills-session" type="button" role="tab" aria-controls="pills-session" aria-selected="true" style="margin:0; display:none;">{{trans('dictionary.session_lst')}}</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link nav-details" id="pills-signup-tab" data-toggle="pill" data-target="#pills-signup" type="button" role="tab" aria-controls="pills-signup" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.signup_lst')}}</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade  show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="row">
                         <div class="form-group col-12">
                             <label class="col-form-label">{{trans('dictionary.competition')}}{{trans('dictionary.name')}}:</label>
@@ -54,7 +57,7 @@
                         <button class="col-12 btn btn-success mt-5 competition-save-btn">{{trans('dictionary.save')}}</button>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="pills-groups" role="tabpanel" aria-labelledby="pills-groups-tab" style="padding: 1.5em">
+                <div class="tab-pane fade" id="pills-groups" role="tabpanel" aria-labelledby="pills-groups-tab" style="">
                     <div class="row">
                         <div class="form-group col-9">
                             <label class="col-form-label">{{trans('dictionary.add')}}{{trans('dictionary.group')}}{{trans('dictionary.name')}}:</label>
@@ -78,7 +81,30 @@
                         <tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab" style="padding: 1.5em; width:100%">
+                <div class="tab-pane fade show active" id="pills-session" role="tabpanel" aria-labelledby="pills-session-tab" style="">
+                    <div class="form-group col-12">
+                        <label class="col-form-label">{{trans('dictionary.select')}}{{trans('dictionary.group')}}:</label>
+                        <select class="form-control selectpicker" id="select_group_name"></select>
+                    </div>
+                    <hr>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>{{trans('dictionary.session')}}{{trans('dictionary.name')}}</th>
+                                <th>{{trans('dictionary.datetime')}}</th>
+                                <th>#</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" class="form-control" id="add_session_name" style="margin: 0.5em"></td>
+                                <td><input type="text" class="form-control datetimepicker" id="add_session_datetime" style="margin: 0.5em"></td>
+                                <td><button class="btn btn-primary" id="add-session-btn" style="margin: 0">新增</button></td>
+                            </tr>
+                        </thead>
+                        <tbody id="session_lst">
+                        <tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab" style="width:100%">
                     <table id="signupTable" class="display nowrap" style="width:100%">
                         <thead>
                             <tr>
@@ -97,6 +123,87 @@
 </div>
 
 </section>
+
+<div class="modal fade" id="session_modal" role="dialog">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">場次設定</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-sm-4">
+                        <div class="form-group col-12">
+                            <label class="col-form-label">{{trans('dictionary.session')}}{{trans('dictionary.name')}}:</label>
+                            <input type="hidden" id="session_id">
+                            <input type="text" class="form-control" id="edit_session_name">
+                        </div>  
+                        <div class="form-group col-12">
+                            <label class="col-form-label">{{trans('dictionary.session')}}{{trans('dictionary.date')}}:</label>
+                            <input type="text" class="form-control datetimepicker" id="edit_session_datetime">
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="col-form-label">{{trans('dictionary.pos')}}{{trans('dictionary.title')}}:</label>
+                            <input type="hidden" id="session_id">
+                            <input type="text" class="form-control" id="edit_pos_title">
+                        </div>  
+                        <div class="form-group col-12">
+                            <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.title')}}:</label>
+                            <input type="text" class="form-control" id="edit_neg_title">
+                        </div>    
+                        <div class="form-group col-12">
+                            <button class="btn btn-success session-save-btn">SAVE</button>
+                        </div>    
+                    </div>    
+                    <div class="col-12 col-sm-8">
+                        <ul class="nav nav-pills mb-1 mt-2" id="pills-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="pills-candidate-tab" data-toggle="pill" data-target="#pills-candidate" type="button" role="tab" aria-controls="pills-candidate" aria-selected="true" style="margin:0;">{{trans('dictionary.candidate')}}{{trans('dictionary.config')}}</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link nav-details" id="pills-judges-tab" data-toggle="pill" data-target="#pills-judges" type="button" role="tab" aria-controls="pills-judges" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.judge')}}{{trans('dictionary.config')}}</button>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade active show" id="pills-candidate" role="tabpanel" aria-labelledby="pills-candidate-tab">
+                                <div class="row">
+                                    <div class="form-group col-10">
+                                        <label class="col-form-label">{{trans('dictionary.add')}}{{trans('dictionary.candidate')}}:</label>
+                                        <select class="form-control selectpicker" id="select_user_name"></select>
+                                    </div>
+                                    <div class="col-2 d-flex" style="padding-top: 10px;">
+                                        <button class="btn btn-success round-add-btn">ADD</button>
+                                    </div>
+                                </div>
+                                <table class="table table-srtipe">
+                                    <thead>
+                                        <tr>
+                                            <td class="col-3">選手名稱</td>
+                                            <td class="col-4">代表學校</td>
+                                            <td class="col-2">房間號碼</td>
+                                            <td class="col-2">正/反方</td>
+                                            <td class="col-1">#</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="candidate_lst"></tbody>
+                                </table>
+                                <hr>
+                                <button style="margin:0" class="btn btn-primary" id="shuffle-round-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">隨機分配</button>
+                                <button style="margin:0" class="btn btn-warning" id="end-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">結束所有回合</button>
+                            </div>
+                            <div class="tab-pane fade" id="pills-judges" role="tabpanel" aria-labelledby="pills-judges-tab" style="">
+                                <div id="room_lst">
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="competition_modal" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable">

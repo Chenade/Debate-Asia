@@ -46,4 +46,17 @@ ALTER TABLE `competition_log` ADD `competition_id` INT NOT NULL DEFAULT '1' AFTE
 ALTER TABLE `groups` ADD `t_write` INT NULL AFTER `group_config`, ADD `t_read` INT NULL AFTER `t_write`, ADD `t_debate` INT NULL AFTER `t_read`;
 ALTER TABLE `groups` CHANGE `group_id` `id` INT(11) NOT NULL;
 
---
+ALTER TABLE `sessions` ADD `updated_at` DATE NOT NULL AFTER `session_config`, ADD `created_at` DATE NOT NULL AFTER `updated_at`;
+ALTER TABLE `sessions` CHANGE `session_id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `sessions` ADD `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `session_config`;
+ALTER TABLE `competition_log` CHANGE `groupId` `group_id` INT(11) NOT NULL;
+ALTER TABLE `rounds` CHANGE `round_id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `rounds` CHANGE `candidate_quantity` `user_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `rounds` ADD `updated_at` DATE NOT NULL AFTER `rounds_config`, ADD `created_at` DATE NOT NULL AFTER `updated_at`;
+ALTER TABLE `sessions` ADD `pos_title` VARCHAR(50) NULL AFTER `session_config`, ADD `neg_title` VARCHAR(50) NULL AFTER `pos_title`;
+ALTER TABLE `sessions` CHANGE `date` `date` INT NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+DROP TABLE `debateasia_2023`.`groups`;
+CREATE TABLE `groups` ( `id` int(11) NOT NULL, `competition_id` int(11) DEFAULT NULL, `group_name` varchar(255) DEFAULT NULL, `group_config` text DEFAULT NULL, `t_write` int(11) DEFAULT NULL, `t_read` int(11) DEFAULT NULL, `t_debate` int(11) DEFAULT NULL, `updated_at` datetime NOT NULL DEFAULT current_timestamp(), `created_at` datetime NOT NULL DEFAULT current_timestamp() ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+ALTER TABLE `groups` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+ALTER TABLE `rounds` ADD `status` INT NOT NULL DEFAULT '0' AFTER `round_config`;

@@ -15,7 +15,7 @@
 
             <div class="d-flex flex-wrap align-items-start flex-column" style="padding: 0 90px 0 110px; margin-bottom: 50px;">
 
-                <p style="color: black; font-weight:900; text-align: center; color: #B20E17; width:100%">「{{trans('dictionary.solgan1')}}」</p>
+                <p style="color: black; font-weight:900; text-align: center; color: #B20E17; width:100%; font-size: 1.4em;">「{{trans('dictionary.solgan1')}}」</p>
 
                 <p style="color: black; font-weight:500; text-align:justify;"> {{trans('dictionary.host')}}：{{trans('dictionary.DebateAsia')}}</p>
 
@@ -29,7 +29,7 @@
                     <div class="col-3 d-flex flex-column justify-content-center">
                         <span>{{trans('dictionary.account')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 charnum mandatory" type="text" id="edit_account" style="margin: 0; padding-right:30px;">
+                    <input class="col-9 charnum mandatory" type="text" id="edit_account" style="margin: 0; padding-right:30px;"  autocomplete="off">
                     <span class="charCount" style="  position: absolute; top: 50%;right: 25px;transform: translateY(-50%);color: gray;">0 / 12</span>
                 </div>
 
@@ -37,7 +37,7 @@
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.password')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 charnum mandatory" type="password" id="edit_password" style="margin: 0; padding-right:30px;"  placeholder="">
+                    <input class="col-9 charnum mandatory" type="password" id="edit_password" style="margin: 0; padding-right:30px;"  placeholder=""  autocomplete="off">
                     <span class="charCount" style="  position: absolute; top: 50%;right: 25px;transform: translateY(-50%);color: gray;">0 / 12</span>
 
                     <!-- <button class="btn btn-primary col-2" style="margin: 0;" id="getUser">{{trans('dictionary.login')}}</button> -->
@@ -49,21 +49,21 @@
                     <div class="col-3 d-flex flex-column justify-content-center">
                         <span>{{trans('dictionary.email')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="email" id="edit_email" style="margin: 0">
+                    <input class="col-9 mandatory" type="email" id="edit_email" style="margin: 0"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.chinese')}}{{trans('dictionary.name')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_chinese_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_zh')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_chinese_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_zh')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.en')}}{{trans('dictionary.name')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_english_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_en')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_english_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_en')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
@@ -82,49 +82,49 @@
                         <span>{{trans('dictionary.birthday')}}<span class="redStar">*</span>：</span>
                         <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.note_birthday')}}</span>
                     </div>
-                    <input class="col-9 mandatory" type="date" id="edit_birthday" style="margin: 0">
+                    <input class="col-9 mandatory" type="date" id="edit_birthday" style="margin: 0"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.cellphone')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_cellphone" style="margin: 0"  placeholder="{{trans('dictionary.note_cellphone')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_cellphone" style="margin: 0"  placeholder="{{trans('dictionary.note_cellphone')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.wechat')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_wechat" style="margin: 0"  placeholder="{{trans('dictionary.note_wechat')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_wechat" style="margin: 0"  placeholder="{{trans('dictionary.note_wechat')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.address')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_address" style="margin: 0"  placeholder="{{trans('dictionary.note_address')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_address" style="margin: 0"  placeholder="{{trans('dictionary.note_address')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.region')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_region" style="margin: 0"  placeholder="{{trans('dictionary.note_region')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_region" style="margin: 0"  placeholder="{{trans('dictionary.note_region')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.school')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-9 mandatory" type="text" id="edit_school" style="margin: 0" placeholder="{{trans('dictionary.note_school')}}">
+                    <input class="col-9 mandatory" type="text" id="edit_school" style="margin: 0" placeholder="{{trans('dictionary.note_school')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.mentor')}}：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_mentor" style="margin: 0"  placeholder="{{trans('dictionary.note_mentor')}}">
+                    <input class="col-9" type="text" id="edit_mentor" style="margin: 0"  placeholder="{{trans('dictionary.note_mentor')}}"  autocomplete="off">
                 </div>
 
                 <hr style="color: black; width: 60vw;">
@@ -181,8 +181,8 @@
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.proof')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <input class="col-5" type="file" name="file" id="edit_proof" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
-                    <input type="checkbox" id="edit_noproof" style="margin: 0">
+                    <input class="col-5" type="file" name="file" id="edit_proof" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}"  autocomplete="off">
+                    <input type="checkbox" id="edit_noproof" style="margin: 0"  autocomplete="off">
                     <label for="edit_noproof">&ensp;{{trans('dictionary.note_proof')}}</label>
                 </div>
 
@@ -190,20 +190,20 @@
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.invoice_name')}}：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_invoice_name" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
+                    <input class="col-9" type="text" id="edit_invoice_name" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}"  autocomplete="off">
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.invoice_no')}}：</span>
                     </div>
-                    <input class="col-9" type="text" id="edit_invoice_no" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}">
+                    <input class="col-9" type="text" id="edit_invoice_no" style="margin: 0"  placeholder="{{trans('dictionary.if_nes')}}"  autocomplete="off">
                 </div>
 
                 <hr style="color: black; width: 60vw;">
 
                 <div class="col-12 d-flex mb-3">
-                    <input type="checkbox" id="edit_agree" style="margin: 0">
+                    <input type="checkbox" id="edit_agree" style="margin: 0"  autocomplete="off">
                     <label for="edit_agree">{{trans('dictionary.signup_condition')}}</label>
                 </div>
 

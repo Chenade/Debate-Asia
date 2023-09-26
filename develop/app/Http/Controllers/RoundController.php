@@ -51,4 +51,28 @@ class RoundController extends Controller
         $round->delete();
         return response()->json(['success' => true, 'message' => 'Round deleted successfully.'], 200);
     }
+
+    // shuffle by session id
+    public function shuffle(Request $request, $session_id)
+    {
+        $i = 1;
+        $data = Round::where('session_id', $session_id) ->inRandomOrder() ->get();
+        foreach ($data as $key => $value) {
+            $value->update(['round_number' => $i / 2]);
+            $i++;
+        }
+        
+        return response()->json(['success' => true, 'data' => $data], 200);
+    }
+
+    // end all round by session id
+    public function endAllRound(Request $request, $session_id)
+    {
+        $data = Round::where('session_id', $session_id) ->get();
+        foreach ($data as $key => $value) {
+            $value->update(['status' => 4]);
+        }
+        
+        return response()->json(['success' => true, 'data' => $data], 200);
+    }
 }

@@ -16,7 +16,7 @@ return array(
 
     'future' => '未来',
     'past' => '过去',
-    'round' => '场次',
+    'session' => '场次',
     'competition' => '比赛',
     'rule' => '规则',
     'borcher' => '简章',
@@ -42,6 +42,7 @@ return array(
     'pairs' => '随机分配场次',
     'competition_lst' => '比赛清单',
     'signup_lst' => '报名清单',
+    'session_lst' => ' 場次清单',
 
     'info' => '资讯',
     'start_date' => '开始日期',
@@ -118,7 +119,7 @@ return array(
     'if_nes' => '（如需）',
     'mutliple' => '（可多选）',
     'signup_condition' => '我已阅读比赛简章，并同意参赛之合约条款及授权主办方收集以上资料作赛务用途',
-    'account_condition' => '请报名者自行设定帐号及密码（各8-16个英文字母或符号），每个帐号名称只可被註册一次，若系统提示已有相同帐号，请修改成新的帐号名称',
+    'account_condition' => '请报名者自行设定帐号及密码（各8-16个英文字母或符号），每个帐号名称只可被註册一次，若系统提示已有相同帐号，请修改成新的帐号名称。',
    
     'zhuyin' => '注音',
     'cangjie' => '仓颉',

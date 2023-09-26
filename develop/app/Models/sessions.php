@@ -15,7 +15,7 @@ class sessions extends Model
 {
     use HasFactory;
 
-    protected $table = 'session';
+    protected $table = 'sessions';
     
     public $timestamps = true;
 

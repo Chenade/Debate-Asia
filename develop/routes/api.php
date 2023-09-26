@@ -262,6 +262,9 @@ Route::delete('groups/{id}', [GroupController::class, 'destroy']);
 
 
 use App\Http\Controllers\SessionController;
+Route::get('groups/{id}/sessions', [SessionController::class, 'showByGid']);
+Route::get('groups/{id}/candidates', [SessionController::class, 'showCandidatesByGid']);
+
 Route::get('sessions', [SessionController::class, 'index']);
 Route::get('sessions/{id}', [SessionController::class, 'show']);
 Route::post('sessions', [SessionController::class, 'store']);
@@ -270,6 +273,8 @@ Route::delete('sessions/{id}', [SessionController::class, 'destroy']);
 
 
 use App\Http\Controllers\RoundController;
+Route::post('sessions/{sid}/shuffle', [RoundController::class, 'shuffle']);
+Route::post('sessions/{sid}/end', [RoundController::class, 'endAllRound']);
 Route::get('rounds', [RoundController::class, 'index']);
 Route::get('rounds/{id}', [RoundController::class, 'show']);
 Route::post('rounds', [RoundController::class, 'store']);
