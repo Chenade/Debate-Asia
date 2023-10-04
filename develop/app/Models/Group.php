@@ -21,6 +21,7 @@ class Group extends Model
     {
         return DB::table('groups')
                 -> where('competition_id', $competition_id)
+                -> orderBy('group_name', 'asc')
                 -> get();
     }
 

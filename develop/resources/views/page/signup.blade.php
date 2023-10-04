@@ -133,16 +133,16 @@
                     <div class="col-3 d-flex align-items-center">
                         <span>{{trans('dictionary.select')}}{{trans('dictionary.group')}}<span class="redStar">*</span>：</span>
                     </div>
-                    <select class="selectpicker col-9" id="edit_group">
+                    <select class="selectpicker col-9 " id="edit_group">
                     </select>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
-                        <span>{{trans('dictionary.firstRoundDate')}}<span class="redStar">*</span>：</span>
+                        <span>{{trans('dictionary.firstRoundAvailability')}}{{trans('dictionary.session')}}<span class="redStar">*</span>：</span>
                         <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.mutliple')}}</span>
                     </div>
-                    <select class="selectpicker col-9" multiple id="edit_date">
+                    <select class="selectpicker col-9 mandatory-select" multiple id="edit_date">
                     </select>
                 </div>
 

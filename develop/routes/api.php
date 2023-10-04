@@ -275,13 +275,17 @@ Route::delete('sessions/{id}', [SessionController::class, 'destroy']);
 use App\Http\Controllers\RoundController;
 Route::post('sessions/{sid}/shuffle', [RoundController::class, 'shuffle']);
 Route::post('sessions/{sid}/end', [RoundController::class, 'endAllRound']);
+Route::get('sessions/{sid}/rounds', [RoundController::class, 'getRoundBySid']);
+
 Route::get('rounds', [RoundController::class, 'index']);
 Route::get('rounds/{id}', [RoundController::class, 'show']);
 Route::post('rounds', [RoundController::class, 'store']);
+Route::post('rounds/judges', [RoundController::class, 'judgeStore']);
 Route::put('rounds/{id}', [RoundController::class, 'update']);
 Route::delete('rounds/{id}', [RoundController::class, 'destroy']);
 
-
+use App\Http\Controllers\JudgeController;
+Route::get('judges/list', [JudgeController::class, 'showByUid']);
 
 Route::prefix('image')->group(function () {
 

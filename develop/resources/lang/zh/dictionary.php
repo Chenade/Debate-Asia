@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'cn' => '简体',
+    'cn' => '簡體',
     'zh' => '繁體',
     'en' => '英文',
     'chinese' => '中文',
@@ -16,6 +16,7 @@ return array(
 
     'future' => '未來',
     'past' => '過去',
+    'session' => '時段',
     'round' => '場次',
     'competition' => '比賽',
     'rule' => '規則',
@@ -39,9 +40,11 @@ return array(
     'save' => '儲存',
     'delete' => '刪除',
     'lock' => '鎖定',
-    'pairs' => '隨機分配場次',
+    'pairs' => '隨機分配時段',
     'competition_lst' => '比賽清單',
     'signup_lst' => '報名清單',
+    'session_lst' => ' 時段清單',
+    'round_lst' => ' 場次清單',
 
     'info' => '資訊',
     'start_date' => '開始日期',
@@ -67,10 +70,10 @@ return array(
     'wechat' => '微信',
     'mentor' => '指導老師',
     'input' => '慣用輸入法',
-    'firstRoundDate' => '可參與初賽的日期',
+    'firstRoundAvailability' => '可參與初賽的',
 
     'proof' => '繳費證明',
-    'invoice_name' => '發票抬頭',
+    'invoice_name' => '發票擡頭',
     'invoice_no' => '發票稅號',
 
     'group' => '組別',
@@ -128,6 +131,5 @@ return array(
     'stroke' => '筆劃',
     'wubi' => '五筆',
     'handwriting' => '手寫',
-
 
 );

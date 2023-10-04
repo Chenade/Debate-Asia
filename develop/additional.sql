@@ -56,7 +56,9 @@ ALTER TABLE `rounds` ADD `updated_at` DATE NOT NULL AFTER `rounds_config`, ADD `
 ALTER TABLE `sessions` ADD `pos_title` VARCHAR(50) NULL AFTER `session_config`, ADD `neg_title` VARCHAR(50) NULL AFTER `pos_title`;
 ALTER TABLE `sessions` CHANGE `date` `date` INT NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-DROP TABLE `debateasia_2023`.`groups`;
+DROP TABLE `debateasia`.`groups`;
 CREATE TABLE `groups` ( `id` int(11) NOT NULL, `competition_id` int(11) DEFAULT NULL, `group_name` varchar(255) DEFAULT NULL, `group_config` text DEFAULT NULL, `t_write` int(11) DEFAULT NULL, `t_read` int(11) DEFAULT NULL, `t_debate` int(11) DEFAULT NULL, `updated_at` datetime NOT NULL DEFAULT current_timestamp(), `created_at` datetime NOT NULL DEFAULT current_timestamp() ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ALTER TABLE `groups` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
 ALTER TABLE `rounds` ADD `status` INT NOT NULL DEFAULT '0' AFTER `round_config`;
+
+ALTER TABLE `rounds` ADD `role` INT NOT NULL DEFAULT '0' AFTER `round_number`;

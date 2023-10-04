@@ -146,7 +146,7 @@ class users extends Model
                     ->leftJoin('users', 'competition_log.userId', '=', 'users.id')
                     ->leftJoin('groups', 'competition_log.group_id', '=', 'groups.id')
                     ->first();
-    
+        $lst->date = json_decode($lst->date);
         return $lst;
     }
 

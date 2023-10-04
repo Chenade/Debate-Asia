@@ -25,7 +25,7 @@ class SessionController extends Controller
             -> where('group_id', $gid)
             -> leftjoin ('users', 'users.id', '=', 'competition_log.userId')
             -> leftjoin ('rounds', 'rounds.user_id', '=', 'competition_log.userId')
-            -> selectRaw('competition_log.*, users.name_cn, users.school_cn, rounds.session_id, rounds.round_number, rounds.id as round_id')
+            -> selectRaw('competition_log.*, users.name_cn, users.school_cn, rounds.session_id, rounds.round_number, rounds.role, rounds.id as round_id')
             -> orderBy ('rounds.round_number', 'asc')
             -> get();
         foreach ($candidates as $key => $value) {

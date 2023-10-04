@@ -16,7 +16,8 @@ return array(
 
     'future' => '未来',
     'past' => '过去',
-    'session' => '场次',
+    'session' => '时段',
+    'round' => '场次',
     'competition' => '比赛',
     'rule' => '规则',
     'borcher' => '简章',
@@ -39,10 +40,11 @@ return array(
     'save' => '储存',
     'delete' => '删除',
     'lock' => '锁定',
-    'pairs' => '随机分配场次',
+    'pairs' => '随机分配时段',
     'competition_lst' => '比赛清单',
     'signup_lst' => '报名清单',
-    'session_lst' => ' 場次清单',
+    'session_lst' => ' 时段清单',
+    'round_lst' => ' 场次清单',
 
     'info' => '资讯',
     'start_date' => '开始日期',
@@ -68,7 +70,7 @@ return array(
     'wechat' => '微信',
     'mentor' => '指导老师',
     'input' => '惯用输入法',
-    'firstRoundDate' => '可参与初赛的日期',
+    'firstRoundAvailability' => '可参与初赛的',
 
     'proof' => '缴费证明',
     'invoice_name' => '发票抬头',

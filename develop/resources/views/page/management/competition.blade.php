@@ -30,7 +30,7 @@
                     <button class="nav-link nav-details" id="pills-signup-tab" data-toggle="pill" data-target="#pills-signup" type="button" role="tab" aria-controls="pills-signup" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.signup_lst')}}</button>
                 </li>
             </ul>
-            <div class="tab-content" id="pills-tabContent">
+            <div class="tab-content" id="pills-tabContent" style="height: 70vh; overflow-y: auto;">
                 <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="row">
                         <div class="form-group col-12">
@@ -182,7 +182,7 @@
                                         <tr>
                                             <td class="col-3">選手名稱</td>
                                             <td class="col-4">代表學校</td>
-                                            <td class="col-2">房間號碼</td>
+                                            <td class="col-2">{{trans('dictionary.round')}}號碼</td>
                                             <td class="col-2">正/反方</td>
                                             <td class="col-1">#</td>
                                         </tr>
@@ -194,12 +194,31 @@
                                 <button style="margin:0" class="btn btn-warning" id="end-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">結束所有回合</button>
                             </div>
                             <div class="tab-pane fade" id="pills-judges" role="tabpanel" aria-labelledby="pills-judges-tab" style="">
-                                <div id="room_lst">
+                                <div id="round_lst">
                                 </div>
                             </div>
                         </div>
                     </div>    
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="judge_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">裁判清單</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="judge_session_id">
+                <input type="hidden" id="judge_room_id">
+                <div id="judge_lst"></div>
+            </div>
+            <div class="modal-footer">
+                <button style="margin:0" class="btn btn-success add-judge-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
             </div>
         </div>
     </div>
@@ -374,7 +393,7 @@
                     </div>
                     <p class="col-9" id="edit_invoice_no" style="margin: 0"></p>
                 </div>
-
+            </div>
 
             <div class="modal-footer">
                 <button style="margin:0" class="btn btn-success approval-btn" data-action="approval" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.approve')}}</button>
