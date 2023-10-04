@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Competition_log;
 
-class users extends Model
+class Users extends Model
 {
     use HasFactory;
 
