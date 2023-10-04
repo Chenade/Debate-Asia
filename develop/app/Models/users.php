@@ -6,7 +6,7 @@ use App\Models\sessions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\competition_log;
+use App\Models\Competition_log;
 
 class users extends Model
 {
