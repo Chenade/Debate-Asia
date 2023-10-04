@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-use App\Models\users;
+use App\Models\Users;
 use App\Models\competition;
 use App\Models\articles;
 use App\Models\judges;
