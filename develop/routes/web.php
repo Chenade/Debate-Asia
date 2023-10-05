@@ -43,3 +43,16 @@ Route::prefix('judge')->group(function () {
 	// Route::get('/session', 			function () { return view('page.management.session');});
 });
 
+
+use App\Mail\signConfirmation;
+Route::get('send-mail', function () {
+   
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+   
+    Mail::to('chenade0312@gmail.com')->send(new signConfirmation($details));
+   
+    dd("Email is Sent.");
+});
