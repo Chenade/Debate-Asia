@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class signConfirmation extends Mailable
+class signupConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class signConfirmation extends Mailable
     public function build()
     {
         return $this->subject('第二届「亚洲思辨写作对抗赛」 报名成功')
-                    ->view('emails.signConfirmation ');
+                    ->view('emails.signupConfirmation ');
     }
 }

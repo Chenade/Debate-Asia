@@ -44,7 +44,7 @@ Route::prefix('judge')->group(function () {
 });
 
 
-use App\Mail\signConfirmation;
+use App\Mail\signupConfirmation;
 Route::get('send-mail', function () {
    
     $details = [
@@ -52,7 +52,7 @@ Route::get('send-mail', function () {
         'body' => 'This is for testing email using smtp'
     ];
    
-    Mail::to('chenade0312@gmail.com')->send(new signConfirmation($details));
+    Mail::to('chenade0312@gmail.com')->send(new signupConfirmation($details));
    
     dd("Email is Sent.");
 });
