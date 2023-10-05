@@ -80,6 +80,13 @@ class RoundController extends Controller
     {
         // Update a round by ID
         $round = Round::find($id);
+        if ($round->role < 3 && !( $request->has('status')))
+        {
+            $judges = Round::where('session_id', $round->session_id)
+                            -> where('round_number', $round->round_number)
+                            -> where('role', 3)
+                            -> delete();
+        }
         if (!$round) {
             return response()->json(['success' => false, 'message' => 'Round not found.'], 404);
         }
@@ -91,9 +98,12 @@ class RoundController extends Controller
     {
         // Delete a round by ID
         $round = Round::find($id);
-        if (!$round) {
+        $judges = Round::where('session_id', $round->session_id)
+                        -> where('round_number', $round->round_number)
+                        -> where('role', 3)
+                        -> delete();
+        if (!$round)
             return response()->json(['success' => false, 'message' => 'Round not found.'], 404);
-        }
         $round->delete();
         return response()->json(['success' => true, 'message' => 'Round deleted successfully.'], 200);
     }
@@ -102,8 +112,12 @@ class RoundController extends Controller
     public function shuffle(Request $request, $session_id)
     {
         $i = 1;
-        $data = Round::where('session_id', $session_id) ->inRandomOrder() ->get();
-        foreach ($data as $key => $value) {
+        $data = Round::where('session_id', $session_id)
+                        -> where('role', '<=', 2)
+                        -> inRandomOrder() 
+                        -> get();
+        foreach ($data as $key => $value) 
+        {
             $value->update(['round_number' => $i / 2, 'role' => ($i % 2) + 1]);
             $i++;
         }
