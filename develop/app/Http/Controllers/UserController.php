@@ -24,7 +24,7 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         $val = Users::signup($request->all());
-        if ($val['success'] == false) {
+        if ($val) {
             return response()->json(['success' => false, 'error' => $val], 400);
         }
         
@@ -33,9 +33,9 @@ class UserController extends Controller
             'body' => '恭喜您已第二届「亚洲思辨写作对抗赛」，组委会将后续与您联络比赛的具体事宜，请耐心等待赛事安排通知。'
         ];
        
-        Mail::to($val['email'])->send(new signupConfirmation($details));
+        Mail::to($request->email)->send(new signupConfirmation($details));
        
-        // dd("Email is Sent.");
+        
         return response()->json(['success' => true], 200);
     }
 

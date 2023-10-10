@@ -54,9 +54,6 @@ class Users extends Model
 
     public static function signup($request)
     {
-        $data = array();
-        $data["success"] = false;
-
         $usr = DB::table('users') 
             -> where('account', $request['account']) 
             -> first();
@@ -66,10 +63,7 @@ class Users extends Model
         else if ($usr && $usr->password == $request['password'])
             $content = users::find($usr->id);
         else
-        {
-            $data["message"] = "Account already taken / Wrong Password!";
-            return $data;
-        }
+            return "Account already taken / Wrong Password!";
 
         $content->authority = 1;
         $content->email = $request['email'];
@@ -97,10 +91,7 @@ class Users extends Model
             -> where('userId', $content->id) 
             -> first();
         if ($chk)
-        {
-            $data["message"] = "Already signed up!";
-            return $data;
-        }
+            return "Already signed up!";
 
         $log = new competition_log;
         $log->userId = $content->id;
@@ -111,11 +102,8 @@ class Users extends Model
         $log->invoice_no = $request['invoice_no'];
         $log->proof = $request['proof'];
         $log->save();
-
-        $data["success"] = true;
-        $data["email"] = $content->email;
  
-        return $data;
+        return NULL;
     }
 
     // getSignupLst
