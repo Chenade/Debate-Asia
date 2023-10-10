@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Competition_log;
 
+
 class Users extends Model
 {
     use HasFactory;
@@ -53,6 +54,9 @@ class Users extends Model
 
     public static function signup($request)
     {
+        $data = array();
+        $data["success"] = false;
+
         $usr = DB::table('users') 
             -> where('account', $request['account']) 
             -> first();
@@ -62,7 +66,10 @@ class Users extends Model
         else if ($usr && $usr->password == $request['password'])
             $content = users::find($usr->id);
         else
-            return "Account already taken / Wrong Password!";
+        {
+            $data["message"] = "Account already taken / Wrong Password!";
+            return $data;
+        }
 
         $content->authority = 1;
         $content->email = $request['email'];
@@ -90,7 +97,10 @@ class Users extends Model
             -> where('userId', $content->id) 
             -> first();
         if ($chk)
-            return "Already signed up!";
+        {
+            $data["message"] = "Already signed up!";
+            return $data;
+        }
 
         $log = new competition_log;
         $log->userId = $content->id;
@@ -102,7 +112,10 @@ class Users extends Model
         $log->proof = $request['proof'];
         $log->save();
 
-        return NULL;
+        $data["success"] = true;
+        $data["email"] = $content->email;
+ 
+        return $data;
     }
 
     // getSignupLst

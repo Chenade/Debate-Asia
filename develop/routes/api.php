@@ -112,137 +112,22 @@ Route::prefix('admin')->group(function () {
 });
 });
 
+use App\Http\Controllers\UserController;
 Route::prefix('users')->group(function () {
-
-    Route::post('/info',function (Request $request){
-        $content = USERS::getInfo($request->all());
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
-        
-    });
-
-    Route::post('/signup',function (Request $request){
-        $val = USERS::signup($request->all());
-        if ($val)
-            return response() -> json(['success' => FALSE, 'error' => $val], 400);
-        return response() -> json(['success' => True], 200);
-    });
-
-    Route::get('/signup/list',function (Request $request){
-        $lst = USERS::getSignupLst($request->all());
-        return response() -> json(['success' => True, 'data' => $lst], 200);
-    });
-
-    Route::get('/signup/{id}',function ($id, Request $request){
-        $lst = USERS::getSignupById($id);
-        return response() -> json(['success' => True, 'data' => $lst], 200);
-    });
-
-    Route::post('/signup/{id}/approval',function ($id, Request $request){
-        $lst = USERS::signUpApprove($id);
-        return response() -> json(['success' => True, 'data' => $lst], 200);
-    });
-
-
-    Route::get('/token',function (Request $request){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        
-        $val = USERS::getId($token);
-        return response() -> json(['success' => True, 'id' => $val, 'token' => $token], 200);
-    });
-
-    Route::post('/login', function(){
-        $input = request() -> all();
-        $required = array('account', 'password');
-        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
-            return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);
-        $id = users::getlogin($input);
-        if(!$id)
-            return  response() -> json(['success' => False, 'message' => 'Wrong account or password'], 403);
-        $content = users::find($id);
-        $token = USERS::genToken($input['account']);
-        $content->token = $token;
-        $content->timestamps = true;
-        $content->save();
-        $url = '/';
-        if ($content->authority == 7)
-            $url = '/admin';
-        else if ($content->authority == 1)
-            $url = '/candidate';
-        else if ($content->authority == 2)
-            $url = '/judge';
-        return response() -> json(['success' => True, 'message' => $token, 'url' => $url], 200);
-    });
-
-    Route::get('/list/candidates',function (){
-        $content = USERS::getElementByRole(1);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
-    });
-
-    Route::get('/list/judges',function (){
-        $content = USERS::getElementByRole(2);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
-    });
-
-    Route::get('/{id}',function ($id){
-        $content = USERS::getElementById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'Users not found.'], 404);
-        // $content[0]->images = PostImage::getList(1, $id);
-        return response() -> json(['success' => True, 'message' => '', 'data' => $content], 200);
-    });
-    
-    Route::post('/create',function (){
-        $input = request() -> all();
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $required = array('title', 'content');
-        if (count(array_intersect_key(array_flip($required), $input)) != count($required))
-            return response() -> json(['success' => False, 'message' => 'Missing required column.'], 400);    
-        $row = NEWS::store($input);
-        return response() -> json(['success' => True, 'message' => $row, 'token' => $token], 200);
-    });
-    
-    Route::put('/{id}',function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-        $input = request() -> all();
-        $content = USERS::updateById($id, $input);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
-
-    Route::delete('/{id}', function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-
-        $content = USERS::deleteById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'User cannot be deleted.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
-
-    Route::post('/lock/{id}', function (Request $request, $id){
-        $token = $request->header('token');
-        $token = USERS::validToken($token);
-        if(!$token)
-            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
-
-        $content = USERS::lockById($id);
-        if (!$content)
-            return response() -> json(['success' => False, 'message' => 'News not found.'], 404);
-        return response() -> json(['success' => True, 'message' => '', 'token' => $token], 200);
-    });
+    Route::post('/info', [UserController::class, 'getInfo']);
+    Route::post('/signup', [UserController::class, 'signup']);
+    Route::get('/signup/list', [UserController::class, 'getSignupList']);
+    Route::get('/signup/{id}', [UserController::class, 'getSignupById']);
+    Route::post('/signup/{id}/approval', [UserController::class, 'signUpApproval']);
+    Route::get('/token', [UserController::class, 'getToken']);
+    Route::post('/login', [UserController::class, 'login']);
+    Route::get('/list/candidates', [UserController::class, 'getCandidatesList']);
+    Route::get('/list/judges', [UserController::class, 'getJudgesList']);
+    Route::get('/{id}', [UserController::class, 'getUserById']);
+    Route::post('/create', [UserController::class, 'createUser']);
+    Route::put('/{id}', [UserController::class, 'updateUser']);
+    Route::delete('/{id}', [UserController::class, 'deleteUser']);
+    Route::post('/lock/{id}', [UserController::class, 'lockUser']);
 });
     
 use App\Http\Controllers\CompetitionController;
