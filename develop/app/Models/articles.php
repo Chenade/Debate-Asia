@@ -10,7 +10,9 @@ class articles extends Model
 {
     use HasFactory;
 
-    protected $table = 'article';
+    protected $table = 'articles';
+
+    protected $primaryKey = 'article_id';
     
     public $timestamps = true;
 
@@ -22,7 +24,7 @@ class articles extends Model
 
     public static function store($request)
     {
-        $article = DB::table('article')-> where('sid', $request['sid']) -> first();
+        $article = DB::table('articles')-> where('sid', $request['sid']) -> first();
         if ($article)
             return (NULL);
         $content = new articles;
@@ -32,33 +34,33 @@ class articles extends Model
         return $content->id;
     }
 
-    public static function initArticle($sid)
+    public static function initArticle($round_id)
     {
-        $content = DB::table('article')
-                    -> where('sid', $sid) 
+        $content = DB::table('articles')
+                    -> where('round_id', $round_id) 
                     -> where('type', 0) 
                     -> first();
         if (!$content)
         {
             $content = new articles;
-            $content->sid = $sid;
+            $content->round_id = $round_id;
             $content->type = 0;
             $content->save();
         }
         
-        $content = DB::table('article')
-                    -> where('sid', $sid) 
+        $content = DB::table('articles')
+                    -> where('round_id', $round_id) 
                     -> where('type', 1) 
                     -> first();
         if (!$content)
         {
             $content = new articles;
-            $content->sid = $sid;
+            $content->round_id = $round_id;
             $content->type = 1;
             $content->save();
         }
-        return DB::table('article')
-                    -> where('sid', $sid) 
+        return DB::table('articles')
+                    -> where('round_id', $round_id) 
                     -> orderBy('type', 'ASC') 
                     -> get();
     }

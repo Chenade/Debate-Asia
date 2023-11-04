@@ -33,7 +33,7 @@ Route::get('/signup', 				function () { return view('page.signup');});
 
 Route::prefix('candidate')->group(function () {
 	Route::get('/', 					function () { return view('page.candidate');});
-	Route::get('{cid}/session/{sid}', 	function () { return view('page.session');});
+	Route::get('/session/{sid}', 		function () { return view('page.session');});
 	// Route::get('/session', 			function () { return view('page.management.session');});
 });
 

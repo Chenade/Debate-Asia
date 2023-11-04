@@ -5,9 +5,7 @@
     <!-- body -->
     <div class="col-12" style="margin-top:50px; position: absolute; top: 0;left: 0;min-height: 100vh; overflow-y: auto; overflow-x: hidden;">
         <div class="col-12 d-flex flex-wrap justify-content-around" style="min-height: 200px;">
-            <div id="pos_box" class="col-12 col-sm-6 col-lg-2" style="background-color: white; margin: 0; padding: 0">
-               
-            </div>
+            <div id="pos_box" class="col-12 col-sm-6 col-lg-2" style="background-color: white; margin: 0; padding: 0">  </div>
             <div class="col-12 col-sm-6 col-lg-2 d-flex flex-column justify-content-start align-items-around" style="padding:10px;background-color: lightgray; height: 225px;" id="size_default">
                 <p class="roles"><span class="badge badge-secondary"  style="margin-top: 35px; font-size: 14px;">{{trans('dictionary.pos')}}：</span></p>
                 <h4 id="a_name" class="mt-3 mb-1"></h4>
@@ -23,18 +21,16 @@
                 <h4 id="b_name" class="mt-3 mb-1"></h4>
                 <h5 id="b_school" class="mt-1"></h5>
             </div>
-            <div id="neg_box" class="col-12 col-sm-6  col-lg-2" style="background-color: white; padding:0;">
-                
-            </div>
+            <div id="neg_box" class="col-12 col-sm-6  col-lg-2" style="background-color: white; padding:0;"></div>
         </div>
         <div class="stages" id="stage0" style="display:none;">
             <div class="col-12 d-flex flex-wrap justify-content-around mt-1 align-items-center" style="min-height: 61vh">
                 <div class="col-8 d-flex justify-content-center">
-                    <iframe id="videos" allowfullscreen autoplay
+                    <!-- <iframe id="videos" allowfullscreen autoplay
                         height=450 width=800 
                         src='https://player.youku.com/embed/XNTkzMzUwMTYyNA==' 
                         frameborder=0 >
-                    </iframe>
+                    </iframe> -->
                 </div>
                 <div class="col-4 d-flex flex-column justify-content-around align-items-start   ">
                     <p style="text-indent: -1em;">{{trans('rules.rv1')}}</p>
@@ -97,13 +93,16 @@
                 </div>
                 <div class="col-6" >
                     <textarea id="input"
-                        rows="17" class="col-12" 
+                        rows="15" class="col-12" 
                         style="
                             margin: 20px 0;
                             font-size: medium; 
                             resize: none; 
                             background-color: white"></textarea>
-                    <!-- <button id="moveStage" class="btn btn-success" data-stage="2">提前交稿</button> -->
+                    <div class="d-flex">
+                        <button id="saveArticle" class="btn btn-success">儲存文稿</button>&emsp;
+                        <button id="moveStage" class="btn btn-success">提前交稿</button>
+                    </div>
                 </div>
             </div>
         </div>

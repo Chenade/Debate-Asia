@@ -168,9 +168,21 @@ Route::post('rounds', [RoundController::class, 'store']);
 Route::post('rounds/judges', [RoundController::class, 'judgeStore']);
 Route::put('rounds/{id}', [RoundController::class, 'update']);
 Route::delete('rounds/{id}', [RoundController::class, 'destroy']);
+Route::post('rounds/{id}/image', [RoundController::class, 'uploadImage']);
+
+use App\Http\Controllers\ArticlesController;
+Route::get('articles', [ArticlesController::class, 'index']);
+Route::get('articles/{id}', [ArticlesController::class, 'show']);
+Route::post('articles', [ArticlesController::class, 'store']);
+Route::put('articles/{id}', [ArticlesController::class, 'update']);
+Route::delete('articles/{id}', [ArticlesController::class, 'destroy']);
 
 use App\Http\Controllers\JudgeController;
 Route::get('judges/list', [JudgeController::class, 'showByUid']);
+
+use App\Http\Controllers\CandidateController;
+Route::get('candidates/list', [CandidateController::class, 'showByUid']);
+
 
 Route::prefix('image')->group(function () {
 

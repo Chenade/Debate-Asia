@@ -62,3 +62,8 @@ ALTER TABLE `groups` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT, add PRIMA
 ALTER TABLE `rounds` ADD `status` INT NOT NULL DEFAULT '0' AFTER `round_config`;
 
 ALTER TABLE `rounds` ADD `role` INT NOT NULL DEFAULT '0' AFTER `round_number`;
+
+ALTER TABLE `articles` CHANGE `user_id` `round_id` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `articles` ADD `type` INT NOT NULL AFTER `round_id`;
+ALTER TABLE `articles` CHANGE `article_content` `content` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+ALTER TABLE `rounds` ADD `camera` VARCHAR(120) NULL AFTER `user_id`, ADD `camera_ts` INT NULL AFTER `camera`;

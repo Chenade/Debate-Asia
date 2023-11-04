@@ -2,7 +2,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Round;
+use App\Models\Sessions;
+use App\Models\Articles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class RoundController extends Controller
 {
@@ -20,7 +24,35 @@ class RoundController extends Controller
         if (!$round) {
             return response()->json(['success' => false, 'message' => 'Round not found.'], 404);
         }
-        return response()->json(['success' => true, 'data' => $round], 200);
+        $rounds = Round::where('round_number', $round->round_number)
+                        -> where('session_id', $round->session_id)
+                        -> leftjoin('users', 'rounds.user_id', '=', 'users.id')
+                        -> select('rounds.*', 'users.name_cn', 'users.school_cn')
+                        -> get();
+        $data = array();
+        $data['rounds'] = $rounds;
+        $data['user'] = $round;
+        if ($round->status > 0)
+        {
+            $data['session'] = 
+            Sessions::where('sessions.id', $round->session_id)
+                ->leftjoin('groups', 'sessions.group_id', '=', 'groups.id')
+                ->select ('sessions.neg_title', 'sessions.pos_title', 'sessions.date', 'groups.group_name', 'groups.t_write', 'groups.t_read', 'groups.t_debate')
+                ->first();
+            $data['articles'] = Articles::where('round_id', $round->id)->where('type', 0)->first();
+        }
+        if ($round->status > 1)
+        {
+            foreach ($rounds as $key => $value) {
+                if ($value->id != $round->id)
+                    $data['ops_argument'] = Articles::where('round_id', $value->id)->where('type', 0)->first();
+                else
+                    $data['my_argument'] = Articles::where('round_id', $value->id)->where('type', 0)->first();
+            }
+        }
+        if ($round->status > 2)
+            $data['articles'] = Articles::where('round_id', $round->id)->where('type', 1)->first();
+        return response()->json(['success' => true, 'data' => $data], 200);
     }
 
     public function store(Request $request)
@@ -91,6 +123,8 @@ class RoundController extends Controller
             return response()->json(['success' => false, 'message' => 'Round not found.'], 404);
         }
         $round->update($request->all());
+        if ($round->role < 3 && $round->status == 1)
+           Articles::initArticle($round->id);
         return response()->json(['success' => true, 'data' => $round], 200);
     }
 
@@ -134,5 +168,34 @@ class RoundController extends Controller
         }
         
         return response()->json(['success' => true, 'data' => $data], 200);
+    }
+
+    // upload image
+    public function uploadImage(Request $request, $id)
+    {
+        $content = Round::find($id);
+        if (!$content)
+            return ("error");
+        if ($content->camera && (is_writable($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera)))
+            unlink($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera);
+        $content->camera = Uuid::uuid4() . '.jpeg';
+        $content->timestamps = false;
+        $content->camera_ts = time();
+        $content->save();
+
+        $mime = substr($request['dataURI'], 5, strpos($request['dataURI'], ';') - 5);
+        $extension = explode('/', $mime)[1];
+        $filename = $content->camera;
+        $file_path = public_path() .'/camera//' . $filename;
+        $data = base64_decode(str_replace('data:'.$mime.';base64,', '', $request['dataURI']));
+        file_put_contents($file_path, $data);
+
+        $row = Round::where('session_id', $content->session_id)
+                    -> where('round_number', $content->round_number)
+                    -> where('user_id', '!=', $content->user_id)
+                    -> first();
+        if (!$row)
+            return (NULL);
+        return response()->json(['success' => true, 'data' => $row['camera']], 200);
     }
 }
