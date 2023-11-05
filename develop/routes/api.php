@@ -169,6 +169,7 @@ Route::post('rounds/judges', [RoundController::class, 'judgeStore']);
 Route::put('rounds/{id}', [RoundController::class, 'update']);
 Route::delete('rounds/{id}', [RoundController::class, 'destroy']);
 Route::post('rounds/{id}/image', [RoundController::class, 'uploadImage']);
+Route::get('rounds/{id}/articles', [RoundController::class, 'getArticleByRid']);
 
 use App\Http\Controllers\ArticlesController;
 Route::get('articles', [ArticlesController::class, 'index']);
@@ -176,6 +177,7 @@ Route::get('articles/{id}', [ArticlesController::class, 'show']);
 Route::post('articles', [ArticlesController::class, 'store']);
 Route::put('articles/{id}', [ArticlesController::class, 'update']);
 Route::delete('articles/{id}', [ArticlesController::class, 'destroy']);
+
 
 use App\Http\Controllers\JudgeController;
 Route::get('judges/list', [JudgeController::class, 'showByUid']);

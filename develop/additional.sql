@@ -67,3 +67,5 @@ ALTER TABLE `articles` CHANGE `user_id` `round_id` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `articles` ADD `type` INT NOT NULL AFTER `round_id`;
 ALTER TABLE `articles` CHANGE `article_content` `content` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 ALTER TABLE `rounds` ADD `camera` VARCHAR(120) NULL AFTER `user_id`, ADD `camera_ts` INT NULL AFTER `camera`;
+ALTER TABLE `rounds` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+ALTER TABLE `rounds` CHANGE `created_at` `created_at` DATETIME NOT NULL;

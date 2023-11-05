@@ -4,11 +4,27 @@
 
     <section id="manage_session">
         <div class="container">
-            <div class="col-12"><h5 style="margin-bottom: 5px;">{{trans('dictionary.select')}}{{trans('dictionary.round')}}：</h5></div>
-            <div class="col-12 d-flex flex-wrap">
-                <select class="selectpicker col-12" id="select_competition" title="Choose one of the following...">
-                    <option value="1">[test_tag] test_title</option>
-                </select>
+            <div class="d-flex">
+                <div class="col-6">
+                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.competition')}}：</h5>
+                    <select class="selectpicker col-12" id="select_competition" title="Choose one of the following..." style="margin-bottom: 5px;">
+                    </select>
+                </div>
+                <div class="col-6">
+                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.session')}}：</h5>
+                    <select class="selectpicker col-12" id="select_groups" title="Choose one of the following..." style="margin-bottom: 5px;">
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="col-6">
+                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.round')}}：</h5>
+                    <select class="selectpicker col-12" id="select_session" title="Choose one of the following..." style="margin-bottom: 5px;">
+                    </select>
+                </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    <button style="margin:0; display:none;" class="btn btn-warning" id="end-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">結束所有回合</button>
+                </div>
             </div>
             <hr>
             <div class="col-12">
@@ -57,213 +73,72 @@
                     
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#article_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.article')}}</a>
+                        <a class="nav-link active" data-toggle="tab" href="#article_tab">{{trans('dictionary.pos')}}{{trans('dictionary.candidate')}}</a>
                     </li>
-                    <!-- <li class="nav-item com-detail">
-                        <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
-                    </li> -->
+                    <li class="nav-item com-detail">
+                        <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.neg')}}{{trans('dictionary.candidate')}}</a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="article_tab">
                         <div class="d-flex flex-wrap">
                             <div class="col-12 col-lg-4" style="padding: 30px;">
                                 <div><img src="" width=250 height=150 alt="camera" id="a_camera"/></div>
-                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.name')}}：<span id="a_name"></span></h6>
-                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.school')}}：<span id="a_school"></span></h6>
-                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.status')}}：<span id="a_status"></span></h6>
-                                <h6>{{trans('dictionary.lastUpdate')}}{{trans('dictionary.time')}}：<span id="a_updated_at"></span></h6>
+                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.name')}}：<span id="a_name" class="info"></span></h6>
+                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.school')}}：<span id="a_school" class="info"></span></h6>
+                                <h6>{{trans('dictionary.pos')}}{{trans('dictionary.status')}}：<span id="a_status" class="info"></span></h6>
+                                <h6>{{trans('dictionary.lastUpdate')}}{{trans('dictionary.time')}}：<span id="a_updated_at" class="info"></span></h6>
                             </div>
                             <div class="col-12 col-lg-8">
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="col-form-label">{{trans('dictionary.pos')}}{{trans('dictionary.argument')}}:</label>
-                                        <textarea rows="8" cols="15" id="a_1"></textarea>
+                                        <textarea class="info" rows="8" cols="15" id="a_0" disabled></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label class="col-form-label">{{trans('dictionary.pos')}}{{trans('dictionary.rebuttal')}}:</label>
-                                        <textarea rows="8" cols="15" id="a_2"></textarea>
+                                        <textarea class="info" rows="8" cols="15" id="a_1" disabled></textarea>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="d-flex flex-wrap">
-                        <div class="col-12 col-lg-4" style="padding: 30px;">
-                                <div><img src="" width=250 height=150 alt="camera" id="b_camera"/></div>
-                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.name')}}：<span id="b_name"></span></h6>
-                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.school')}}：<span id="b_school"></span></h6>
-                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.status')}}：<span id="b_status"></span></h6>
-                                <h6>{{trans('dictionary.lastUpdate')}}{{trans('dictionary.time')}}：<span id="b_updated_at"></span></h6>
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.argument')}}:</label>
-                                        <textarea rows="8" cols="15" id="b_1"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.rebuttal')}}:</label>
-                                        <textarea rows="8" cols="15" id="b_2"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="session_modal" role="dialog">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"><span id="md-method">新增</span>比賽組別 </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#info_tab">{{trans('dictionary.session')}}{{trans('dictionary.info')}}</a>
-                    </li>
-                    <li class="nav-item com-detail">
-                        <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#candidates_tab">{{trans('dictionary.candidate')}}{{trans('dictionary.manage')}}</a>
-                    </li>
-                    <li class="nav-item com-detail">
-                        <a id="judge-nav" class="nav-link" data-toggle="tab" href="#judges_tab">{{trans('dictionary.judge')}}{{trans('dictionary.manage')}}</a>
-                    </li>
-                    
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="info_tab">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.tag')}}:</label>
-                                <input type="text" class="form-control" id="edit_tag">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.title')}}:</label>
-                                <input type="text" class="form-control" id="edit_title">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.session')}}{{trans('dictionary.time')}}:</label>
-                                <input type="text" class="form-control" id="datetimepicker_session_time" placeholder="{{trans('dictionary.birthday')}}">
-                            </div>
-                        </div>
-                        <div class="d-flex flex-wrap">
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">{{trans('dictionary.t_write')}}:</label>
-                                    <input type="number" class="form-control" id="edit_t_write">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">{{trans('dictionary.t_read')}}:</label>
-                                    <input type="number" class="form-control" id="edit_t_read">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">{{trans('dictionary.t_debate')}}:</label>
-                                    <input type="number" class="form-control" id="edit_t_debate">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="candidates_tab">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.add')}}{{trans('dictionary.candidate')}}:</label>
-                                <select class="selectpicker col-12" data-size="5"  data-live-search="true" id="select_candidates"  title="Choose one of the following...">
-                                    <option data-subtext="School" value="0">Name</option>
-                                </select>
+                        <div class="d-flex flex-wrap">
+                            <div class="col-12 col-lg-4" style="padding: 30px;">
+                                <div><img src="" width=250 height=150 alt="camera" id="neg_camera"/></div>
+                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.name')}}：<span id="neg_name" class="info"></span></h6>
+                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.school')}}：<span id="neg_school" class="info"></span></h6>
+                                <h6>{{trans('dictionary.neg')}}{{trans('dictionary.status')}}：<span id="neg_status" class="info"></span></h6>
+                                <h6>{{trans('dictionary.lastUpdate')}}{{trans('dictionary.time')}}：<span id="neg_updated_at" class="info"></span></h6>
                             </div>
-                            <hr>
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Room ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="candidate_list">
-
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                    <th scope="col">Room ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Score</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="judges_tab">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="col-form-label">{{trans('dictionary.add')}}{{trans('dictionary.judge')}}:</label>
-                                <select class="selectpicker col-12" data-size="5"  data-live-search="true" id="select_judges"  title="Choose one of the following...">
-                                    <option data-subtext="School" value="1">Name</option>
-                                </select>
+                            <div class="col-12 col-lg-8">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.argument')}}:</label>
+                                        <textarea class="info" rows="8" cols="15" id="neg_0" disabled></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="col-form-label">{{trans('dictionary.neg')}}{{trans('dictionary.rebuttal')}}:</label>
+                                        <textarea class="info" rows="8" cols="15" id="neg_1" disabled></textarea>
+                                    </div>
+                                </div>
                             </div>
-                            <hr>
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="judges_list">
-
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Score</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
                         </div>
                     </div>
                 </div>
 
-
-                            
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success pair-btn">{{trans('dictionary.pairs')}}</button>
+                <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
-                    <button type="button" class="btn btn-danger delete-btn" data-action="delete" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">{{trans('dictionary.delete')}}</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
-
-
 
 @stop
 @section('end_script')

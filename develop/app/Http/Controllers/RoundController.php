@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Users;
 use App\Models\Round;
 use App\Models\Sessions;
 use App\Models\Articles;
@@ -17,12 +18,17 @@ class RoundController extends Controller
         return response()->json(['success' => true, 'data' => $rounds], 200);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        // Retrieve a specific round by ID
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $user_id = USERS::getId($token);
+
         $round = Round::find($id);
-        if (!$round) {
-            return response()->json(['success' => false, 'message' => 'Round not found.'], 404);
+        if (!$round || $round->user_id != $user_id) {
+            return response()->json(['success' => false, 'message' => 'Round not found.', 'token' => $token], 404);
         }
         $rounds = Round::where('round_number', $round->round_number)
                         -> where('session_id', $round->session_id)
@@ -52,7 +58,7 @@ class RoundController extends Controller
         }
         if ($round->status > 2)
             $data['articles'] = Articles::where('round_id', $round->id)->where('type', 1)->first();
-        return response()->json(['success' => true, 'data' => $data], 200);
+        return response()->json(['success' => true, 'data' => $data, 'token' => $token], 200);
     }
 
     public function store(Request $request)
@@ -165,6 +171,9 @@ class RoundController extends Controller
         $data = Round::where('session_id', $session_id) ->get();
         foreach ($data as $key => $value) {
             $value->update(['status' => 4]);
+            $value->timestamps = true;
+            $value->updated_at = time();
+            $value->save();
         }
         
         return response()->json(['success' => true, 'data' => $data], 200);
@@ -197,5 +206,25 @@ class RoundController extends Controller
         if (!$row)
             return (NULL);
         return response()->json(['success' => true, 'data' => $row['camera']], 200);
+    }
+
+    // get article by round id
+    public function getArticleByRid(Request $request, $rid)
+    {
+        $article = Articles::where('round_id', $rid)->get();
+        if (!$article) {
+            return response()->json(['success' => false, 'message' => 'Article not found.'], 404);
+        }
+        $session = Round::where('rounds.id', $rid)
+                        -> leftjoin('sessions', 'rounds.session_id', '=', 'sessions.id')
+                        -> leftjoin('users', 'rounds.user_id', '=', 'users.id')
+                        -> select('sessions.*', 'users.name_cn', 'users.school_cn', 'rounds.status', 'rounds.updated_at')
+                        -> first();
+        
+        $data = array();
+        $data['session'] = $session;
+        $data['article'] = $article;
+        
+        return response()->json(['success' => true, 'data' => $data], 200);
     }
 }

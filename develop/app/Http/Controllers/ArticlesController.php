@@ -20,4 +20,14 @@ class ArticlesController extends Controller
         $article->update($request->all());
         return response()->json(['success' => true, 'data' => $article], 200);
     }
+
+    public function getArticleByRid(Request $request, $rid)
+    {
+        $article = Articles::where('round_id', $rid)->get();
+        if (!$article) {
+            return response()->json(['success' => false, 'message' => 'Article not found.'], 404);
+        }
+        
+        return response()->json(['success' => true, 'data' => $article], 200);
+    }
 }
