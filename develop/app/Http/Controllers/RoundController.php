@@ -130,7 +130,11 @@ class RoundController extends Controller
         }
         $round->update($request->all());
         if ($round->role < 3 && $round->status == 1)
-           Articles::initArticle($round->id);
+        {
+            $round->start = time();
+            $round->save();
+            Articles::initArticle($round->id);
+        }
         return response()->json(['success' => true, 'data' => $round], 200);
     }
 

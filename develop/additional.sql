@@ -69,3 +69,6 @@ ALTER TABLE `articles` CHANGE `article_content` `content` TEXT CHARACTER SET utf
 ALTER TABLE `rounds` ADD `camera` VARCHAR(120) NULL AFTER `user_id`, ADD `camera_ts` INT NULL AFTER `camera`;
 ALTER TABLE `rounds` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
 ALTER TABLE `rounds` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+
+ALTER TABLE `rounds` ADD `start` DATETIME NULL DEFAULT NULL AFTER `camera_ts`;
+ALTER TABLE `rounds` CHANGE `start` `start` INT NULL DEFAULT NULL;
