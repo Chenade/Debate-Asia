@@ -11,14 +11,14 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.session')}}：</h5>
+                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.groups')}}：</h5>
                     <select class="selectpicker col-12" id="select_groups" title="Choose one of the following..." style="margin-bottom: 5px;">
                     </select>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="col-6">
-                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.round')}}：</h5>
+                    <h5 style="margin: 0 0 0 5px;">{{trans('dictionary.select')}}{{trans('dictionary.session')}}：</h5>
                     <select class="selectpicker col-12" id="select_session" title="Choose one of the following..." style="margin-bottom: 5px;">
                     </select>
                 </div>
