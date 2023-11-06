@@ -102,7 +102,7 @@
                     <div class="d-flex">
                         <div class="mr-auto" style="font-weight: 700">
                             中文字數統計:&ensp;<span id="character-count" >0</span><br>
-                            English Words Count:&ensp;<span id="words-count" >0</span>
+                            English word count:&ensp;<span id="words-count" >0</span>
                         </div>
                         <button id="saveArticle" class="btn btn-success">儲存文稿</button>&emsp;
                         <button id="moveStage" class="btn btn-success">提前交稿</button>
