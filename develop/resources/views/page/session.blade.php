@@ -26,11 +26,11 @@
         <div class="stages" id="stage0" style="display:none;">
             <div class="col-12 d-flex flex-wrap justify-content-around mt-1 align-items-center" style="min-height: 61vh">
                 <div class="col-8 d-flex justify-content-center">
-                    <!-- <iframe id="videos" allowfullscreen autoplay
+                    <iframe id="videos" allowfullscreen autoplay
                         height=450 width=800 
                         src='https://player.youku.com/embed/XNTkzMzUwMTYyNA==' 
                         frameborder=0 >
-                    </iframe> -->
+                    </iframe>
                 </div>
                 <div class="col-4 d-flex flex-column justify-content-around align-items-start   ">
                     <p style="text-indent: -1em;">{{trans('rules.rv1')}}</p>
@@ -100,6 +100,7 @@
                             resize: none; 
                             background-color: white"></textarea>
                     <div class="d-flex">
+                        <span class="mr-auto" style="font-weight: 700">字數統計:&ensp;<span id="character-count" >0</span></span>
                         <button id="saveArticle" class="btn btn-success">儲存文稿</button>&emsp;
                         <button id="moveStage" class="btn btn-success">提前交稿</button>
                     </div>
