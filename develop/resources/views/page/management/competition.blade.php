@@ -18,20 +18,20 @@
         <div>
             <ul class="nav nav-pills mb-1 mt-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="false" style="margin:0;">{{trans('dictionary.competition')}}{{trans('dictionary.config')}}</button>
+                    <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="margin:0;">{{trans('dictionary.competition')}}{{trans('dictionary.config')}}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link nav-details" id="pills-groups-tab" data-toggle="pill" data-target="#pills-groups" type="button" role="tab" aria-controls="pills-groups" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.group')}}{{trans('dictionary.config')}}</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link nav-details active" id="pills-session-tab" data-toggle="pill" data-target="#pills-session" type="button" role="tab" aria-controls="pills-session" aria-selected="true" style="margin:0; display:none;">{{trans('dictionary.session_lst')}}</button>
+                    <button class="nav-link nav-details" id="pills-session-tab" data-toggle="pill" data-target="#pills-session" type="button" role="tab" aria-controls="pills-session" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.session_lst')}}</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link nav-details" id="pills-signup-tab" data-toggle="pill" data-target="#pills-signup" type="button" role="tab" aria-controls="pills-signup" aria-selected="false" style="margin:0; display:none;">{{trans('dictionary.signup_lst')}}</button>
                 </li>
             </ul>
             <div class="tab-content" id="pills-tabContent" style="height: 70vh; overflow-y: auto;">
-                <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="row">
                         <div class="form-group col-12">
                             <label class="col-form-label">{{trans('dictionary.competition')}}{{trans('dictionary.name')}}:</label>
@@ -81,7 +81,7 @@
                         <tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade show active" id="pills-session" role="tabpanel" aria-labelledby="pills-session-tab" style="">
+                <div class="tab-pane fade" id="pills-session" role="tabpanel" aria-labelledby="pills-session-tab" style="">
                     <div class="form-group col-12">
                         <label class="col-form-label">{{trans('dictionary.select')}}{{trans('dictionary.group')}}:</label>
                         <select class="form-control selectpicker" id="select_group_name"></select>

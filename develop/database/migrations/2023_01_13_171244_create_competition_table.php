@@ -6,32 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCompetitionTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('competition', function (Blueprint $table) {
+        Schema::create('competitions', function (Blueprint $table) {
             $table->id();
-            $table->string('tag', 50);
-            $table->string('title', 50);
-            $table->integer('date');
-            $table->integer('t_write');
-            $table->integer('t_read');
-            $table->integer('t_debate');
-            $table->timestamps();
+            $table->string('competition_name')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->date('updated_at');
+            $table->date('created_at');
+            $table->index('id');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('competition');
+        Schema::dropIfExists('competitions');
     }
 }

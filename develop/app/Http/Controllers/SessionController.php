@@ -23,6 +23,7 @@ class SessionController extends Controller
         $competition_data = Group::find($gid);
         $candidates = Competition_log::where('competition_id', $competition_data->competition_id)
             -> where('group_id', $gid)
+            -> where ('approval', 1)
             -> leftjoin ('users', 'users.id', '=', 'competition_log.userId')
             -> leftjoin ('rounds', 'rounds.user_id', '=', 'competition_log.userId')
             -> selectRaw('competition_log.*, users.name_cn, users.school_cn, rounds.session_id, rounds.round_number, rounds.role, rounds.id as round_id')

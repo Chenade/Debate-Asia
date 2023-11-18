@@ -33,8 +33,11 @@ class UserController extends Controller
             'body' => '恭喜您已第二届「亚洲思辨写作对抗赛」，组委会将后续与您联络比赛的具体事宜，请耐心等待赛事安排通知。'
         ];
        
-        Mail::to($request->email)->send(new signupConfirmation($details));
-       
+        try {
+            Mail::to($request->email)->send(new signupConfirmation($details));
+        } catch (\Exception $e) {
+            return response()->json(['success' => true, 'error' => $e->getMessage()], 400);
+        }
         
         return response()->json(['success' => true], 200);
     }
