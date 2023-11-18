@@ -89,11 +89,13 @@ class Users extends Model
 
         $chk = DB::table('competition_log') 
             -> where('userId', $content->id) 
+            -> where('competition_id', $request['competition_id'])
             -> first();
         if ($chk)
             return "Already signed up!";
 
         $log = new competition_log;
+        $log->competition_id = $request['competition_id'];
         $log->userId = $content->id;
         $log->group_id = $request['group'];
         $log->date =  json_encode($request['date']);

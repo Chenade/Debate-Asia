@@ -9,6 +9,21 @@ use App\Models\Users;
 
 class CandidateController extends Controller
 {
+    public function getInfo(Request $request)
+    {
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $user_id = USERS::getId($token);
+        $authority = USERS::find($user_id)->authority;
+        if ($authority != 1)
+            return response()->json(['success' => false, 'message' => 'No authority.'], 403);
+        $users = USERS::find($user_id);
+
+        return response()->json(['success' => true, 'data' => $users, 'id' => $user_id], 200);
+    }
+
     public function showByUid(Request $request)
     {
         $token = $request->header('token');

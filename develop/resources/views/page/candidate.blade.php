@@ -7,12 +7,13 @@
         <div class="col-12 col-sm-6 col-lg-5">
             <h3 class="mb-0">{{trans('dictionary.candidate')}}{{trans('dictionary.info')}}</h3>
             <div class="mb-0">
-                <div class="col-11 d-flex flex-column" style="background-color: lightgrey; height: 100px; margin: 10px;">
+                <div class="col-11 d-flex flex-column" style="background-color: lightgrey; min-height: 100px; margin: 10px;">
                     <h4 class="mt-3 mb-1">
                         <span id="name"></span>
                         <span style="font-size: 0.8em; color: gray;">(Account: <span id="account"></span>)</span>
                     </h4>
-                    <h5 class="mt-1 mb-1" id="school_name"></h5>
+                    <h5 class="mt-1 mb-1">{{trans('dictionary.school')}}：<span id="school_name"></span></h5>
+                    <h5 class="mt-1 mb-3">{{trans('dictionary.email')}}：<span id="email"></span></h5>
                 </div>
             </div>
             <h3 class="mb-0 mt-3">{{trans('dictionary.future')}}{{trans('dictionary.competition')}}</h3>

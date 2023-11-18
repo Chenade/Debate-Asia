@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sessions;
 use App\Models\Group;
+use App\Models\Round;
 use App\Models\Competition_log;
 
 class SessionController extends Controller
@@ -25,12 +26,13 @@ class SessionController extends Controller
             -> where('group_id', $gid)
             -> where ('approval', 1)
             -> leftjoin ('users', 'users.id', '=', 'competition_log.userId')
-            -> leftjoin ('rounds', 'rounds.user_id', '=', 'competition_log.userId')
-            -> selectRaw('competition_log.*, users.name_cn, users.school_cn, rounds.session_id, rounds.round_number, rounds.role, rounds.id as round_id')
-            -> orderBy ('rounds.round_number', 'asc')
+            -> selectRaw('competition_log.*, users.name_cn, users.school_cn')//, rounds.session_id, rounds.round_number, rounds.role, rounds.id as round_id')
             -> get();
         foreach ($candidates as $key => $value) {
             $value->date = json_decode($value->date);
+            $value->rounds = Round::where('user_id', $value->userId)
+                -> where('session_id', $id)
+                -> get();
         }
         return response ()->json ([ 'data' => $data, 'candidates' => $candidates ]);
     }

@@ -183,6 +183,7 @@ use App\Http\Controllers\JudgeController;
 Route::get('judges/list', [JudgeController::class, 'showByUid']);
 
 use App\Http\Controllers\CandidateController;
+Route::get('candidates/info', [CandidateController::class, 'getInfo']);
 Route::get('candidates/list', [CandidateController::class, 'showByUid']);
 
 

@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Type</th>
+                    <!-- <th>Type</th> -->
                     <th>School</th>
                     <th>Name</th>
                     <th>Account</th>
@@ -18,7 +18,7 @@
             <tfoot>
                 <tr>
                     <th>#</th>
-                    <th>Type</th>
+                    <!-- <th>Type</th> -->
                     <th>School</th>
                     <th>Name</th>
                     <th>Account</th>
