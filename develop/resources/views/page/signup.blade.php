@@ -140,7 +140,7 @@
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex flex-column justify-content-center">
                         <span>{{trans('dictionary.firstRoundAvailability')}}{{trans('dictionary.session')}}<span class="redStar">*</span>：</span>
-                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.mutliple')}}</span>
+                        <span style="font-size: 0.8em; color: grey;">{{trans('dictionary.mutliple_as_possible')}}</span>
                     </div>
                     <select class="selectpicker col-9 mandatory-select" multiple id="edit_date">
                     </select>
