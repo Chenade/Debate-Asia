@@ -204,7 +204,7 @@
 
                 <div class="col-12 d-flex mb-3">
                     <input type="checkbox" id="edit_agree" style="margin: 0"  autocomplete="off">
-                    <label for="edit_agree">{{trans('dictionary.signup_condition')}}</label>
+                    <label for="edit_agree">{{trans('dictionary.signup_condition')}}<span class="redStar">*</span></label>
                 </div>
 
                 <div class="col-12 d-flex mb-3">
