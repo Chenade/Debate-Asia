@@ -39,7 +39,7 @@ Route::prefix('candidate')->group(function () {
 
 Route::prefix('judge')->group(function () {
 	Route::get('/', 					function () { return view('page.judge');});
-	Route::get('{cid}/session/{sid}', 	function () { return view('page.grading');});
+	Route::get('{sid}/room/{rid}', 		function () { return view('page.grading');});
 	// Route::get('/session', 			function () { return view('page.management.session');});
 });
 

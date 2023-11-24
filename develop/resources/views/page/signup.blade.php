@@ -208,6 +208,11 @@
                 </div>
 
                 <div class="col-12 d-flex mb-3">
+                    <input type="checkbox" id="edit_agree2" style="margin: 0"  autocomplete="off">
+                    <label for="edit_agree2">{{trans('dictionary.time_arrange_condition')}}<span class="redStar">*</span></label>
+                </div>
+
+                <div class="col-12 d-flex mb-3">
                     <button class="btn btn-success col-12" id="submit">{{trans('dictionary.submit')}}</button>
                 </div>
 

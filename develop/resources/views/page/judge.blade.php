@@ -7,21 +7,21 @@
         <div class="col-12 col-sm-6 col-lg-5">
             <h3 class="mb-0">{{trans('dictionary.judge')}}{{trans('dictionary.info')}}</h3>
             <div class="mb-0">
-                <div class="col-11 d-flex flex-column" style="background-color: lightgrey; height: 100px; margin: 10px;">
+                <div class="col-11 d-flex flex-column" style="background-color: lightgrey; min-height: 100px; margin: 10px;">
                     <h4 class="mt-3 mb-1">
                         <span id="name"></span>
                         <span style="font-size: 0.8em; color: gray;">(Account: <span id="account"></span>)</span>
                     </h4>
-                    <h5 class="mt-1 mb-1" id="school_name"></h5>
+                    <h5 class="mt-1 mb-3">{{trans('dictionary.email')}}：<span id="email"></span></h5>
                 </div>
             </div>
-            <h3 class="mb-0 mt-3">{{trans('dictionary.round')}}{{trans('dictionary.list')}}</h3>
+            <h3 class="mb-0 mt-3">{{trans('dictionary.group')}}{{trans('dictionary.list')}}</h3>
             <div id="groups_lst" style="height: 51vh; overflow-y: auto; overflow-x: hidden;">
                 <!-- <div class="col-11" style="background-color: black; height: 180px; margin: 10px;"></div> -->
             </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-7">
-            <h3 class="mb-0">{{trans('dictionary.competition')}}{{trans('dictionary.list')}}</h3>
+            <h3 class="mb-0">{{trans('dictionary.round')}}{{trans('dictionary.list')}}</h3>
                 <div id="rounds_lst" style="height: 72vh; overflow-y: auto; overflow-x: hidden;">
                     <!-- <div class="col-12" style="background-color: black; height: 220px; margin: 10px;"></div> -->
                 </div>

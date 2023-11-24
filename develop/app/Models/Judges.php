@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\articles;
 use App\Models\competition;
 
-class judges extends Model
+class Judges extends Model
 {
     use HasFactory;
 

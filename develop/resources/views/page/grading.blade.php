@@ -42,12 +42,12 @@
                         </div>
                         <div class="tab-pane active" id="info_tab">
                             <div class="col-12">
-                                <h4 class="mb-0">{{trans('dictionary.title')}}：</h4>
-                                <div class="mt-1 d-flex flex-column info-title"></div>
+                                <h5 class="mb-0 mt-3">{{trans('dictionary.pos')}}{{trans('dictionary.title')}}：<span class="info-pos-title"></span></h5>
+                                <h5 class="mb-0 mt-1">{{trans('dictionary.neg')}}{{trans('dictionary.title')}}：<span class="info-neg-title"></span></h5>
                                 <hr>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
+                                <h6 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h6>
+                                <h6 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h6>
+                                <h6 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h6>
                             </div>
                         </div>
                         <div class="tab-pane" id="pos_score_tab">
@@ -176,12 +176,12 @@
                         </div>
                         <div class="tab-pane" id="neg_info_tab">
                             <div class="col-12">
-                                <h4 class="mb-0">{{trans('dictionary.title')}}：</h4>
-                                <div class="mt-1 d-flex flex-column info-title"></div>
+                                <h5 class="mb-0 mt-3">{{trans('dictionary.pos')}}{{trans('dictionary.title')}}：<span class="info-pos-title"></span></h5>
+                                <h5 class="mb-0 mt-1">{{trans('dictionary.neg')}}{{trans('dictionary.title')}}：<span class="info-neg-title"></span></h5>
                                 <hr>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
+                                <h6 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h6>
+                                <h6 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h6>
+                                <h6 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h6>
                             </div>
                         </div>
                         <div class="tab-pane active" id="neg_score_tab">

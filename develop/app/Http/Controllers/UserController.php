@@ -36,7 +36,7 @@ class UserController extends Controller
         try {
             Mail::to($request->email)->send(new signupConfirmation($details));
         } catch (\Exception $e) {
-            return response()->json(['success' => true, 'error' => $e->getMessage()], 400);
+            return response()->json(['success' => true, 'mail' => $e->getMessage()], 400);
         }
         
         return response()->json(['success' => true], 200);
