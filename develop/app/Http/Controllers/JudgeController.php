@@ -57,7 +57,7 @@ class JudgeController extends Controller
             $nestedRounds[$competitionId]['competition_name'] = $competitionName;
             $nestedRounds[$competitionId]['groups'][$groupId]['group_name'] = $groupName;
             $nestedRounds[$competitionId]['groups'][$groupId]['sessions'][$sessionId]['session_name'] = $sessionName;
-            if ( $round->status == 0 )
+            if ( $round->status < 2 )
             {
                 $nestedRounds[$competitionId]['groups'][$groupId]['sessions'][$sessionId]['rounds'][$round->round_number] = 
                 [
@@ -148,7 +148,23 @@ class JudgeController extends Controller
         $round->status = 5;
         $round->save();
 
-        $judge_rounds->status = $judge_rounds->status + 1;
+        $theOther = Round::where('session_id', $round->session_id)
+                            -> where('round_number', $round->round_number)
+                            -> where('user_id', $user_id)
+                            -> where('role', '!=', 3)
+                            -> where ('id', '!=', intval($rid))
+                            -> first();
+
+        $status = 1;
+        if ($theOther != null)
+        {
+            $record = Judges::where ('round_id', $theOther->id)
+                        -> where ('user_id', $user_id)
+                        -> first();
+            if ($record != null)
+                $status = 2;
+        }
+        $judge_rounds->status = $status;
         $judge_rounds->save();
 
         return response()->json(['success' => true, 'data' => $data], 200);
