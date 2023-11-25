@@ -140,6 +140,34 @@
         </div>
     </div>
 
+    <div class="modal fade" id="judge_modal" role="dialog">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><span id="md-method">查看</span>評委反饋</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#pos_tab">{{trans('dictionary.pos')}}{{trans('dictionary.candidate')}}</a>
+                        </li>
+                        <li class="nav-item com-detail">
+                            <a id="candidate-nav" class="nav-link" data-toggle="tab" href="#neg_tab">{{trans('dictionary.neg')}}{{trans('dictionary.candidate')}}</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="pos_tab">
+                        </div>
+                        <div class="tab-pane" id="neg_tab">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 @section('end_script')
 

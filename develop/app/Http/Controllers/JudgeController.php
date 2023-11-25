@@ -153,4 +153,31 @@ class JudgeController extends Controller
 
         return response()->json(['success' => true, 'data' => $data], 200);
     }
+
+    public function getFeedbackList(Request $request, $posId, $negId)
+    {
+        $token = $request->header('token');
+        $token = USERS::validToken($token);
+        if(!$token)
+            return $response = response() -> json(['success' => False, 'message' => 'Invalid Token'], 403);
+        $user_id = USERS::getId($token);
+        $authority = USERS::find($user_id)->authority;
+        if ($authority != 7)
+            return response()->json(['success' => false, 'message' => 'No authority.'], 403);
+        $ret = array();
+
+        $data = Judges::whereIn('round_id', [intval($posId), intval($negId)])
+                        -> leftJoin('rounds', 'judge.round_id', '=', 'rounds.id')
+                        -> leftJoin('users', 'judge.user_id', '=', 'users.id')
+                        -> select('judge.*', 'rounds.role', 'users.name_cn', 'users.name_en')
+                        -> get();
+        
+        foreach ($data as $key => $value) {
+            if (!isset($ret[$value['user_id']]))
+                $ret[$value['user_id']] = array();
+            array_push($ret[$value['user_id']], $value);
+        }
+        return response()->json(['success' => true, 'data' => $ret], 200);
+    }
+
 }

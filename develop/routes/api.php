@@ -180,10 +180,11 @@ Route::delete('articles/{id}', [ArticlesController::class, 'destroy']);
 
 
 use App\Http\Controllers\JudgeController;
-Route::get('judges/info',         [JudgeController::class, 'getInfo']);
-Route::get('judges/list',         [JudgeController::class, 'showByUid']);
+Route::get('judges/info',           [JudgeController::class, 'getInfo']);
+Route::get('judges/list',           [JudgeController::class, 'showByUid']);
 Route::get('judges/sessions/{sid}/rounds/{rid}', [JudgeController::class, 'judgeSession']);
-Route::put('judges/submit/{rid}', [JudgeController::class, 'judgeSubmit']);
+Route::put('judges/submit/{rid}',   [JudgeController::class, 'judgeSubmit']);
+Route::get('judges/{posId}/{negId}/feedback', [JudgeController::class, 'getFeedbackList']);
 
 use App\Http\Controllers\CandidateController;
 Route::get('candidates/info', [CandidateController::class, 'getInfo']);
