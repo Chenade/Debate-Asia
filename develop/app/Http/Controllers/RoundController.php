@@ -33,6 +33,7 @@ class RoundController extends Controller
         $rounds = Round::where('round_number', $round->round_number)
                         -> where('session_id', $round->session_id)
                         -> leftjoin('users', 'rounds.user_id', '=', 'users.id')
+                        -> where('role', '<', 3)
                         -> select('rounds.*', 'users.name_cn', 'users.school_cn')
                         -> get();
         $data = array();
