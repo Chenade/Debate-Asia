@@ -10,6 +10,8 @@ use App\Models\Articles;
 use App\Models\Sessions;
 use App\Models\Group;
 
+use Log;
+
 class JudgeController extends Controller
 {
     public function getInfo(Request $request)
@@ -57,7 +59,7 @@ class JudgeController extends Controller
             $nestedRounds[$competitionId]['competition_name'] = $competitionName;
             $nestedRounds[$competitionId]['groups'][$groupId]['group_name'] = $groupName;
             $nestedRounds[$competitionId]['groups'][$groupId]['sessions'][$sessionId]['session_name'] = $sessionName;
-            if ( $round->status < 2 )
+            // if ( $round->status < 2 )
             {
                 $nestedRounds[$competitionId]['groups'][$groupId]['sessions'][$sessionId]['rounds'][$round->round_number] = 
                 [
@@ -88,6 +90,7 @@ class JudgeController extends Controller
 
         foreach ($data as $key => $value) {
             $data[$key]['article'] = Articles::where('round_id', $value['id'])->get();
+            $data[$key]['judge'] = Judges::where('round_id', $value['id']) -> where('user_id', $user_id) -> first();
         }
 
         $session = Sessions::find($sid)->first();
@@ -145,12 +148,11 @@ class JudgeController extends Controller
         $data->score_4 = $request->score_4;
         $data->save();
 
-        $round->status = 5;
+        $round->status = 6;
         $round->save();
 
         $theOther = Round::where('session_id', $round->session_id)
                             -> where('round_number', $round->round_number)
-                            -> where('user_id', $user_id)
                             -> where('role', '!=', 3)
                             -> where ('id', '!=', intval($rid))
                             -> first();

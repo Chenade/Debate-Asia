@@ -15,14 +15,14 @@
                     <h5 class="mt-1 mb-3">{{trans('dictionary.email')}}：<span id="email"></span></h5>
                 </div>
             </div>
-            <h3 class="mb-0 mt-3">{{trans('dictionary.group')}}{{trans('dictionary.list')}}</h3>
-            <div id="groups_lst" style="height: 51vh; overflow-y: auto; overflow-x: hidden;">
+            <h3 class="mb-0 mt-3">{{trans('dictionary.graded')}}{{trans('dictionary.round')}}</h3>
+            <div id="graded_lst" style="height: 51vh; overflow-y: auto; overflow-x: hidden;">
                 <!-- <div class="col-11" style="background-color: black; height: 180px; margin: 10px;"></div> -->
             </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-7">
-            <h3 class="mb-0">{{trans('dictionary.round')}}{{trans('dictionary.list')}}</h3>
-                <div id="rounds_lst" style="height: 72vh; overflow-y: auto; overflow-x: hidden;">
+            <h3 class="mb-0">{{trans('dictionary.ungraded')}}{{trans('dictionary.round')}}</h3>
+                <div id="ungraded_lst" style="height: 72vh; overflow-y: auto; overflow-x: hidden;">
                     <!-- <div class="col-12" style="background-color: black; height: 220px; margin: 10px;"></div> -->
                 </div>
         </div>

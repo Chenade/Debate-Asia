@@ -48,6 +48,14 @@ class RoundController extends Controller
                 ->first();
             $data['articles'] = Articles::where('round_id', $round->id)->where('type', 0)->first();
         }
+        else
+        {
+            $data['session'] = 
+            Sessions::where('sessions.id', $round->session_id)
+                ->leftjoin('groups', 'sessions.group_id', '=', 'groups.id')
+                ->select ('sessions.date', 'groups.group_name', 'groups.t_write', 'groups.t_read', 'groups.t_debate')
+                ->first();
+        }
         if ($round->status > 1)
         {
             foreach ($rounds as $key => $value) {

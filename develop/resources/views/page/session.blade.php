@@ -14,6 +14,7 @@
             <div class="col-12 col-sm-12 col-lg-4 d-flex flex-column align-items-center justify-content-around" style="background-color: black; min-height 225px;">
                 <h3 style="color: white;" id="tag" class="mt-3 mb-1"></h3>
                 <div class="col-2"><hr></div>
+                <h4 style="color: white;" class="countDown mt-1 align-center">{{trans('dictionary.competition')}}{{trans('dictionary.countdown')}}：<span id="CountDownTime"></span></h4>
                 <h4 style="color: white;" class="roles mt-1 align-center"><span id="curStage"></span>{{trans('dictionary.section')}}，{{trans('dictionary.t_remain')}}：<span id="remainTime"></span></h4>
             </div>
             <div class="col-12 col-sm-6 col-lg-2 d-flex flex-column justify-content-start align-items-around" style="padding:10px;background-color: lightgray;height: 225px;">
@@ -112,6 +113,22 @@
         </div>
         <div class="mb-5"></div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="explain_modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">緩衝時間</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>現在是5分鐘比賽緩衝時間，以收集雙方立論稿，請選手利用時間思考辯題、查找資料，並為下一環節作好準備。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 @section('end_script')
     <script src="/js/general.min.js?v={{Config::get('app.version')}}"></script>

@@ -3,7 +3,7 @@
 return array(
     'cn' => '简体',
     'zh' => '繁体',
-    'en' => '英文',
+    'en' => 'ENG',
     'chinese' => '中文',
     'language' => '语言',
     
@@ -19,6 +19,7 @@ return array(
     'session' => '时段',
     'round' => '场次',
     'competition' => '比赛',
+    'countdown' => '倒數',
     'rule' => '规则',
     'borcher' => '简章',
     'livechat' => '即时谘询',
@@ -133,5 +134,9 @@ return array(
     'stroke' => '笔划',
     'wubi' => '五笔',
     'handwriting' => '手写',
+
+    
+    'graded' => '已評分',
+    'ungraded' => '待評分',
 
 );

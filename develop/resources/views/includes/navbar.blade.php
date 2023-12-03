@@ -2,7 +2,6 @@
 <header class="fixed-top">
 
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;">
-        <div class="container">
             <a class="navbar-brand" href="/">
                 <div class="" style="font-size: 0.9em"><img src="/img/logo.jpg" style="margin-bottom: 0px; height: 30px;"/>
                     <b>{{trans('dictionary.DebateAsia')}}</b>
@@ -54,19 +53,30 @@
                             <i class="fa-solid fa-right-from-bracket"></i>&emsp;{{trans('dictionary.logout')}}
                         </a>
                     </li>
-                    @if(session('setLocale') == 'zh')
-                        <li class="nav-item" style="margin: 0 1em; font-size:0.9em;">
+                    <li class="nav-item dropdown" style="margin: 0 1em; font-size:0.9em;">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                            @if(session('setLocale') == 'zh')
+                                <i class="fa-solid fa-repeat"></i>&emsp;{{trans('dictionary.cn')}}&ensp;/&ensp;{{trans('dictionary.en')}}
+                            @elseif(session('setLocale') == 'cn')
+                                <i class="fa-solid fa-repeat"></i>&emsp;{{trans('dictionary.zh')}}&ensp;/&ensp;{{trans('dictionary.en')}}
+                            @elseif(session('setLocale') == 'en')
+                                <i class="fa-solid fa-repeat"></i>&emsp;{{trans('dictionary.zh')}}&ensp;/&ensp;{{trans('dictionary.cn')}}
+                            @else
+                                <i class="fa-solid fa-repeat"></i>&emsp;{{trans('dictionary.zh')}}&ensp;/&ensp;{{trans('dictionary.en')}}
+                            @endif
+                        </a>
+                        <div class="dropdown-menu">
                             <a class="nav-link" href="/language/cn" style="">
-                                <i class="fa-solid fa-repeat"></i>&emsp;{{trans('dictionary.cn')}}
+                                &emsp;{{trans('dictionary.cn')}}
                             </a>
-                        </li>
-                    @else
-                        <li class="nav-item" style="margin: 0 1em; font-size:0.9em;">
                             <a class="nav-link" href="/language/zh" style="">
-                                <i class="fa-solid fa-repeat"></i>&emsp;{{trans('dictionary.zh')}}
+                                &emsp;{{trans('dictionary.zh')}}
                             </a>
-                        </li>
-                    @endif
+                            <a class="nav-link" href="/language/en" style="">
+                                &emsp;{{trans('dictionary.en')}}
+                            </a>
+                        </div>
+                    </li>
                     <li class="nav-item btn btn-primary" style="margin: 0 1em;font-size:0.9em; padding: 0;">
                         <a class="nav-link" href="/signup" style=" color: white;">
                             <i class="fa-solid fa-user-plus"></i>&emsp;{{trans('dictionary.signup')}}
@@ -74,6 +84,5 @@
                     </li>
                 </ul>
             </ul>
-        </div>
     </nav>
 </header>
