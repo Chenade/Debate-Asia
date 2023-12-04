@@ -66,13 +66,13 @@
                             @endif
                         </a>
                         <div class="dropdown-menu">
-                            <a class="nav-link" href="/language/cn" style="">
+                            <a class="nav-link lang-btn" data-lang="cn" style="">
                                 &emsp;{{trans('dictionary.cn')}}
                             </a>
-                            <a class="nav-link" href="/language/zh" style="">
+                            <a class="nav-link lang-btn" data-lang="zh" style="">
                                 &emsp;{{trans('dictionary.zh')}}
                             </a>
-                            <a class="nav-link" href="/language/en" style="">
+                            <a class="nav-link lang-btn" data-lang="en" style="">
                                 &emsp;{{trans('dictionary.en')}}
                             </a>
                         </div>

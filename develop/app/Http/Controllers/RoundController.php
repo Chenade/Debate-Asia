@@ -5,6 +5,7 @@ use App\Models\Users;
 use App\Models\Round;
 use App\Models\Sessions;
 use App\Models\Articles;
+use App\Models\Judges;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
@@ -237,6 +238,25 @@ class RoundController extends Controller
         $data = array();
         $data['session'] = $session;
         $data['article'] = $article;
+        
+        return response()->json(['success' => true, 'data' => $data], 200);
+    }
+
+    public function getFeedbackByRid(Request $request, $rid)
+    {
+        $feedback = Judges::where('round_id', $rid)->get();
+        if (!$feedback) {
+            return response()->json(['success' => false, 'message' => 'feedback not found.'], 404);
+        }
+        $session = Round::where('rounds.id', $rid)
+                        -> leftjoin('sessions', 'rounds.session_id', '=', 'sessions.id')
+                        -> leftjoin('users', 'rounds.user_id', '=', 'users.id')
+                        -> select('sessions.*', 'users.name_cn', 'users.school_cn', 'rounds.status', 'rounds.updated_at')
+                        -> first();
+        
+        $data = array();
+        $data['session'] = $session;
+        $data['feedback'] = $feedback;
         
         return response()->json(['success' => true, 'data' => $data], 200);
     }

@@ -170,6 +170,7 @@ Route::put('rounds/{id}', [RoundController::class, 'update']);
 Route::delete('rounds/{id}', [RoundController::class, 'destroy']);
 Route::post('rounds/{id}/image', [RoundController::class, 'uploadImage']);
 Route::get('rounds/{id}/articles', [RoundController::class, 'getArticleByRid']);
+Route::get('rounds/{id}/feedback', [RoundController::class, 'getFeedbackByRid']);
 
 use App\Http\Controllers\ArticlesController;
 Route::get('articles', [ArticlesController::class, 'index']);

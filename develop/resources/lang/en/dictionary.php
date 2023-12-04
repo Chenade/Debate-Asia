@@ -17,7 +17,7 @@ return array(
     'future' => 'Upcoming ',
     'past' => 'Past ',
     'session' => 'Session ',
-    'round' => 'Round ',
+    'round' => 'Round(s) ',
     'competition' => 'Competition ',
     'rule' => 'Rules ',
     'borcher' => 'Brochure ',
@@ -133,5 +133,8 @@ return array(
     'stroke' => 'Stroke ',
     'wubi' => 'Wubi ',
     'handwriting' => 'Handwriting ',
+    
+    'graded' => 'Graded ',
+    'ungraded' => 'Ungraded ',
 
 );

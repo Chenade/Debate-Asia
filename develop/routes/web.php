@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/language/{lang}', function ($lang) {
+    $pathname = request()->query('pathname');
     App::setlocale($lang);
     session(['setLocale' => $lang]);
-    return redirect() -> back();
+    return redirect($pathname ?: '/');
 });
 
 Route::prefix('admin')->group(function () {
