@@ -6,7 +6,7 @@
         <!-- body -->
         <div class="d-flex justify-content-center align-items-center flex-column">
             <img src="/img/indextitle.png" />
-            <h1 style="font-weight:700; margin: 0; color: rgba(150, 0, 0, 1);">{{trans('dictionary.debateTournment')}}</h1>
+            <h1 style="font-weight:700; margin: 0; color: rgba(150, 0, 0, 1);">亞洲思辨寫作對抗賽</h1>
             <p style="margin-top: 15px;">{{trans('dictionary.solgan1')}}</p>
             <img src="/img/qrcode_wechat.png" style="height: 120px;" />
             <p style="margin-top: 15px;">{{trans('dictionary.solgan2')}}</p>

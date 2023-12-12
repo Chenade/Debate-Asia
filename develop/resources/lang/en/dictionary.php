@@ -5,13 +5,14 @@ return array(
     'zh' => '繁体',
     'en' => 'ENG',
     'chinese' => 'Chinese ',
+    'englisg' => 'English ',
     'language' => 'Language ',
     
     'host' => 'Organiser ',
     'DebateAsia' => 'Asian Critical Thinking Education Association ',
     'zhonghen' => 'Beijing Zongheng Sihai Culture Development Limited ',
     'debateTournment' => 'Asian Argumentative Essay Writing Tournament ',
-    'solgan1' => 'View the World through Debating ',
+    'solgan1' => ' View the World through Debating ',
     'solgan2' => 'Scan the QR code and join the WeChat group to contact us ',
 
     'future' => 'Upcoming ',
@@ -19,9 +20,10 @@ return array(
     'session' => 'Session ',
     'round' => 'Round(s) ',
     'competition' => 'Competition ',
+    'countdown' => 'Countdown',
     'rule' => 'Rules ',
     'borcher' => 'Brochure ',
-    'livechat' => 'Live chat ',
+    'livechat' => 'Live Chat ',
     'candidate' => 'Participant ',
     'judge' => 'Judge ',
     'panel' => 'Area ',
@@ -86,6 +88,7 @@ return array(
     't_read' => 'Reading Time ',
     't_debate' => 'Rebuttal Time ',
     't_remain' => 'Remaining Time ',
+    't_buffer' => 'Buffer Time',
     'lastUpdate' => 'Last Update ',
     
     'article' => 'Essay ',
@@ -95,6 +98,7 @@ return array(
     'neg' => 'Opposition ',
     'argument' => 'Argument ',
     'rebuttal' => 'Rebuttal ',
+    'submitEarly' => 'Submit Early ',
     
     'grade' => 'Grading ',
     'standard' => 'Standard ',
@@ -105,8 +109,10 @@ return array(
     
     'award' => 'Award ',
 
-    'livechat_note' => 'Please scan the QR coed to contact us. ',
-    'note_signup' => 'Please fill out the required information below and attached a proof of registration fee payment(*starred entries are mandatory information). A confirmation email will be sent to after the registration is completed. ',
+    'note_buffer' => 'You now have 5-minute buffer time, during which you could organize your thoughts and search for information to prepare for the rebuttal session.',
+
+    'livechat_note' => 'Please scan the QR code to contact us. ',
+    'note_signup' => 'Please fill out the required information below and attach a proof of registration fee payment(*starred entries are mandatory information). A confirmation email will be sent to after the registration is completed. ',
     'note_name_zh' => '(Please enter your Chinese full name as shown on your ID card) ',
     'note_name_en' => '(This will be shown on the English certificate) ',
     'note_gender' => '(For statistical purpose only) ',

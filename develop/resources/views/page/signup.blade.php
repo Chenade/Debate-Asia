@@ -61,7 +61,7 @@
 
                 <div class="col-12 d-flex mb-3">
                     <div class="col-3 d-flex align-items-center">
-                        <span>{{trans('dictionary.en')}}{{trans('dictionary.name')}}<span class="redStar">*</span>：</span>
+                        <span>{{trans('dictionary.english')}}{{trans('dictionary.name')}}<span class="redStar">*</span>：</span>
                     </div>
                     <input class="col-9 mandatory" type="text" id="edit_english_name" style="margin: 0"  placeholder="{{trans('dictionary.note_name_en')}}"  autocomplete="off">
                 </div>

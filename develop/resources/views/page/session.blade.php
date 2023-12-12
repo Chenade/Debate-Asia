@@ -83,11 +83,14 @@
                         <div class="tab-pane active" id="info_tab">
                             <div class="col-12" style="height: 40vh;">
                                 <h3 class="mb-0">{{trans('dictionary.title')}}：</h3>
-                                <div class="mt-1 d-flex flex-column" id="title"></div>
+                                <div class="mt-1 d-flex flex-column" id="title">
+                                    <h4 class="mt-0 mb-1" style="text-indent: 1em;">{{trans('dictionary.pos')}}：<span id="pos_title"></span></h4>
+                                    <h4 class="mt-0 mb-1" style="text-indent: 1em;">{{trans('dictionary.neg')}}：<span id="neg_title"></span></h4>
+                                </div>
                                 <hr>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>{{trans('dictionary.mins')}}</h4>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>{{trans('dictionary.mins')}}</h4>
-                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_write')}}：<span class="t_write"></span>&ensp;{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_read')}}：<span class="t_read"></span>&ensp;{{trans('dictionary.mins')}}</h4>
+                                <h5 style="margin: 5px 0;">{{trans('dictionary.t_debate')}}：<span class="t_debate"></span>&ensp;{{trans('dictionary.mins')}}</h4>
                             </div>
                         </div>
                     </div>
@@ -105,8 +108,8 @@
                             中文字數統計:&ensp;<span id="character-count" >0</span><br>
                             English word count:&ensp;<span id="words-count" >0</span>
                         </div>
-                        <button id="saveArticle" class="btn btn-success">儲存文稿</button>&emsp;
-                        <button id="moveStage" class="btn btn-success">提前交稿</button>
+                        <button id="saveArticle" class="btn btn-success">{{trans('dictionary.save')}}</button>&emsp;
+                        <button id="moveStage" class="btn btn-success">{{trans('dictionary.submitEarly')}}</button>
                     </div>
                 </div>
             </div>
@@ -119,11 +122,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">緩衝時間</h4>
+                    <h4 class="modal-title">{{trans('dictionary.t_buffer')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>現在是5分鐘比賽緩衝時間，以收集雙方立論稿，請選手利用時間思考辯題、查找資料，並為下一環節作好準備。</p>
+                    <p>{{trans('dictionary.note_buffer')}}</p>
                 </div>
             </div>
         </div>

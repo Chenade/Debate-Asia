@@ -87,6 +87,7 @@ return array(
     't_read' => '閱讀時間',
     't_debate' => '駁論時間',
     't_remain' => '剩餘時間',
+    't_buffer' => '緩衝時間',
     'lastUpdate' => '最後更新',
     
     'article' => '文稿',
@@ -96,6 +97,7 @@ return array(
     'neg' => '反方',
     'argument' => '立論',
     'rebuttal' => '反駁',
+    'submitEarly' => '提前交稿',
     
     'grade' => '評分',
     'standard' => '標準',
@@ -105,6 +107,8 @@ return array(
     'list' => '清單',
     
     'award' => '獎項',
+
+    'note_buffer' => '現在是5分鐘比賽緩衝時間，以收集雙方立論稿，請選手利用時間思考辯題、查找資料，並為下一環節作好準備。',
 
     'livechat_note' => '請掃碼微信聯絡賽務工作人員',
     'note_signup' => '請每位報名者填選以下資料（*星號欄目均為必填項目），並提交成功繳費之截圖證明，成功報名者將收到電郵通知比賽平台的登入資料。',
