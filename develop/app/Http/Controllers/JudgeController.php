@@ -93,7 +93,7 @@ class JudgeController extends Controller
             $data[$key]['judge'] = Judges::where('round_id', $value['id']) -> where('user_id', $user_id) -> first();
         }
 
-        $session = Sessions::find($sid)->first();
+        $session = Sessions::where('id', intval($sid))->first();
         if ($session == null)
             return response()->json(['success' => false, 'message' => 'No session.'], 403);
         else
