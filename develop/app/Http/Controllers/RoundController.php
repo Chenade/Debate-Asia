@@ -68,6 +68,8 @@ class RoundController extends Controller
         }
         if ($round->status > 2)
             $data['articles'] = Articles::where('round_id', $round->id)->where('type', 1)->first();
+        else
+            $data['articles'] = Articles::where('round_id', $round->id)->where('type', 0)->first();
         return response()->json(['success' => true, 'data' => $data, 'token' => $token], 200);
     }
 

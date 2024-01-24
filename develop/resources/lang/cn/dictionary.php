@@ -19,7 +19,7 @@ return array(
     'session' => '时段',
     'round' => '场次',
     'competition' => '比赛',
-    'countdown' => '倒數',
+    'countdown' => '倒数',
     'rule' => '规则',
     'borcher' => '简章',
     'livechat' => '即时谘询',
@@ -87,6 +87,7 @@ return array(
     't_read' => '阅读时间',
     't_debate' => '驳论时间',
     't_remain' => '剩馀时间',
+    't_buffer' => '缓冲时间',
     'lastUpdate' => '最后更新',
     
     'article' => '文稿',
@@ -96,6 +97,7 @@ return array(
     'neg' => '反方',
     'argument' => '立论',
     'rebuttal' => '反驳',
+    'submitEarly' => '提前交稿',
     
     'grade' => '评分',
     'standard' => '标准',
@@ -105,6 +107,8 @@ return array(
     'list' => '清单',
     
     'award' => '奖项',
+
+    'note_buffer' => '现在是5分钟比赛缓冲时间，以收集双方立论稿，请选手利用时间思考辩题、查找资料，并为下一环节作好准备。',
 
     'livechat_note' => '请扫码微信联络赛务工作人员',
     'note_signup' => '请每位报名者填选以下资料（*星号栏目均为必填项目），并提交成功缴费之截图证明，成功报名者将收到电邮通知比赛平台的登入资料。',
@@ -121,7 +125,7 @@ return array(
     'note_proof' => '由团队其他人缴交',
     'if_nes' => '（如需）',
     'mutliple' => '（可多选）',
-    'mutliple_as_possible' => '（请尽量多选）',
+    'mutliple_as_possible' => '（请儘量多选）',
     'signup_condition' => '我已阅读比赛简章，并同意参赛之合约条款及授权主办方收集以上资料作赛务用途',
     'time_arrange_condition' => '我同意主办方拥有最终安排赛事之权利（赛会将根据最后报名人数尽可能协调参赛时间）',
     'account_condition' => '请报名者自行设定帐号及密码（各8-16个英文字母或符号），每个帐号名称只可被註册一次，若系统提示已有相同帐号，请修改成新的帐号名称。',
@@ -135,8 +139,8 @@ return array(
     'wubi' => '五笔',
     'handwriting' => '手写',
 
-    
-    'graded' => '已評分',
-    'ungraded' => '待評分',
+    'graded' => '已评分',
+    'ungraded' => '待评分',
+
 
 );
