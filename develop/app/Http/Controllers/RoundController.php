@@ -186,7 +186,7 @@ class RoundController extends Controller
     {
         $data = Round::where('session_id', $session_id) ->get();
         foreach ($data as $key => $value) {
-            $value->update(['status' => 4]);
+            $value->update(['status' => 5]);
             $value->timestamps = true;
             $value->updated_at = time();
             $value->save();
