@@ -234,7 +234,7 @@ class RoundController extends Controller
         $session = Round::where('rounds.id', $rid)
                         -> leftjoin('sessions', 'rounds.session_id', '=', 'sessions.id')
                         -> leftjoin('users', 'rounds.user_id', '=', 'users.id')
-                        -> select('sessions.*', 'users.name_cn', 'users.school_cn', 'rounds.status', 'rounds.updated_at')
+                        -> select('sessions.*', 'users.name_cn', 'users.school_cn', 'rounds.status', 'rounds.updated_at', 'rounds.camera')
                         -> first();
         
         $data = array();
