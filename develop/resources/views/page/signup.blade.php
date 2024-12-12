@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="section-heading text-center">
                     <h6 class="tag">Competition Registration</h6>
-                    <h2 style="font-weight: 900">{{trans('dictionary.signup')}}</h2>
+                    <h2 style="font-weight: 900" id="competition_name">{{trans('dictionary.signup')}}</h2>
                 </div>
             </div>
 

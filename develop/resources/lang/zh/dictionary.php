@@ -5,6 +5,7 @@ return array(
     'zh' => '繁體',
     'en' => 'ENG',
     'chinese' => '中文',
+    'english' => '英文',
     'language' => '語言',
     
     'host' => '主辦單位',

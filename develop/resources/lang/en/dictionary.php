@@ -5,7 +5,7 @@ return array(
     'zh' => '繁体',
     'en' => 'ENG',
     'chinese' => 'Chinese ',
-    'englisg' => 'English ',
+    'english' => 'English ',
     'language' => 'Language ',
     
     'host' => 'Organiser ',
