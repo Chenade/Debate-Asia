@@ -6,7 +6,7 @@
 
 <div class="d-flex container">
     <div class="col-4" style="padding: 0; border: solid gray 1px; height: 85vh; overflow-y: auto;">
-        <div class="d-flex align-items-center justify-content-between px-1" style="backgsession-color: lightgray; height: 3em;font-weight: bold;"> 
+        <div class="d-flex align-items-center justify-content-between px-1" style="background-color: lightgray; height: 3em;font-weight: bold; position: sticky; top: 0; z-index: 10;">
             <span>{{trans('dictionary.competition_lst')}} </span>
             <button class="btn btn-success competition-add-btn" style="margin:0">{{trans('dictionary.add')}}</button>
         </div>
