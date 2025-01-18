@@ -51,6 +51,8 @@ return array(
     'info' => 'Information ',
     'start_date' => 'Starting Date ',
     'end_date' => 'Ending Date ',
+    'getLink' => 'Get Link ',
+    'setDefault' => 'Set Default ',
     'name' => 'Name ',
     'gender' => 'Gender ',
     'female' => 'Female ',

@@ -51,6 +51,8 @@ return array(
     'info' => '资讯',
     'start_date' => '开始日期',
     'end_date' => '结束日期',
+    'getLink' => '获取链接',
+    'setDefault' => '设为默认',
     'name' => '名称',
     'gender' => '性别',
     'female' => '女性',

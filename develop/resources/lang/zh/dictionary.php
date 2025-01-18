@@ -51,6 +51,8 @@ return array(
     'info' => '資訊',
     'start_date' => '開始日期',
     'end_date' => '結束日期',
+    'getLink' => '取得連結',
+    'setDefault' => '設為預設',
     'name' => '名稱',
     'gender' => '性別',
     'female' => '女性',

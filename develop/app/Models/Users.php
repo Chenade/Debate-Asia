@@ -63,7 +63,7 @@ class Users extends Model
         else if ($usr && $usr->password == $request['password'])
             $content = users::find($usr->id);
         else
-            return "Account already taken / Wrong Password!";
+            return "Account already taken or Wrong Password";
 
         $content->authority = 1;
         $content->email = $request['email'];

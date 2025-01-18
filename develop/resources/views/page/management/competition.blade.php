@@ -6,7 +6,7 @@
 
 <div class="d-flex container">
     <div class="col-4" style="padding: 0; border: solid gray 1px; height: 85vh;">
-        <div style="display: flex; align-items: center; justify-content: space-asession; backgsession-color: lightgray; height: 3em; paddin: 2em; font-weight: bold;"> 
+        <div class="d-flex align-items-center justify-content-between px-1" style=" backgsession-color: lightgray; height: 3em;font-weight: bold;"> 
             <span>{{trans('dictionary.competition_lst')}} </span>
             <button class="btn btn-success competition-add-btn" style="margin:0">{{trans('dictionary.add')}}</button>
         </div>
@@ -55,6 +55,16 @@
                     </div>
                     <div class="col-12">
                         <button class="col-12 btn btn-success mt-5 competition-save-btn">{{trans('dictionary.save')}}</button>
+                    </div>
+                    <div class="nav-details" style="display: none;">
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="col-12 btn btn-primary" id="competition-getLink-btn">{{trans('dictionary.getLink')}}</button>
+                            </div>
+                            <!-- <div class="col-6">
+                                <button class="col-12 btn btn-primary competition-save-btn">{{trans('dictionary.setDefault')}}</button>
+                            </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-groups" role="tabpanel" aria-labelledby="pills-groups-tab" style="">

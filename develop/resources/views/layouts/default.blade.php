@@ -115,8 +115,10 @@
                     document.cookie = "Authorization=" + res.message;
                     window.location.href = res.url;
                 }, error: function (err) {
-                    console.log(err);
-                    $.growl.error({message: err.message})
+                    // get error message
+                    var message = err.responseJSON.message;
+                    console.log(message);
+                    $.growl.error({ message: langDict['login_error'] });
                 }
             });
         });
