@@ -8,6 +8,7 @@ use App\Models\Articles;
 use App\Models\Judges;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 
 class RoundController extends Controller
@@ -199,27 +200,48 @@ class RoundController extends Controller
     public function uploadImage(Request $request, $id)
     {
         $content = Round::find($id);
+        log::info($content);
         if (!$content)
             return ("error");
-        if ($content->camera && (is_writable($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera)))
+        if ($content->camera
+            && file_exists($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera)
+            && (is_writable($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera))
+        )
+        {
             unlink($_SERVER['DOCUMENT_ROOT']."/camera//" . $content->camera);
-        $content->camera = Uuid::uuid4() . '.jpeg';
-        $content->timestamps = false;
-        $content->camera_ts = time();
-        $content->save();
+            $content->camera = NULL;
+            $content->save();
+        }
 
-        $mime = substr($request['dataURI'], 5, strpos($request['dataURI'], ';') - 5);
-        $extension = explode('/', $mime)[1];
-        $filename = $content->camera;
-        $file_path = public_path() .'/camera//' . $filename;
-        $data = base64_decode(str_replace('data:'.$mime.';base64,', '', $request['dataURI']));
-        file_put_contents($file_path, $data);
+        if($request->has('dataURI'))
+        {
+            // log::info($request['dataURI']);
+            try {
+                $mime = substr($request['dataURI'], 5, strpos($request['dataURI'], ';') - 5);
+                $extension = explode('/', $mime)[1];
+                $filename = Uuid::uuid4() . '.jpeg';
+                log::info($filename);
+                $file_path = public_path() .'/camera//' . $filename;
+                $data = base64_decode(str_replace('data:'.$mime.';base64,', '', $request['dataURI']));
+                file_put_contents($file_path, $data);
+                
+                $content->camera = $filename;
+                $content->timestamps = false;
+                $content->camera_ts = time();
+                $content->save();
+            } catch (\Exception $e) {
+                return response()->json(['success' => false, 'message' => 'Failed to upload image.'], 400);
+            } 
+        }
 
         $row = Round::where('session_id', $content->session_id)
                     -> where('round_number', $content->round_number)
                     -> where('user_id', '!=', $content->user_id)
                     -> first();
-        if (!$row)
+
+        log::info($row);
+
+        if (!$row || !$row['camera'])
             return (NULL);
         return response()->json(['success' => true, 'data' => $row['camera']], 200);
     }

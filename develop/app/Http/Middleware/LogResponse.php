@@ -24,7 +24,8 @@ class LogResponse
 
         Log::info($method . $path .' | ' . USERS::getAcc($request->header('token')) . $detail);
         if ($response instanceof Response) {
-            Log::info("Test");
+            // Log::info("Test");
+
         }
 
         return $response;
