@@ -23,7 +23,8 @@
                     </select>
                 </div>
                 <div class="col-6 d-flex justify-content-end align-items-center">
-                    <button style="margin:0; display:none;" class="btn btn-warning" id="end-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">結束所有回合</button>
+                    <button style="display:none;" class="btn btn-primary mx-1 my-0" id="download-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">下載時段文稿</button>
+                    <button style="display:none;" class="btn btn-warning my-0" id="end-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">結束所有回合</button>
                 </div>
             </div>
             <hr>
@@ -133,9 +134,11 @@
                 </div>
 
                 </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-success save-btn" data-action="add" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>" data-dismiss="modal">{{trans('dictionary.save')}}</button>
-                </div> -->
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="download-articles-btn">
+                        下載場次文稿
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -176,6 +179,15 @@
     <script src="/lib/DataTables/datatables.min.js"></script>
     <script src="/js/lib/moment.min.js"></script>
     <script src="/js/lib/moment-timezone.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>  -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.0/jspdf.debug.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js" integrity="sha512-YnVU8b8PyEw7oHtil6p9au8k/Co0chizlPltAwx25CMWX6syRiy24HduUeWi/WpBbJh4Y4562du0CHAlvnUeeQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jspdf-customfonts@0.0.4-rc.4/dist/jspdf.customfonts.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+    <script src="https://unpkg.com/docx"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <!-- <script src="/lib/jsPDF-v.1.4.0/KAIU-normal.js"></script> -->
 
     <script src="/js/lib/jquery-ui.min.js"></script>
     <script src="/js/lib/jquery.ui.touch-punch.min.js"></script>
