@@ -178,6 +178,8 @@ Route::get('articles/{id}', [ArticlesController::class, 'show']);
 Route::post('articles', [ArticlesController::class, 'store']);
 Route::put('articles/{id}', [ArticlesController::class, 'update']);
 Route::delete('articles/{id}', [ArticlesController::class, 'destroy']);
+Route::get('articles/competition/{id}', [ArticlesController::class, 'getArticleByCompetitorId']);
+Route::get('articles/group/{id}', [ArticlesController::class, 'getArticleByGoupId']);
 
 
 use App\Http\Controllers\JudgeController;

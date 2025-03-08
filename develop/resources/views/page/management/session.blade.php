@@ -23,7 +23,8 @@
                     </select>
                 </div>
                 <div class="col-6 d-flex justify-content-end align-items-center">
-                    <button style="display:none;" class="btn btn-primary mx-1 my-0" id="download-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">下載時段文稿</button>
+                    <button style="display:none;" class="btn btn-primary mx-1 my-0" id="download-competition-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">下載比賽文稿</button>
+                    <button style="display:none;" class="btn btn-primary mx-1 my-0" id="download-groups-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">下載組別文稿</button>
                     <button style="display:none;" class="btn btn-warning my-0" id="end-rounds-btn" data-loading-text="<span class='spinner-grow spinner-grow-sm'></span>">結束所有回合</button>
                 </div>
             </div>
