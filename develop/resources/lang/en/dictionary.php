@@ -13,7 +13,7 @@ return array(
     'zhonghen' => 'Beijing Zongheng Sihai Culture Development Limited ',
     'debateTournment' => 'Asian Argumentative Essay Writing Tournament ',
     'solgan1' => ' View the World through Debating ',
-    'solgan2' => 'Scan the QR code and join the WeChat group to contact us ',
+    'solgan2' => 'Scan the QR code and to read 2025 competition brochure ',
 
     'future' => 'Upcoming ',
     'past' => 'Past ',
